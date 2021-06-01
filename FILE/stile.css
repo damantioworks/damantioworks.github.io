@@ -1,0 +1,97 @@
+/* stile.css */
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200&display=swap'); /* Caricamento font esterno */
+
+
+body{  /* Corpo del sito */
+	background-color: #000000; /* Colore di sfondo */
+	color:#ffffff; /* Colore del testo */
+	}
+
+table, th,td{  /* Tabelle */
+			border: 3px solid #ffffff; /* Bordo semplice a tinta unita */
+			border-collapse: collapse; /* Collassa i bordi della tabella, del th e del td in un unico bordo */
+			}
+
+a:link{color: #ffffff; text-decoration: none;} /* Link normale */
+a:visited{color: #ffffff; text-decoration: none;} /* Link visitato */
+a:hover{color: #000000; text-decoration: none;} /* Link con il cursore sopra */
+a:active{color: #000000; text-decoration: none;} /* Link mentre viene cliccato */
+
+#titolo{  /* Titolo */
+	border-radius: 25px; /* raggio di arrotondamento del bordo */
+	border: 5px double #000000; /* un doppio bordo*/
+	background-color: #ffffff; 
+	background-image: url("title.png"); /*Immagine di sfondo*/
+	background-repeat: no-repeat;/*Ripetizione sfondo*/
+	background-position-x: center;/*Allineamento orizzontale sfondo*/
+	background-position-y: center;/*Allineamento verticale sfondo*/
+	color: #000000;
+	font-size: 70px; /* Dimensione testo */
+	font-family: 'Poppins', sans-serif; /* Famiglie di caratteri */
+	text-align: center; /* Allineamento Testo */
+	height: 115px;
+	}
+
+#sottotitolo{  /* Sottotitolo */
+		
+	background-color: #000000;
+	color: #ffffff; 
+	font-size: 40px;
+	font-family: 'Poppins', sans-serif; /* Nel caso in cui il font Poppins non sia disponibile, passerà a sans-serif */
+	text-align: center;
+	height: 40px;
+	}
+
+.titolo{
+		color: #166d41;
+		font-size: 200%;
+		font-weight: bolder;
+		
+
+
+}
+.main{
+	color: #FFFFFF;
+	font-size: 100%;
+}
+.main2{
+	color: #FFFFFF;
+	font-size: 80%;
+}
+.verde{
+	color: #00FF00;
+	font-size: 150%;
+	
+
+}
+
+#menu{  /* Menù di navigazione */
+
+	border: 5px double #000000;
+	border-radius: 25px;
+	background-color: #166d41;
+	color: #000000;
+	font-size: 25px;
+	font-family: 'Poppins', sans-serif;
+	text-align: right;
+	width: 320px; /* Larghezza */
+	height: 430px; /* Altezza */
+	float: right; /* Posizione nella pagina dove "fluttua" */
+        }
+
+#main  {  /* Testo "principale" */	
+	color: #ffffff;
+	font-size: 30px;
+	font-family: 'Poppins', sans-serif;
+	text-align: left;
+
+        }
+
+#demo  {  /* COUNTDOWN*/	
+			color: #ffffff;
+			font-size: 60px;
+			font-family: 'Poppins', sans-serif;
+			text-align: left;
+		
+				}
