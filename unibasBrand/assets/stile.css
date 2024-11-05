@@ -1,0 +1,10 @@
+@font-face {
+    font-family: "FluentSystemIcons";
+    src: url("fonts/FluentSystemIcons-Regular.woff") format('woff');
+  }
+
+icona-fluent {
+    font-family: FluentSystemIcons;
+    vertical-align: text-top;
+    
+  }
