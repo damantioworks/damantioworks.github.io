@@ -4,6 +4,36 @@
 <head>
   <script src="assets/js/color-modes.js"></script>
 
+  <script>
+    let activeTooltip = null;
+
+    function copyToClipboard(elementId, button) {
+
+      
+      const testoCopiato = document.querySelector(elementId).textContent;
+
+      if (activeTooltip) {
+activeTooltip.dispose();
+}
+      
+      navigator.clipboard.writeText(testoCopiato).then(() => {
+        // Create and show the tooltip after the button is clicked
+        const tooltip = new bootstrap.Tooltip(button, {
+          title: "Copiato negli appunti!",  // The message for the tooltip
+          placement: "right"   // Where to position the tooltip
+        });
+        
+        activeTooltip = tooltip;
+        tooltip.show();
+
+        // Hide tooltip after 1 second
+        setTimeout(() => tooltip.hide(), 1000);
+      }).catch(err => {
+        console.error("Failed to copy text: ", err);
+      });
+    }
+  </script>
+
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="">
@@ -103,7 +133,7 @@
 </head>
 
 <body>
-  <svg xmlns="http://www.w3.org/2000/svg" class="d-none">
+  <svg xmlns="https://www.w3.org/2000/svg" class="d-none">
     <symbol id="check2" viewBox="0 0 16 16">
       <path
         d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z" />
@@ -196,7 +226,7 @@
     <div class="navbar navbar-dark bg-dark shadow-sm">
       <div class="container">
         <a href="#" class="navbar-brand d-flex align-items-center">
-          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor"
+          <svg xmlns="https://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor"
             stroke-linecap="round" stroke-linejoin="round" stroke-width="2" aria-hidden="true" class="me-2"
             viewBox="0 0 24 24">
             <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z" />
@@ -217,9 +247,9 @@
     <section class="py-5 text-center container">
       <div class="row py-lg-5">
         <div class="col-lg-6 col-md-8 mx-auto">
-          
+
           <h1 class="fw-light">Risorse grafiche UniBas</h1>
-          
+
 
           <p class="lead text-body-secondary">Something short and leading about the collection below—its contents, the
             creator, etc. Make it short and sweet, but not too short so folks don’t simply skip over it entirely.</p>
@@ -967,7 +997,8 @@
 
               </div>
               <div class="card-body">
-                <p class="card-text" style="text-align: center;">Scienze Agrarie, Forestali, Alimentari e Ambientali </p>
+                <p class="card-text" style="text-align: center;">Scienze Agrarie, Forestali, Alimentari e Ambientali
+                </p>
 
                 <div class="d-flex justify-content-between align-items-center">
                   Colori normali
@@ -1073,7 +1104,7 @@
               </div>
             </div>
 
-          </div>  
+          </div>
         </div>
 
 
@@ -1104,12 +1135,12 @@
                   Colori normali
 
                   <div class="btn-group">
-                    <a href="FILE/PittogrammaDipartimento_diing-COLOR.svg" download target="_blank"><button type="button"
-                        class="btn btn-sm btn-primary"><icona-fluent>&#xF14F;</icona-fluent> SVG
+                    <a href="FILE/PittogrammaDipartimento_diing-COLOR.svg" download target="_blank"><button
+                        type="button" class="btn btn-sm btn-primary"><icona-fluent>&#xF14F;</icona-fluent> SVG
                       </button></a>
                     &nbsp;
-                    <a href="FILE/PittogrammaDipartimento_diing-COLOR.png" download target="_blank"><button type="button"
-                        class="btn btn-sm btn-secondary"><icona-fluent>&#xF14F;</icona-fluent> PNG
+                    <a href="FILE/PittogrammaDipartimento_diing-COLOR.png" download target="_blank"><button
+                        type="button" class="btn btn-sm btn-secondary"><icona-fluent>&#xF14F;</icona-fluent> PNG
                       </button></a>
                   </div>
                 </div>
@@ -1118,12 +1149,12 @@
                   Monocromatico nero
 
                   <div class="btn-group">
-                    <a href="FILE/PittogrammaDipartimento_diing-BLACK.svg" download target="_blank"><button type="button"
-                        class="btn btn-sm btn-primary"><icona-fluent>&#xF14F;</icona-fluent> SVG
+                    <a href="FILE/PittogrammaDipartimento_diing-BLACK.svg" download target="_blank"><button
+                        type="button" class="btn btn-sm btn-primary"><icona-fluent>&#xF14F;</icona-fluent> SVG
                       </button></a>
                     &nbsp;
-                    <a href="FILE/PittogrammaDipartimento_diing-BLACK.png" download target="_blank"><button type="button"
-                        class="btn btn-sm btn-secondary"><icona-fluent>&#xF14F;</icona-fluent> PNG
+                    <a href="FILE/PittogrammaDipartimento_diing-BLACK.png" download target="_blank"><button
+                        type="button" class="btn btn-sm btn-secondary"><icona-fluent>&#xF14F;</icona-fluent> PNG
                       </button></a>
                   </div>
                 </div>
@@ -1132,12 +1163,12 @@
                   Monocromatico bianco
 
                   <div class="btn-group">
-                    <a href="FILE/PittogrammaDipartimento_diing-WHITE.svg" download target="_blank"><button type="button"
-                        class="btn btn-sm btn-primary"><icona-fluent>&#xF14F;</icona-fluent> SVG
+                    <a href="FILE/PittogrammaDipartimento_diing-WHITE.svg" download target="_blank"><button
+                        type="button" class="btn btn-sm btn-primary"><icona-fluent>&#xF14F;</icona-fluent> SVG
                       </button></a>
                     &nbsp;
-                    <a href="FILE/PittogrammaDipartimento_diing-WHITE.png" download target="_blank"><button type="button"
-                        class="btn btn-sm btn-secondary"><icona-fluent>&#xF14F;</icona-fluent> PNG
+                    <a href="FILE/PittogrammaDipartimento_diing-WHITE.png" download target="_blank"><button
+                        type="button" class="btn btn-sm btn-secondary"><icona-fluent>&#xF14F;</icona-fluent> PNG
                       </button></a>
                   </div>
                 </div>
@@ -1284,12 +1315,12 @@
                   Colori normali
 
                   <div class="btn-group">
-                    <a href="FILE/PittogrammaDipartimento_diuss-COLOR.svg" download target="_blank"><button type="button"
-                        class="btn btn-sm btn-primary"><icona-fluent>&#xF14F;</icona-fluent> SVG
+                    <a href="FILE/PittogrammaDipartimento_diuss-COLOR.svg" download target="_blank"><button
+                        type="button" class="btn btn-sm btn-primary"><icona-fluent>&#xF14F;</icona-fluent> SVG
                       </button></a>
                     &nbsp;
-                    <a href="FILE/PittogrammaDipartimento_diuss-COLOR.png" download target="_blank"><button type="button"
-                        class="btn btn-sm btn-secondary"><icona-fluent>&#xF14F;</icona-fluent> PNG
+                    <a href="FILE/PittogrammaDipartimento_diuss-COLOR.png" download target="_blank"><button
+                        type="button" class="btn btn-sm btn-secondary"><icona-fluent>&#xF14F;</icona-fluent> PNG
                       </button></a>
                   </div>
                 </div>
@@ -1298,12 +1329,12 @@
                   Monocromatico nero
 
                   <div class="btn-group">
-                    <a href="FILE/PittogrammaDipartimento_diuss-BLACK.svg" download target="_blank"><button type="button"
-                        class="btn btn-sm btn-primary"><icona-fluent>&#xF14F;</icona-fluent> SVG
+                    <a href="FILE/PittogrammaDipartimento_diuss-BLACK.svg" download target="_blank"><button
+                        type="button" class="btn btn-sm btn-primary"><icona-fluent>&#xF14F;</icona-fluent> SVG
                       </button></a>
                     &nbsp;
-                    <a href="FILE/PittogrammaDipartimento_diuss-BLACK.png" download target="_blank"><button type="button"
-                        class="btn btn-sm btn-secondary"><icona-fluent>&#xF14F;</icona-fluent> PNG
+                    <a href="FILE/PittogrammaDipartimento_diuss-BLACK.png" download target="_blank"><button
+                        type="button" class="btn btn-sm btn-secondary"><icona-fluent>&#xF14F;</icona-fluent> PNG
                       </button></a>
                   </div>
                 </div>
@@ -1312,12 +1343,12 @@
                   Monocromatico bianco
 
                   <div class="btn-group">
-                    <a href="FILE/PittogrammaDipartimento_diuss-WHITE.svg" download target="_blank"><button type="button"
-                        class="btn btn-sm btn-primary"><icona-fluent>&#xF14F;</icona-fluent> SVG
+                    <a href="FILE/PittogrammaDipartimento_diuss-WHITE.svg" download target="_blank"><button
+                        type="button" class="btn btn-sm btn-primary"><icona-fluent>&#xF14F;</icona-fluent> SVG
                       </button></a>
                     &nbsp;
-                    <a href="FILE/PittogrammaDipartimento_diuss-WHITE.png" download target="_blank"><button type="button"
-                        class="btn btn-sm btn-secondary"><icona-fluent>&#xF14F;</icona-fluent> PNG
+                    <a href="FILE/PittogrammaDipartimento_diuss-WHITE.png" download target="_blank"><button
+                        type="button" class="btn btn-sm btn-secondary"><icona-fluent>&#xF14F;</icona-fluent> PNG
                       </button></a>
                   </div>
                 </div>
@@ -1338,7 +1369,8 @@
 
               </div>
               <div class="card-body">
-                <p class="card-text" style="text-align: center;">Scienze Agrarie, Forestali, Alimentari e Ambientali </p>
+                <p class="card-text" style="text-align: center;">Scienze Agrarie, Forestali, Alimentari e Ambientali
+                </p>
 
                 <div class="d-flex justify-content-between align-items-center">
                   Colori normali
@@ -1404,12 +1436,12 @@
                   Colori normali
 
                   <div class="btn-group">
-                    <a href="FILE/PittogrammaDipartimento_disba-COLOR.svg" download target="_blank"><button type="button"
-                        class="btn btn-sm btn-primary"><icona-fluent>&#xF14F;</icona-fluent> SVG
+                    <a href="FILE/PittogrammaDipartimento_disba-COLOR.svg" download target="_blank"><button
+                        type="button" class="btn btn-sm btn-primary"><icona-fluent>&#xF14F;</icona-fluent> SVG
                       </button></a>
                     &nbsp;
-                    <a href="FILE/PittogrammaDipartimento_disba-COLOR.png" download target="_blank"><button type="button"
-                        class="btn btn-sm btn-secondary"><icona-fluent>&#xF14F;</icona-fluent> PNG
+                    <a href="FILE/PittogrammaDipartimento_disba-COLOR.png" download target="_blank"><button
+                        type="button" class="btn btn-sm btn-secondary"><icona-fluent>&#xF14F;</icona-fluent> PNG
                       </button></a>
                   </div>
                 </div>
@@ -1418,12 +1450,12 @@
                   Monocromatico nero
 
                   <div class="btn-group">
-                    <a href="FILE/PittogrammaDipartimento_disba-BLACK.svg" download target="_blank"><button type="button"
-                        class="btn btn-sm btn-primary"><icona-fluent>&#xF14F;</icona-fluent> SVG
+                    <a href="FILE/PittogrammaDipartimento_disba-BLACK.svg" download target="_blank"><button
+                        type="button" class="btn btn-sm btn-primary"><icona-fluent>&#xF14F;</icona-fluent> SVG
                       </button></a>
                     &nbsp;
-                    <a href="FILE/PittogrammaDipartimento_disba-BLACK.png" download target="_blank"><button type="button"
-                        class="btn btn-sm btn-secondary"><icona-fluent>&#xF14F;</icona-fluent> PNG
+                    <a href="FILE/PittogrammaDipartimento_disba-BLACK.png" download target="_blank"><button
+                        type="button" class="btn btn-sm btn-secondary"><icona-fluent>&#xF14F;</icona-fluent> PNG
                       </button></a>
                   </div>
                 </div>
@@ -1432,24 +1464,351 @@
                   Monocromatico bianco
 
                   <div class="btn-group">
-                    <a href="FILE/PittogrammaDipartimento_disba-WHITE.svg" download target="_blank"><button type="button"
-                        class="btn btn-sm btn-primary"><icona-fluent>&#xF14F;</icona-fluent> SVG
+                    <a href="FILE/PittogrammaDipartimento_disba-WHITE.svg" download target="_blank"><button
+                        type="button" class="btn btn-sm btn-primary"><icona-fluent>&#xF14F;</icona-fluent> SVG
                       </button></a>
                     &nbsp;
-                    <a href="FILE/PittogrammaDipartimento_disba-WHITE.png" download target="_blank"><button type="button"
-                        class="btn btn-sm btn-secondary"><icona-fluent>&#xF14F;</icona-fluent> PNG
+                    <a href="FILE/PittogrammaDipartimento_disba-WHITE.png" download target="_blank"><button
+                        type="button" class="btn btn-sm btn-secondary"><icona-fluent>&#xF14F;</icona-fluent> PNG
                       </button></a>
                   </div>
                 </div>
               </div>
             </div>
 
-          </div>  
+          </div>
         </div>
-      </div>
-      </div>
 
-      
+
+
+
+        <hr>
+        <h1 class="fw-light" style="text-align: center;">Colori Istituzionali</h1>
+        <hr>
+
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-4 g-3">
+
+          <div class="col">
+            <div class="card shadow-sm">
+              <div class="bd-placeholder-img card-img-top"
+                style="background-color: #002D5B; width: 100%; height: 125px; display: flex; align-items: center; justify-content: center;">
+              </div>
+              <div class="card-body">
+                <p class="card-text text-center">Blu (Pantone 648 C)</p>
+                <div class="d-flex justify-content-between align-items-center">
+                  HEX: #002D5B
+                  <span id="HEX-blu" style="display: none;">002D5B</span>
+                  <button type="button" class="btn btn-sm btn-secondary" 
+                          onclick="copyToClipboard('#HEX-blu', this)">
+                    <icona-fluent>&#xF32A;</icona-fluent>
+                  </button>
+                </div>
+                <hr>
+                <div class="d-flex justify-content-between align-items-center">
+                  RGB: 0, 45, 91
+                  <span id="RGB-blu" style="display: none;">rgb(0, 45, 91)</span>
+                  <button type="button" class="btn btn-sm btn-secondary" 
+                          onclick="copyToClipboard('#RGB-blu', this)">
+                    <icona-fluent>&#xF32A;</icona-fluent>
+                  </button>
+                </div>
+                <hr>
+                <div class="d-flex justify-content-between align-items-center">
+                  CMYK: 100%, 74%, 11%, 55%
+                  <span id="CMYK-blu" style="display: none;">cmyk(100%, 74%, 11%, 55%)</span>
+                  <button type="button" class="btn btn-sm btn-secondary" 
+                          onclick="copyToClipboard('#CMYK-blu', this)">
+                    <icona-fluent>&#xF32A;</icona-fluent>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+          <div class="col">
+            <div class="card shadow-sm">
+              <div class="bd-placeholder-img card-img-top"
+                style="background-color: #808080; width: 100%; height: 125px; display: flex; align-items: center; justify-content: center;">
+              </div>
+              <div class="card-body">
+                <p class="card-text text-center">Grigio</p>
+                <div class="d-flex justify-content-between align-items-center">
+                  HEX: #808080
+                  <span id="HEX-grigio" style="display: none;">808080</span>
+                  <button type="button" class="btn btn-sm btn-secondary" 
+                          onclick="copyToClipboard('#HEX-grigio', this)">
+                    <icona-fluent>&#xF32A;</icona-fluent>
+                  </button>
+                </div>
+                <hr>
+                <div class="d-flex justify-content-between align-items-center">
+                  RGB: 128, 128, 128
+                  <span id="RGB-grigio" style="display: none;">rgb(128, 128, 128)</span>
+                  <button type="button" class="btn btn-sm btn-secondary" 
+                          onclick="copyToClipboard('#RGB-grigio', this)">
+                    <icona-fluent>&#xF32A;</icona-fluent>
+                  </button>
+                </div>
+                <hr>
+                <div class="d-flex justify-content-between align-items-center">
+                  CMYK: 49%, 39%, 38%, 20%
+                  <span id="CMYK-grigio" style="display: none;">cmyk(49%, 39%, 38%, 20%)</span>
+                  <button type="button" class="btn btn-sm btn-secondary" 
+                          onclick="copyToClipboard('#CMYK-grigio', this)">
+                    <icona-fluent>&#xF32A;</icona-fluent>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+
+          <div class="col">
+            <div class="card shadow-sm">
+              <div class="bd-placeholder-img card-img-top"
+                style="background-color: #800000; width: 100%; height: 125px; display: flex; align-items: center; justify-content: center;">
+              </div>
+              <div class="card-body">
+                <p class="card-text text-center">Rosso scuro (DIING)</p>
+                <div class="d-flex justify-content-between align-items-center">
+                  HEX: #800000
+                  <span id="HEX-rossoS" style="display: none;">800000</span>
+                  <button type="button" class="btn btn-sm btn-secondary" 
+                          onclick="copyToClipboard('#HEX-rossoS', this)">
+                    <icona-fluent>&#xF32A;</icona-fluent>
+                  </button>
+                </div>
+                <hr>
+                <div class="d-flex justify-content-between align-items-center">
+                  RGB: 128, 0, 0
+                  <span id="RGB-rossoS" style="display: none;">rgb(128, 0, 0)</span>
+                  <button type="button" class="btn btn-sm btn-secondary" 
+                          onclick="copyToClipboard('#RGB-rossoS', this)">
+                    <icona-fluent>&#xF32A;</icona-fluent>
+                  </button>
+                </div>
+                <hr>
+                <div class="d-flex justify-content-between align-items-center">
+                  CMYK: 29%, 100%, 100%, 38%
+                  <span id="CMYK-rossoS" style="display: none;">cmyk(29%, 100%, 100%, 38%)</span>
+                  <button type="button" class="btn btn-sm btn-secondary" 
+                          onclick="copyToClipboard('#CMYK-rossoS', this)">
+                    <icona-fluent>&#xF32A;</icona-fluent>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+          <div class="col">
+            <div class="card shadow-sm">
+              <div class="bd-placeholder-img card-img-top"
+                style="background-color: #C21818; width: 100%; height: 125px; display: flex; align-items: center; justify-content: center;">
+              </div>
+              <div class="card-body">
+                <p class="card-text text-center">Rosso chiaro (DISS)</p>
+                <div class="d-flex justify-content-between align-items-center">
+                  HEX: #C21818
+                  <span id="HEX-rossoC" style="display: none;">C21818</span>
+                  <button type="button" class="btn btn-sm btn-secondary" 
+                          onclick="copyToClipboard('#HEX-rossoC', this)">
+                    <icona-fluent>&#xF32A;</icona-fluent>
+                  </button>
+                </div>
+                <hr>
+                <div class="d-flex justify-content-between align-items-center">
+                  RGB: 124, 24, 24
+                  <span id="RGB-rossoC" style="display: none;">rgb(124, 24, 24)</span>
+                  <button type="button" class="btn btn-sm btn-secondary" 
+                          onclick="copyToClipboard('#RGB-rossoC', this)">
+                    <icona-fluent>&#xF32A;</icona-fluent>
+                  </button>
+                </div>
+                <hr>
+                <div class="d-flex justify-content-between align-items-center">
+                  CMYK: 16%, 100%, 100%, 7%
+                  <span id="CMYK-rossoC" style="display: none;">cmyk(16%, 100%, 100%, 7%)</span>
+                  <button type="button" class="btn btn-sm btn-secondary" 
+                          onclick="copyToClipboard('#CMYK-rossoC', this)">
+                    <icona-fluent>&#xF32A;</icona-fluent>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col">
+            <div class="card shadow-sm">
+              <div class="bd-placeholder-img card-img-top"
+                style="background-color: #C35214; width: 100%; height: 125px; display: flex; align-items: center; justify-content: center;">
+              </div>
+              <div class="card-body">
+                <p class="card-text text-center">Arancione (SSBA)</p>
+                <div class="d-flex justify-content-between align-items-center">
+                  HEX: #C35214
+                  <span id="HEX-arancione" style="display: none;">C35214</span>
+                  <button type="button" class="btn btn-sm btn-secondary" 
+                          onclick="copyToClipboard('#HEX-arancione', this)">
+                    <icona-fluent>&#xF32A;</icona-fluent>
+                  </button>
+                </div>
+                <hr>
+                <div class="d-flex justify-content-between align-items-center">
+                  RGB: 195, 82, 20
+                  <span id="RGB-arancione" style="display: none;">rgb(195, 82, 20)</span>
+                  <button type="button" class="btn btn-sm btn-secondary" 
+                          onclick="copyToClipboard('#RGB-arancione', this)">
+                    <icona-fluent>&#xF32A;</icona-fluent>
+                  </button>
+                </div>
+                <hr>
+                <div class="d-flex justify-content-between align-items-center">
+                  CMYK: 18%, 76%, 100%, 7%
+                  <span id="CMYK-arancione" style="display: none;">cmyk(18%, 76%, 100%, 7%)</span>
+                  <button type="button" class="btn btn-sm btn-secondary" 
+                          onclick="copyToClipboard('#CMYK-arancione', this)">
+                    <icona-fluent>&#xF32A;</icona-fluent>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+          <div class="col">
+            <div class="card shadow-sm">
+              <div class="bd-placeholder-img card-img-top"
+                style="background-color: #C7B273; width: 100%; height: 125px; display: flex; align-items: center; justify-content: center;">
+              </div>
+              <div class="card-body">
+                <p class="card-text text-center">Giallo ocra (DIUSS)</p>
+                <div class="d-flex justify-content-between align-items-center">
+                  HEX: #C7B273
+                  <span id="HEX-ocra" style="display: none;">C7B273</span>
+                  <button type="button" class="btn btn-sm btn-secondary" 
+                          onclick="copyToClipboard('#HEX-ocra', this)">
+                    <icona-fluent>&#xF32A;</icona-fluent>
+                  </button>
+                </div>
+                <hr>
+                <div class="d-flex justify-content-between align-items-center">
+                  RGB: 199, 178, 115
+                  <span id="RGB-ocra" style="display: none;">rgb(199, 178, 115)</span>
+                  <button type="button" class="btn btn-sm btn-secondary" 
+                          onclick="copyToClipboard('#RGB-ocra', this)">
+                    <icona-fluent>&#xF32A;</icona-fluent>
+                  </button>
+                </div>
+                <hr>
+                <div class="d-flex justify-content-between align-items-center">
+                  CMYK: 24%, 26%, 64%, 1%
+                  <span id="CMYK-ocra" style="display: none;">cmyk(24%, 26%, 64%, 1%)</span>
+                  <button type="button" class="btn btn-sm btn-secondary" 
+                          onclick="copyToClipboard('#CMYK-ocra', this)">
+                    <icona-fluent>&#xF32A;</icona-fluent>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+
+          <div class="col">
+            <div class="card shadow-sm">
+              <div class="bd-placeholder-img card-img-top"
+                style="background-color: #219B58; width: 100%; height: 125px; display: flex; align-items: center; justify-content: center;">
+              </div>
+              <div class="card-body">
+                <p class="card-text text-center">Verde (DAFE)</p>
+                <div class="d-flex justify-content-between align-items-center">
+                  HEX: #219B58
+                  <span id="HEX-verde" style="display: none;">219B58</span>
+                  <button type="button" class="btn btn-sm btn-secondary" 
+                          onclick="copyToClipboard('#HEX-verde', this)">
+                    <icona-fluent>&#xF32A;</icona-fluent>
+                  </button>
+                </div>
+                <hr>
+                <div class="d-flex justify-content-between align-items-center">
+                  RGB: 33, 155, 88
+                  <span id="RGB-verde" style="display: none;">rgb(33, 155, 88)</span>
+                  <button type="button" class="btn btn-sm btn-secondary" 
+                          onclick="copyToClipboard('#RGB-verde', this)">
+                    <icona-fluent>&#xF32A;</icona-fluent>
+                  </button>
+                </div>
+                <hr>
+                <div class="d-flex justify-content-between align-items-center">
+                  CMYK: 80%, 11%, 81%, 1%
+                  <span id="CMYK-verde" style="display: none;">cmyk(80%, 11%, 81%, 1%)</span>
+                  <button type="button" class="btn btn-sm btn-secondary" 
+                          onclick="copyToClipboard('#CMYK-verde', this)">
+                    <icona-fluent>&#xF32A;</icona-fluent>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+
+
+          <div class="col">
+            <div class="card shadow-sm">
+              <div class="bd-placeholder-img card-img-top"
+                style="background-color: #00818F; width: 100%; height: 125px; display: flex; align-items: center; justify-content: center;">
+              </div>
+              <div class="card-body">
+                <p class="card-text text-center">Azzurro (DISBA)</p>
+                <div class="d-flex justify-content-between align-items-center">
+                  HEX: #00818F
+                  <span id="HEX-azzurro" style="display: none;">00818F</span>
+                  <button type="button" class="btn btn-sm btn-secondary" 
+                          onclick="copyToClipboard('#HEX-azzurro', this)">
+                    <icona-fluent>&#xF32A;</icona-fluent>
+                  </button>
+                </div>
+                <hr>
+                <div class="d-flex justify-content-between align-items-center">
+                  RGB: 0, 129, 143
+                  <span id="RGB-azzurro" style="display: none;">rgb(0, 129, 143)</span>
+                  <button type="button" class="btn btn-sm btn-secondary" 
+                          onclick="copyToClipboard('#RGB-azzurro', this)">
+                    <icona-fluent>&#xF32A;</icona-fluent>
+                  </button>
+                </div>
+                <hr>
+                <div class="d-flex justify-content-between align-items-center">
+                  CMYK: 83%, 28%, 37%, 11%
+                  <span id="CMYK-azzurro" style="display: none;">cmyk(83%, 28%, 37%, 11%)</span>
+                  <button type="button" class="btn btn-sm btn-secondary" 
+                          onclick="copyToClipboard('#CMYK-azzurro', this)">
+                    <icona-fluent>&#xF32A;</icona-fluent>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+          
+        
+
+        
+          
+          
+        </div>
+        
+
+      </div>
+    </div>
+    </div>
+
+
 
   </main>
 
