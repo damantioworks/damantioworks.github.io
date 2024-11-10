@@ -3,26 +3,27 @@
 
 <head>
   <script src="assets/js/color-modes.js"></script>
+  <script src="assets/js/"></script>
 
   <script>
     let activeTooltip = null;
 
     function copyToClipboard(elementId, button) {
 
-      
+
       const testoCopiato = document.querySelector(elementId).textContent;
 
       if (activeTooltip) {
-activeTooltip.dispose();
-}
-      
+        activeTooltip.dispose();
+      }
+
       navigator.clipboard.writeText(testoCopiato).then(() => {
         // Create and show the tooltip after the button is clicked
         const tooltip = new bootstrap.Tooltip(button, {
           title: "Copiato negli appunti!",  // The message for the tooltip
           placement: "right"   // Where to position the tooltip
         });
-        
+
         activeTooltip = tooltip;
         tooltip.show();
 
@@ -40,8 +41,6 @@ activeTooltip.dispose();
   <meta name="author" content="Potito Di Marzo">
   <title>Brand Identity Unibas</title>
 
-
-  <link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/album/">
   <link rel="stylesheet" href="assets/stile.css">
 
 
@@ -133,1356 +132,1259 @@ activeTooltip.dispose();
 </head>
 
 <body>
-  <svg xmlns="https://www.w3.org/2000/svg" class="d-none">
-    <symbol id="check2" viewBox="0 0 16 16">
-      <path
-        d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z" />
-    </symbol>
-    <symbol id="circle-half" viewBox="0 0 16 16">
-      <path d="M8 15A7 7 0 1 0 8 1v14zm0 1A8 8 0 1 1 8 0a8 8 0 0 1 0 16z" />
-    </symbol>
-    <symbol id="moon-stars-fill" viewBox="0 0 16 16">
-      <path
-        d="M6 .278a.768.768 0 0 1 .08.858 7.208 7.208 0 0 0-.878 3.46c0 4.021 3.278 7.277 7.318 7.277.527 0 1.04-.055 1.533-.16a.787.787 0 0 1 .81.316.733.733 0 0 1-.031.893A8.349 8.349 0 0 1 8.344 16C3.734 16 0 12.286 0 7.71 0 4.266 2.114 1.312 5.124.06A.752.752 0 0 1 6 .278z" />
-      <path
-        d="M10.794 3.148a.217.217 0 0 1 .412 0l.387 1.162c.173.518.579.924 1.097 1.097l1.162.387a.217.217 0 0 1 0 .412l-1.162.387a1.734 1.734 0 0 0-1.097 1.097l-.387 1.162a.217.217 0 0 1-.412 0l-.387-1.162A1.734 1.734 0 0 0 9.31 6.593l-1.162-.387a.217.217 0 0 1 0-.412l1.162-.387a1.734 1.734 0 0 0 1.097-1.097l.387-1.162zM13.863.099a.145.145 0 0 1 .274 0l.258.774c.115.346.386.617.732.732l.774.258a.145.145 0 0 1 0 .274l-.774.258a1.156 1.156 0 0 0-.732.732l-.258.774a.145.145 0 0 1-.274 0l-.258-.774a1.156 1.156 0 0 0-.732-.732l-.774-.258a.145.145 0 0 1 0-.274l.774-.258c.346-.115.617-.386.732-.732L13.863.1z" />
-    </symbol>
-    <symbol id="sun-fill" viewBox="0 0 16 16">
-      <path
-        d="M8 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM8 0a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 0zm0 13a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 13zm8-5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2a.5.5 0 0 1 .5.5zM3 8a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2A.5.5 0 0 1 3 8zm10.657-5.657a.5.5 0 0 1 0 .707l-1.414 1.415a.5.5 0 1 1-.707-.708l1.414-1.414a.5.5 0 0 1 .707 0zm-9.193 9.193a.5.5 0 0 1 0 .707L3.05 13.657a.5.5 0 0 1-.707-.707l1.414-1.414a.5.5 0 0 1 .707 0zm9.193 2.121a.5.5 0 0 1-.707 0l-1.414-1.414a.5.5 0 0 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .707zM4.464 4.465a.5.5 0 0 1-.707 0L2.343 3.05a.5.5 0 1 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .708z" />
-    </symbol>
-  </svg>
-
-  <div class="dropdown position-fixed bottom-0 end-0 mb-3 me-3 bd-mode-toggle">
-    <button class="btn btn-bd-primary py-2 dropdown-toggle d-flex align-items-center" id="bd-theme" type="button"
-      aria-expanded="false" data-bs-toggle="dropdown" aria-label="Toggle theme (auto)">
-      <svg class="bi my-1 theme-icon-active" width="1em" height="1em">
-        <use href="#circle-half"></use>
-      </svg>
-      <span class="visually-hidden" id="bd-theme-text">Toggle theme</span>
-    </button>
-    <ul class="dropdown-menu dropdown-menu-end shadow" aria-labelledby="bd-theme-text">
-      <li>
-        <button type="button" class="dropdown-item d-flex align-items-center" data-bs-theme-value="light"
-          aria-pressed="false">
-          <svg class="bi me-2 opacity-50" width="1em" height="1em">
-            <use href="#sun-fill"></use>
-          </svg>
-          Light
-          <svg class="bi ms-auto d-none" width="1em" height="1em">
-            <use href="#check2"></use>
-          </svg>
-        </button>
-      </li>
-      <li>
-        <button type="button" class="dropdown-item d-flex align-items-center" data-bs-theme-value="dark"
-          aria-pressed="false">
-          <svg class="bi me-2 opacity-50" width="1em" height="1em">
-            <use href="#moon-stars-fill"></use>
-          </svg>
-          Dark
-          <svg class="bi ms-auto d-none" width="1em" height="1em">
-            <use href="#check2"></use>
-          </svg>
-        </button>
-      </li>
-      <li>
-        <button type="button" class="dropdown-item d-flex align-items-center active" data-bs-theme-value="auto"
-          aria-pressed="true">
-          <svg class="bi me-2 opacity-50" width="1em" height="1em">
-            <use href="#circle-half"></use>
-          </svg>
-          Auto
-          <svg class="bi ms-auto d-none" width="1em" height="1em">
-            <use href="#check2"></use>
-          </svg>
-        </button>
-      </li>
-    </ul>
-  </div>
-
-
-  <header data-bs-theme="dark">
-    <div class="collapse text-bg-dark" id="navbarHeader">
-      <div class="container">
-        <div class="row">
-          <div class="col-sm-8 col-md-7 py-4">
-            <h4>About</h4>
-            <p class="text-body-secondary">Add some information about the album below, the author, or any other
-              background context. Make it a few sentences long so folks can pick up some informative tidbits. Then, link
-              them off to some social networking sites or contact information.</p>
-          </div>
-          <div class="col-sm-4 offset-md-1 py-4">
-            <h4>Contact</h4>
-            <ul class="list-unstyled">
-              <li><a href="#" class="text-white">Follow on Twitter</a></li>
-              <li><a href="#" class="text-white">Like on Facebook</a></li>
-              <li><a href="#" class="text-white">Email me</a></li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="navbar navbar-dark bg-dark shadow-sm">
-      <div class="container">
-        <a href="#" class="navbar-brand d-flex align-items-center">
-          <svg xmlns="https://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor"
-            stroke-linecap="round" stroke-linejoin="round" stroke-width="2" aria-hidden="true" class="me-2"
-            viewBox="0 0 24 24">
-            <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z" />
-            <circle cx="12" cy="13" r="4" />
-          </svg>
-          <strong>Album</strong>
-        </a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarHeader"
-          aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-      </div>
-    </div>
-  </header>
-
   <main>
 
-    <section class="py-5 text-center container">
-      <div class="row py-lg-5">
-        <div class="col-lg-6 col-md-8 mx-auto">
-
-          <h1 class="fw-light">Risorse grafiche UniBas</h1>
+    
+    
 
 
-          <p class="lead text-body-secondary">Something short and leading about the collection below—its contents, the
-            creator, etc. Make it short and sweet, but not too short so folks don’t simply skip over it entirely.</p>
-          <p>
-            <a href="#" class="btn btn-primary my-2">Main call to action</a>
-            <a href="#" class="btn btn-secondary my-2">Secondary action</a>
-          </p>
-        </div>
-      </div>
-    </section>
 
-    <div class="album py-5 bg-body-tertiary">
+    <div class="album py-5 bg-body-primary">
+
+
       <div class="container">
-        <hr>
-        <h1 class="fw-light" style="text-align: center;">Ateneo</h1>
-        <hr>
-
-        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-
-          <div class="col">
-            <div class="card shadow-sm">
-              <div class="bd-placeholder-img card-img-top"
-                style="background-color: #fff; width: 100%; height: 225px; display: flex; align-items: center; justify-content: center;">
-                <img src="FILE/PittogrammaIstituzionale-COLOR.svg"
-                  style="padding: 5%; object-fit: contain; max-width: 100%; max-height: 100%;">
-
-
+        <div class="navigazione">
+          <nav>
+            <div class="nav nav-tabs mb-3" id="nav-tab" role="tablist">
+              <button class="nav-link active" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home"
+                type="button" role="tab" aria-controls="nav-home" aria-selected="true">Home</button>
+              <button class="nav-link" id="nav-ateneo-tab" data-bs-toggle="tab" data-bs-target="#nav-ateneo"
+                type="button" role="tab" aria-controls="nav-ateneo" aria-selected="false">Loghi ateneo</button>
+              <button class="nav-link" id="nav-dipartimenti-tab" data-bs-toggle="tab" data-bs-target="#nav-dipartimenti"
+                type="button" role="tab" aria-controls="nav-dipartimenti" aria-selected="false">Loghi dipartimenti</button>
+                <button class="nav-link" id="nav-colori-tab" data-bs-toggle="tab" data-bs-target="#nav-colori"
+                type="button" role="tab" aria-controls="nav-colori" aria-selected="false">Colori</button>
+                <button class="nav-link" id="nav-fontID-tab" data-bs-toggle="tab" data-bs-target="#nav-fontID"
+                type="button" role="tab" aria-controls="nav-fontID" aria-selected="false">Font</button>
+            </div>
+          </nav>
+        
+          <div class="tab-content" id="nav-tabContent">
+            <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+              
+  <section class="py-5 text-center container">
+    <div class="row py-lg-5">
+      <div class="col-lg-6 col-md-8 mx-auto">
+        <h1 class="fw-light">Risorse grafiche Unibas</h1><h5><span class="badge rounded-pill bg-secondary">beta 0.9.0</span></h5>
+        <p class="lead text-body-secondary">Clicca sulla barra di navigazione per accedere alla sezione corrispondente.</p>
+        
+      </div>
+    </div>
+  </section>
+            </div>
+            <div class="tab-pane fade" id="nav-ateneo" role="tabpanel" aria-labelledby="nav-ateneo-tab">
+              <hr>
+              <h1 class="fw-light" style="text-align: center;">Ateneo</h1>
+              <hr>
+      
+              <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+      
+                <div class="col">
+                  <div class="card shadow-sm">
+                    <div class="bd-placeholder-img card-img-top"
+                      style="background-color: #fff; width: 100%; height: 225px; display: flex; align-items: center; justify-content: center;">
+                      <img src="FILE/PittogrammaIstituzionale-COLOR.svg"
+                        style="padding: 5%; object-fit: contain; max-width: 100%; max-height: 100%;">
+      
+      
+                    </div>
+                    <div class="card-body">
+                      <p class="card-text" style="text-align: center;">Pittogramma Istituzionale</p>
+      
+                      <div class="d-flex justify-content-between align-items-center">
+                        Colori normali
+      
+                        <div class="btn-group">
+                          <a href="FILE/PittogrammaIstituzionale-COLOR.svg" download target="_blank"><button type="button"
+                              class="btn btn-sm btn-primary"><icona-fluent>&#xF14F;</icona-fluent> SVG
+                            </button></a>
+                          &nbsp;
+                          <a href="FILE/PittogrammaIstituzionale-COLOR.png" download target="_blank"><button type="button"
+                              class="btn btn-sm btn-secondary"><icona-fluent>&#xF14F;</icona-fluent> PNG
+                            </button></a>
+                        </div>
+                      </div>
+                      <hr>
+                      <div class="d-flex justify-content-between align-items-center">
+                        Monocromatico nero
+      
+                        <div class="btn-group">
+                          <a href="FILE/PittogrammaIstituzionale-BLACK.svg" download target="_blank"><button type="button"
+                              class="btn btn-sm btn-primary"><icona-fluent>&#xF14F;</icona-fluent> SVG
+                            </button></a>
+                          &nbsp;
+                          <a href="FILE/PittogrammaIstituzionale-BLACK.png" download target="_blank"><button type="button"
+                              class="btn btn-sm btn-secondary"><icona-fluent>&#xF14F;</icona-fluent> PNG
+                            </button></a>
+                        </div>
+                      </div>
+                      <hr>
+                      <div class="d-flex justify-content-between align-items-center">
+                        Monocromatico bianco
+      
+                        <div class="btn-group">
+                          <a href="FILE/PittogrammaIstituzionale-WHITE.svg" download target="_blank"><button type="button"
+                              class="btn btn-sm btn-primary"><icona-fluent>&#xF14F;</icona-fluent> SVG
+                            </button></a>
+                          &nbsp;
+                          <a href="FILE/PittogrammaIstituzionale-WHITE.png" download target="_blank"><button type="button"
+                              class="btn btn-sm btn-secondary"><icona-fluent>&#xF14F;</icona-fluent> PNG
+                            </button></a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+      
+                </div>
+      
+      
+                <div class="col">
+                  <div class="card shadow-sm">
+                    <div class="bd-placeholder-img card-img-top"
+                      style="background-color: #fff; width: 100%; height: 225px; display: flex; align-items: center; justify-content: center;">
+                      <img src="FILE/MarchioEsteso-COLOR.svg"
+                        style="padding: 5%; object-fit: contain; max-width: 100%; max-height: 100%;">
+      
+      
+                    </div>
+                    <div class="card-body">
+                      <p class="card-text" style="text-align: center;">Marchio "esteso"</p>
+      
+                      <div class="d-flex justify-content-between align-items-center">
+                        Colori normali
+      
+                        <div class="btn-group">
+                          <a href="FILE/MarchioEsteso-COLOR.svg" download target="_blank"><button type="button"
+                              class="btn btn-sm btn-primary"><icona-fluent>&#xF14F;</icona-fluent> SVG
+                            </button></a>
+                          &nbsp;
+                          <a href="FILE/MarchioEsteso-COLOR.png" download target="_blank"><button type="button"
+                              class="btn btn-sm btn-secondary"><icona-fluent>&#xF14F;</icona-fluent> PNG
+                            </button></a>
+                        </div>
+                      </div>
+                      <hr>
+                      <div class="d-flex justify-content-between align-items-center">
+                        Monocromatico nero
+      
+                        <div class="btn-group">
+                          <a href="FILE/MarchioEsteso-BLACK.svg" download target="_blank"><button type="button"
+                              class="btn btn-sm btn-primary"><icona-fluent>&#xF14F;</icona-fluent> SVG
+                            </button></a>
+                          &nbsp;
+                          <a href="FILE/MarchioEsteso-BLACK.png" download target="_blank"><button type="button"
+                              class="btn btn-sm btn-secondary"><icona-fluent>&#xF14F;</icona-fluent> PNG
+                            </button></a>
+                        </div>
+                      </div>
+                      <hr>
+                      <div class="d-flex justify-content-between align-items-center">
+                        Monocromatico bianco
+      
+                        <div class="btn-group">
+                          <a href="FILE/MarchioEsteso-WHITE.svg" download target="_blank"><button type="button"
+                              class="btn btn-sm btn-primary"><icona-fluent>&#xF14F;</icona-fluent> SVG
+                            </button></a>
+                          &nbsp;
+                          <a href="FILE/MarchioEsteso-WHITE.png" download target="_blank"><button type="button"
+                              class="btn btn-sm btn-secondary"><icona-fluent>&#xF14F;</icona-fluent> PNG
+                            </button></a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+      
+                </div>
+      
+      
+                <div class="col">
+                  <div class="card shadow-sm">
+                    <div class="bd-placeholder-img card-img-top"
+                      style="background-color: #fff; width: 100%; height: 225px; display: flex; align-items: center; justify-content: center;">
+                      <img src="FILE/MarchioSintetico-COLOR.svg"
+                        style="padding: 5%; object-fit: contain; max-width: 100%; max-height: 100%;">
+      
+      
+                    </div>
+                    <div class="card-body">
+                      <p class="card-text" style="text-align: center;">Marchio "sintetico"</p>
+      
+                      <div class="d-flex justify-content-between align-items-center">
+                        Colori normali
+      
+                        <div class="btn-group">
+                          <a href="FILE/MarchioSintetico-COLOR.svg" download target="_blank"><button type="button"
+                              class="btn btn-sm btn-primary"><icona-fluent>&#xF14F;</icona-fluent> SVG
+                            </button></a>
+                          &nbsp;
+                          <a href="FILE/MarchioSintetico-COLOR.png" download target="_blank"><button type="button"
+                              class="btn btn-sm btn-secondary"><icona-fluent>&#xF14F;</icona-fluent> PNG
+                            </button></a>
+                        </div>
+                      </div>
+                      <hr>
+                      <div class="d-flex justify-content-between align-items-center">
+                        Monocromatico nero
+      
+                        <div class="btn-group">
+                          <a href="FILE/MarchioSintetico-BLACK.svg" download target="_blank"><button type="button"
+                              class="btn btn-sm btn-primary"><icona-fluent>&#xF14F;</icona-fluent> SVG
+                            </button></a>
+                          &nbsp;
+                          <a href="FILE/MarchioSintetico-BLACK.png" download target="_blank"><button type="button"
+                              class="btn btn-sm btn-secondary"><icona-fluent>&#xF14F;</icona-fluent> PNG
+                            </button></a>
+                        </div>
+                      </div>
+                      <hr>
+                      <div class="d-flex justify-content-between align-items-center">
+                        Monocromatico bianco
+      
+                        <div class="btn-group">
+                          <a href="FILE/MarchioSintetico-WHITE.svg" download target="_blank"><button type="button"
+                              class="btn btn-sm btn-primary"><icona-fluent>&#xF14F;</icona-fluent> SVG
+                            </button></a>
+                          &nbsp;
+                          <a href="FILE/MarchioSintetico-WHITE.png" download target="_blank"><button type="button"
+                              class="btn btn-sm btn-secondary"><icona-fluent>&#xF14F;</icona-fluent> PNG
+                            </button></a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+      
+                </div>
+      
+      
+                <div class="col">
+                  <div class="card shadow-sm">
+                    <div class="bd-placeholder-img card-img-top"
+                      style="background-color: #fff; width: 100%; height: 225px; display: flex; align-items: center; justify-content: center;">
+                      <img src="FILE/MarchioUnibas1982-COLOR.svg"
+                        style="padding: 5%; object-fit: contain; max-width: 100%; max-height: 100%;">
+      
+      
+                    </div>
+                    <div class="card-body">
+                      <p class="card-text" style="text-align: center;">Marchio "unibas - 1982"</p>
+      
+                      <div class="d-flex justify-content-between align-items-center">
+                        Colori normali
+      
+                        <div class="btn-group">
+                          <a href="FILE/MarchioUnibas1982-COLOR.svg" download target="_blank"><button type="button"
+                              class="btn btn-sm btn-primary"><icona-fluent>&#xF14F;</icona-fluent> SVG
+                            </button></a>
+                          &nbsp;
+                          <a href="FILE/MarchioUnibas1982-COLOR.png" download target="_blank"><button type="button"
+                              class="btn btn-sm btn-secondary"><icona-fluent>&#xF14F;</icona-fluent> PNG
+                            </button></a>
+                        </div>
+                      </div>
+                      <hr>
+                      <div class="d-flex justify-content-between align-items-center">
+                        Monocromatico nero
+      
+                        <div class="btn-group">
+                          <a href="FILE/MarchioUnibas1982-BLACK.svg" download target="_blank"><button type="button"
+                              class="btn btn-sm btn-primary"><icona-fluent>&#xF14F;</icona-fluent> SVG
+                            </button></a>
+                          &nbsp;
+                          <a href="FILE/MarchioUnibas1982-BLACK.png" download target="_blank"><button type="button"
+                              class="btn btn-sm btn-secondary"><icona-fluent>&#xF14F;</icona-fluent> PNG
+                            </button></a>
+                        </div>
+                      </div>
+                      <hr>
+                      <div class="d-flex justify-content-between align-items-center">
+                        Monocromatico bianco
+      
+                        <div class="btn-group">
+                          <a href="FILE/MarchioUnibas1982-WHITE.svg" download target="_blank"><button type="button"
+                              class="btn btn-sm btn-primary"><icona-fluent>&#xF14F;</icona-fluent> SVG
+                            </button></a>
+                          &nbsp;
+                          <a href="FILE/MarchioUnibas1982-WHITE.png" download target="_blank"><button type="button"
+                              class="btn btn-sm btn-secondary"><icona-fluent>&#xF14F;</icona-fluent> PNG
+                            </button></a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+      
+                </div>
+      
+                <div class="col">
+                  <div class="card shadow-sm">
+                    <div class="bd-placeholder-img card-img-top"
+                      style="background-color: #fff; width: 100%; height: 225px; display: flex; align-items: center; justify-content: center;">
+                      <img src="FILE/LogotipoEsteso-COLOR.svg"
+                        style="padding: 5%; object-fit: contain; max-width: 100%; max-height: 100%;">
+      
+      
+                    </div>
+                    <div class="card-body">
+                      <p class="card-text" style="text-align: center;">Logotipo "esteso"</p>
+      
+                      <div class="d-flex justify-content-between align-items-center">
+                        Colori normali
+      
+                        <div class="btn-group">
+                          <a href="FILE/LogotipoEsteso-COLOR.svg" download target="_blank"><button type="button"
+                              class="btn btn-sm btn-primary"><icona-fluent>&#xF14F;</icona-fluent> SVG
+                            </button></a>
+                          &nbsp;
+                          <a href="FILE/LogotipoEsteso-COLOR.png" download target="_blank"><button type="button"
+                              class="btn btn-sm btn-secondary"><icona-fluent>&#xF14F;</icona-fluent> PNG
+                            </button></a>
+                        </div>
+                      </div>
+                      <hr>
+                      <div class="d-flex justify-content-between align-items-center">
+                        Monocromatico nero
+      
+                        <div class="btn-group">
+                          <a href="FILE/LogotipoEsteso-BLACK.svg" download target="_blank"><button type="button"
+                              class="btn btn-sm btn-primary"><icona-fluent>&#xF14F;</icona-fluent> SVG
+                            </button></a>
+                          &nbsp;
+                          <a href="FILE/LogotipoEsteso-BLACK.png" download target="_blank"><button type="button"
+                              class="btn btn-sm btn-secondary"><icona-fluent>&#xF14F;</icona-fluent> PNG
+                            </button></a>
+                        </div>
+                      </div>
+                      <hr>
+                      <div class="d-flex justify-content-between align-items-center">
+                        Monocromatico bianco
+      
+                        <div class="btn-group">
+                          <a href="FILE/LogotipoEsteso-WHITE.svg" download target="_blank"><button type="button"
+                              class="btn btn-sm btn-primary"><icona-fluent>&#xF14F;</icona-fluent> SVG
+                            </button></a>
+                          &nbsp;
+                          <a href="FILE/LogotipoEsteso-WHITE.png" download target="_blank"><button type="button"
+                              class="btn btn-sm btn-secondary"><icona-fluent>&#xF14F;</icona-fluent> PNG
+                            </button></a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+      
+                </div>
+      
+      
+                <div class="col">
+                  <div class="card shadow-sm">
+                    <div class="bd-placeholder-img card-img-top"
+                      style="background-color: #fff; width: 100%; height: 225px; display: flex; align-items: center; justify-content: center;">
+                      <img src="FILE/LogotipoSintetico-COLOR.svg"
+                        style="padding: 5%; object-fit: contain; max-width: 100%; max-height: 100%;">
+      
+      
+                    </div>
+                    <div class="card-body">
+                      <p class="card-text" style="text-align: center;">Logotipo "sintetico"</p>
+      
+                      <div class="d-flex justify-content-between align-items-center">
+                        Colori normali
+      
+                        <div class="btn-group">
+                          <a href="FILE/LogotipoSintetico-COLOR.svg" download target="_blank"><button type="button"
+                              class="btn btn-sm btn-primary"><icona-fluent>&#xF14F;</icona-fluent> SVG
+                            </button></a>
+                          &nbsp;
+                          <a href="FILE/LogotipoSintetico-COLOR.png" download target="_blank"><button type="button"
+                              class="btn btn-sm btn-secondary"><icona-fluent>&#xF14F;</icona-fluent> PNG
+                            </button></a>
+                        </div>
+                      </div>
+                      <hr>
+                      <div class="d-flex justify-content-between align-items-center">
+                        Monocromatico nero
+      
+                        <div class="btn-group">
+                          <a href="FILE/LogotipoSintetico-BLACK.svg" download target="_blank"><button type="button"
+                              class="btn btn-sm btn-primary"><icona-fluent>&#xF14F;</icona-fluent> SVG
+                            </button></a>
+                          &nbsp;
+                          <a href="FILE/LogotipoSintetico-BLACK.png" download target="_blank"><button type="button"
+                              class="btn btn-sm btn-secondary"><icona-fluent>&#xF14F;</icona-fluent> PNG
+                            </button></a>
+                        </div>
+                      </div>
+                      <hr>
+                      <div class="d-flex justify-content-between align-items-center">
+                        Monocromatico bianco
+      
+                        <div class="btn-group">
+                          <a href="FILE/LogotipoSintetico-WHITE.svg" download target="_blank"><button type="button"
+                              class="btn btn-sm btn-primary"><icona-fluent>&#xF14F;</icona-fluent> SVG
+                            </button></a>
+                          &nbsp;
+                          <a href="FILE/LogotipoSintetico-WHITE.png" download target="_blank"><button type="button"
+                              class="btn btn-sm btn-secondary"><icona-fluent>&#xF14F;</icona-fluent> PNG
+                            </button></a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+      
+                </div>
+      
+      
+      
+                <div class="col">
+                  <div class="card shadow-sm">
+                    <div class="bd-placeholder-img card-img-top"
+                      style="background-color: #fff; width: 100%; height: 225px; display: flex; align-items: center; justify-content: center;">
+                      <img src="FILE/PittogrammaUB-COLOR.svg"
+                        style="padding: 5%; object-fit: contain; max-width: 100%; max-height: 100%;">
+      
+      
+                    </div>
+                    <div class="card-body">
+                      <p class="card-text" style="text-align: center;">Pittogramma UB</p>
+      
+                      <div class="d-flex justify-content-between align-items-center">
+                        Colori normali
+      
+                        <div class="btn-group">
+                          <a href="FILE/PittogrammaUB-COLOR.svg" download target="_blank"><button type="button"
+                              class="btn btn-sm btn-primary"><icona-fluent>&#xF14F;</icona-fluent> SVG
+                            </button></a>
+                          &nbsp;
+                          <a href="FILE/PittogrammaUB-COLOR.png" download target="_blank"><button type="button"
+                              class="btn btn-sm btn-secondary"><icona-fluent>&#xF14F;</icona-fluent> PNG
+                            </button></a>
+                        </div>
+                      </div>
+                      <hr>
+                      <div class="d-flex justify-content-between align-items-center">
+                        Monocromatico nero
+      
+                        <div class="btn-group">
+                          <a href="FILE/PittogrammaUB-BLACK.svg" download target="_blank"><button type="button"
+                              class="btn btn-sm btn-primary"><icona-fluent>&#xF14F;</icona-fluent> SVG
+                            </button></a>
+                          &nbsp;
+                          <a href="FILE/PittogrammaUB-BLACK.png" download target="_blank"><button type="button"
+                              class="btn btn-sm btn-secondary"><icona-fluent>&#xF14F;</icona-fluent> PNG
+                            </button></a>
+                        </div>
+                      </div>
+                      <hr>
+                      <div class="d-flex justify-content-between align-items-center">
+                        Monocromatico bianco
+      
+                        <div class="btn-group">
+                          <a href="FILE/PittogrammaUB-WHITE.svg" download target="_blank"><button type="button"
+                              class="btn btn-sm btn-primary"><icona-fluent>&#xF14F;</icona-fluent> SVG
+                            </button></a>
+                          &nbsp;
+                          <a href="FILE/PittogrammaUB-WHITE.png" download target="_blank"><button type="button"
+                              class="btn btn-sm btn-secondary"><icona-fluent>&#xF14F;</icona-fluent> PNG
+                            </button></a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+      
+                </div>
+      
+      
+      
+                <div class="col">
+                  <div class="card shadow-sm">
+                    <div class="bd-placeholder-img card-img-top"
+                      style="background-color: #fff; width: 100%; height: 225px; display: flex; align-items: center; justify-content: center;">
+                      <img src="FILE/MarchioUB-COLOR.svg"
+                        style="padding: 5%; object-fit: contain; max-width: 100%; max-height: 100%;">
+      
+      
+                    </div>
+                    <div class="card-body">
+                      <p class="card-text" style="text-align: center;">Marchio UB "esteso"</p>
+      
+                      <div class="d-flex justify-content-between align-items-center">
+                        Colori normali
+      
+                        <div class="btn-group">
+                          <a href="FILE/MarchioUB-COLOR.svg" download target="_blank"><button type="button"
+                              class="btn btn-sm btn-primary"><icona-fluent>&#xF14F;</icona-fluent> SVG
+                            </button></a>
+                          &nbsp;
+                          <a href="FILE/MarchioUB-COLOR.png" download target="_blank"><button type="button"
+                              class="btn btn-sm btn-secondary"><icona-fluent>&#xF14F;</icona-fluent> PNG
+                            </button></a>
+                        </div>
+                      </div>
+                      <hr>
+                      <div class="d-flex justify-content-between align-items-center">
+                        Monocromatico nero
+      
+                        <div class="btn-group">
+                          <a href="FILE/MarchioUB-BLACK.svg" download target="_blank"><button type="button"
+                              class="btn btn-sm btn-primary"><icona-fluent>&#xF14F;</icona-fluent> SVG
+                            </button></a>
+                          &nbsp;
+                          <a href="FILE/MarchioUB-BLACK.png" download target="_blank"><button type="button"
+                              class="btn btn-sm btn-secondary"><icona-fluent>&#xF14F;</icona-fluent> PNG
+                            </button></a>
+                        </div>
+                      </div>
+                      <hr>
+                      <div class="d-flex justify-content-between align-items-center">
+                        Monocromatico bianco
+      
+                        <div class="btn-group">
+                          <a href="FILE/MarchioUB-WHITE.svg" download target="_blank"><button type="button"
+                              class="btn btn-sm btn-primary"><icona-fluent>&#xF14F;</icona-fluent> SVG
+                            </button></a>
+                          &nbsp;
+                          <a href="FILE/MarchioUB-WHITE.png" download target="_blank"><button type="button"
+                              class="btn btn-sm btn-secondary"><icona-fluent>&#xF14F;</icona-fluent> PNG
+                            </button></a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+      
+                </div>
               </div>
-              <div class="card-body">
-                <p class="card-text" style="text-align: center;">Pittogramma Istituzionale</p>
-
-                <div class="d-flex justify-content-between align-items-center">
-                  Colori normali
-
-                  <div class="btn-group">
-                    <a href="FILE/PittogrammaIstituzionale-COLOR.svg" download target="_blank"><button type="button"
-                        class="btn btn-sm btn-primary"><icona-fluent>&#xF14F;</icona-fluent> SVG
-                      </button></a>
-                    &nbsp;
-                    <a href="FILE/PittogrammaIstituzionale-COLOR.png" download target="_blank"><button type="button"
-                        class="btn btn-sm btn-secondary"><icona-fluent>&#xF14F;</icona-fluent> PNG
-                      </button></a>
+            </div>
+            <div class="tab-pane fade" id="nav-dipartimenti" role="tabpanel" aria-labelledby="nav-dipartimenti-tab">
+              <hr>
+              <h1 class="fw-light" style="text-align: center;">Dipartimenti</h1>
+              <hr>
+              <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+      
+                <div class="col">
+                  <div class="card shadow-sm">
+                    <div class="bd-placeholder-img card-img-top"
+                      style="background-color: #fff; width: 100%; height: 225px; display: flex; align-items: center; justify-content: center;">
+                      <img src="FILE/Dipartimento_diing-COLOR.svg"
+                        style="padding: 5%; object-fit: contain; max-width: 100%; max-height: 100%;">
+      
+      
+                    </div>
+                    <div class="card-body">
+                      <p class="card-text" style="text-align: center;">Ingegneria</p>
+      
+                      <div class="d-flex justify-content-between align-items-center">
+                        Colori normali
+      
+                        <div class="btn-group">
+                          <a href="FILE/Dipartimento_diing-COLOR.svg" download target="_blank"><button type="button"
+                              class="btn btn-sm btn-primary"><icona-fluent>&#xF14F;</icona-fluent> SVG
+                            </button></a>
+                          &nbsp;
+                          <a href="FILE/Dipartimento_diing-COLOR.png" download target="_blank"><button type="button"
+                              class="btn btn-sm btn-secondary"><icona-fluent>&#xF14F;</icona-fluent> PNG
+                            </button></a>
+                        </div>
+                      </div>
+                      <hr>
+                      <div class="d-flex justify-content-between align-items-center">
+                        Monocromatico nero
+      
+                        <div class="btn-group">
+                          <a href="FILE/Dipartimento_diing-BLACK.svg" download target="_blank"><button type="button"
+                              class="btn btn-sm btn-primary"><icona-fluent>&#xF14F;</icona-fluent> SVG
+                            </button></a>
+                          &nbsp;
+                          <a href="FILE/Dipartimento_diing-BLACK.png" download target="_blank"><button type="button"
+                              class="btn btn-sm btn-secondary"><icona-fluent>&#xF14F;</icona-fluent> PNG
+                            </button></a>
+                        </div>
+                      </div>
+                      <hr>
+                      <div class="d-flex justify-content-between align-items-center">
+                        Monocromatico bianco
+      
+                        <div class="btn-group">
+                          <a href="FILE/Dipartimento_diing-WHITE.svg" download target="_blank"><button type="button"
+                              class="btn btn-sm btn-primary"><icona-fluent>&#xF14F;</icona-fluent> SVG
+                            </button></a>
+                          &nbsp;
+                          <a href="FILE/Dipartimento_diing-WHITE.png" download target="_blank"><button type="button"
+                              class="btn btn-sm btn-secondary"><icona-fluent>&#xF14F;</icona-fluent> PNG
+                            </button></a>
+                        </div>
+                      </div>
+                    </div>
                   </div>
+      
                 </div>
-                <hr>
-                <div class="d-flex justify-content-between align-items-center">
-                  Monocromatico nero
-
-                  <div class="btn-group">
-                    <a href="FILE/PittogrammaIstituzionale-BLACK.svg" download target="_blank"><button type="button"
-                        class="btn btn-sm btn-primary"><icona-fluent>&#xF14F;</icona-fluent> SVG
-                      </button></a>
-                    &nbsp;
-                    <a href="FILE/PittogrammaIstituzionale-BLACK.png" download target="_blank"><button type="button"
-                        class="btn btn-sm btn-secondary"><icona-fluent>&#xF14F;</icona-fluent> PNG
-                      </button></a>
+      
+      
+      
+                <div class="col">
+                  <div class="card shadow-sm">
+                    <div class="bd-placeholder-img card-img-top"
+                      style="background-color: #fff; width: 100%; height: 225px; display: flex; align-items: center; justify-content: center;">
+                      <img src="FILE/Dipartimento_diss-COLOR.svg"
+                        style="padding: 5%; object-fit: contain; max-width: 100%; max-height: 100%;">
+      
+      
+                    </div>
+                    <div class="card-body">
+                      <p class="card-text" style="text-align: center;">Scienze della Salute</p>
+      
+                      <div class="d-flex justify-content-between align-items-center">
+                        Colori normali
+      
+                        <div class="btn-group">
+                          <a href="FILE/Dipartimento_diss-COLOR.svg" download target="_blank"><button type="button"
+                              class="btn btn-sm btn-primary"><icona-fluent>&#xF14F;</icona-fluent> SVG
+                            </button></a>
+                          &nbsp;
+                          <a href="FILE/Dipartimento_diss-COLOR.png" download target="_blank"><button type="button"
+                              class="btn btn-sm btn-secondary"><icona-fluent>&#xF14F;</icona-fluent> PNG
+                            </button></a>
+                        </div>
+                      </div>
+                      <hr>
+                      <div class="d-flex justify-content-between align-items-center">
+                        Monocromatico nero
+      
+                        <div class="btn-group">
+                          <a href="FILE/Dipartimento_diss-BLACK.svg" download target="_blank"><button type="button"
+                              class="btn btn-sm btn-primary"><icona-fluent>&#xF14F;</icona-fluent> SVG
+                            </button></a>
+                          &nbsp;
+                          <a href="FILE/Dipartimento_diss-BLACK.png" download target="_blank"><button type="button"
+                              class="btn btn-sm btn-secondary"><icona-fluent>&#xF14F;</icona-fluent> PNG
+                            </button></a>
+                        </div>
+                      </div>
+                      <hr>
+                      <div class="d-flex justify-content-between align-items-center">
+                        Monocromatico bianco
+      
+                        <div class="btn-group">
+                          <a href="FILE/Dipartimento_diss-WHITE.svg" download target="_blank"><button type="button"
+                              class="btn btn-sm btn-primary"><icona-fluent>&#xF14F;</icona-fluent> SVG
+                            </button></a>
+                          &nbsp;
+                          <a href="FILE/Dipartimento_diss-WHITE.png" download target="_blank"><button type="button"
+                              class="btn btn-sm btn-secondary"><icona-fluent>&#xF14F;</icona-fluent> PNG
+                            </button></a>
+                        </div>
+                      </div>
+                    </div>
                   </div>
+      
                 </div>
-                <hr>
-                <div class="d-flex justify-content-between align-items-center">
-                  Monocromatico bianco
-
-                  <div class="btn-group">
-                    <a href="FILE/PittogrammaIstituzionale-WHITE.svg" download target="_blank"><button type="button"
-                        class="btn btn-sm btn-primary"><icona-fluent>&#xF14F;</icona-fluent> SVG
-                      </button></a>
-                    &nbsp;
-                    <a href="FILE/PittogrammaIstituzionale-WHITE.png" download target="_blank"><button type="button"
-                        class="btn btn-sm btn-secondary"><icona-fluent>&#xF14F;</icona-fluent> PNG
-                      </button></a>
+      
+      
+      
+                <div class="col">
+                  <div class="card shadow-sm">
+                    <div class="bd-placeholder-img card-img-top"
+                      style="background-color: #fff; width: 100%; height: 225px; display: flex; align-items: center; justify-content: center;">
+                      <img src="FILE/Dipartimento_ssba-COLOR.svg"
+                        style="padding: 5%; object-fit: contain; max-width: 100%; max-height: 100%;">
+      
+      
+                    </div>
+                    <div class="card-body">
+                      <p class="card-text" style="text-align: center;">Beni Archeologici</p>
+      
+                      <div class="d-flex justify-content-between align-items-center">
+                        Colori normali
+      
+                        <div class="btn-group">
+                          <a href="FILE/Dipartimento_ssba-COLOR.svg" download target="_blank"><button type="button"
+                              class="btn btn-sm btn-primary"><icona-fluent>&#xF14F;</icona-fluent> SVG
+                            </button></a>
+                          &nbsp;
+                          <a href="FILE/Dipartimento_ssba-COLOR.png" download target="_blank"><button type="button"
+                              class="btn btn-sm btn-secondary"><icona-fluent>&#xF14F;</icona-fluent> PNG
+                            </button></a>
+                        </div>
+                      </div>
+                      <hr>
+                      <div class="d-flex justify-content-between align-items-center">
+                        Monocromatico nero
+      
+                        <div class="btn-group">
+                          <a href="FILE/Dipartimento_ssba-BLACK.svg" download target="_blank"><button type="button"
+                              class="btn btn-sm btn-primary"><icona-fluent>&#xF14F;</icona-fluent> SVG
+                            </button></a>
+                          &nbsp;
+                          <a href="FILE/Dipartimento_ssba-BLACK.png" download target="_blank"><button type="button"
+                              class="btn btn-sm btn-secondary"><icona-fluent>&#xF14F;</icona-fluent> PNG
+                            </button></a>
+                        </div>
+                      </div>
+                      <hr>
+                      <div class="d-flex justify-content-between align-items-center">
+                        Monocromatico bianco
+      
+                        <div class="btn-group">
+                          <a href="FILE/Dipartimento_ssba-WHITE.svg" download target="_blank"><button type="button"
+                              class="btn btn-sm btn-primary"><icona-fluent>&#xF14F;</icona-fluent> SVG
+                            </button></a>
+                          &nbsp;
+                          <a href="FILE/Dipartimento_ssba-WHITE.png" download target="_blank"><button type="button"
+                              class="btn btn-sm btn-secondary"><icona-fluent>&#xF14F;</icona-fluent> PNG
+                            </button></a>
+                        </div>
+                      </div>
+                    </div>
                   </div>
+      
+                </div>
+      
+      
+      
+                <div class="col">
+                  <div class="card shadow-sm">
+                    <div class="bd-placeholder-img card-img-top"
+                      style="background-color: #fff; width: 100%; height: 225px; display: flex; align-items: center; justify-content: center;">
+                      <img src="FILE/Dipartimento_diuss-COLOR.svg"
+                        style="padding: 5%; object-fit: contain; max-width: 100%; max-height: 100%;">
+      
+      
+                    </div>
+                    <div class="card-body">
+                      <p class="card-text" style="text-align: center;">Innovazione Umanistica, Scientifica e Sociale</p>
+      
+                      <div class="d-flex justify-content-between align-items-center">
+                        Colori normali
+      
+                        <div class="btn-group">
+                          <a href="FILE/Dipartimento_diuss-COLOR.svg" download target="_blank"><button type="button"
+                              class="btn btn-sm btn-primary"><icona-fluent>&#xF14F;</icona-fluent> SVG
+                            </button></a>
+                          &nbsp;
+                          <a href="FILE/Dipartimento_diuss-COLOR.png" download target="_blank"><button type="button"
+                              class="btn btn-sm btn-secondary"><icona-fluent>&#xF14F;</icona-fluent> PNG
+                            </button></a>
+                        </div>
+                      </div>
+                      <hr>
+                      <div class="d-flex justify-content-between align-items-center">
+                        Monocromatico nero
+      
+                        <div class="btn-group">
+                          <a href="FILE/Dipartimento_diuss-BLACK.svg" download target="_blank"><button type="button"
+                              class="btn btn-sm btn-primary"><icona-fluent>&#xF14F;</icona-fluent> SVG
+                            </button></a>
+                          &nbsp;
+                          <a href="FILE/Dipartimento_diuss-BLACK.png" download target="_blank"><button type="button"
+                              class="btn btn-sm btn-secondary"><icona-fluent>&#xF14F;</icona-fluent> PNG
+                            </button></a>
+                        </div>
+                      </div>
+                      <hr>
+                      <div class="d-flex justify-content-between align-items-center">
+                        Monocromatico bianco
+      
+                        <div class="btn-group">
+                          <a href="FILE/Dipartimento_diuss-WHITE.svg" download target="_blank"><button type="button"
+                              class="btn btn-sm btn-primary"><icona-fluent>&#xF14F;</icona-fluent> SVG
+                            </button></a>
+                          &nbsp;
+                          <a href="FILE/Dipartimento_diuss-WHITE.png" download target="_blank"><button type="button"
+                              class="btn btn-sm btn-secondary"><icona-fluent>&#xF14F;</icona-fluent> PNG
+                            </button></a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+      
+                </div>
+      
+      
+      
+                <div class="col">
+                  <div class="card shadow-sm">
+                    <div class="bd-placeholder-img card-img-top"
+                      style="background-color: #fff; width: 100%; height: 225px; display: flex; align-items: center; justify-content: center;">
+                      <img src="FILE/Dipartimento_dafe-COLOR.svg"
+                        style="padding: 5%; object-fit: contain; max-width: 100%; max-height: 100%;">
+      
+      
+                    </div>
+                    <div class="card-body">
+                      <p class="card-text" style="text-align: center;">Scienze Agrarie, Forestali, Alimentari e Ambientali
+                      </p>
+      
+                      <div class="d-flex justify-content-between align-items-center">
+                        Colori normali
+      
+                        <div class="btn-group">
+                          <a href="FILE/Dipartimento_dafe-COLOR.svg" download target="_blank"><button type="button"
+                              class="btn btn-sm btn-primary"><icona-fluent>&#xF14F;</icona-fluent> SVG
+                            </button></a>
+                          &nbsp;
+                          <a href="FILE/Dipartimento_dafe-COLOR.png" download target="_blank"><button type="button"
+                              class="btn btn-sm btn-secondary"><icona-fluent>&#xF14F;</icona-fluent> PNG
+                            </button></a>
+                        </div>
+                      </div>
+                      <hr>
+                      <div class="d-flex justify-content-between align-items-center">
+                        Monocromatico nero
+      
+                        <div class="btn-group">
+                          <a href="FILE/Dipartimento_dafe-BLACK.svg" download target="_blank"><button type="button"
+                              class="btn btn-sm btn-primary"><icona-fluent>&#xF14F;</icona-fluent> SVG
+                            </button></a>
+                          &nbsp;
+                          <a href="FILE/Dipartimento_dafe-BLACK.png" download target="_blank"><button type="button"
+                              class="btn btn-sm btn-secondary"><icona-fluent>&#xF14F;</icona-fluent> PNG
+                            </button></a>
+                        </div>
+                      </div>
+                      <hr>
+                      <div class="d-flex justify-content-between align-items-center">
+                        Monocromatico bianco
+      
+                        <div class="btn-group">
+                          <a href="FILE/Dipartimento_dafe-WHITE.svg" download target="_blank"><button type="button"
+                              class="btn btn-sm btn-primary"><icona-fluent>&#xF14F;</icona-fluent> SVG
+                            </button></a>
+                          &nbsp;
+                          <a href="FILE/Dipartimento_dafe-WHITE.png" download target="_blank"><button type="button"
+                              class="btn btn-sm btn-secondary"><icona-fluent>&#xF14F;</icona-fluent> PNG
+                            </button></a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+      
+                </div>
+      
+      
+      
+                <div class="col">
+                  <div class="card shadow-sm">
+                    <div class="bd-placeholder-img card-img-top"
+                      style="background-color: #fff; width: 100%; height: 225px; display: flex; align-items: center; justify-content: center;">
+                      <img src="FILE/Dipartimento_disba-COLOR.svg"
+                        style="padding: 5%; object-fit: contain; max-width: 100%; max-height: 100%;">
+      
+      
+                    </div>
+                    <div class="card-body">
+                      <p class="card-text" style="text-align: center;">Scienze di Base e Applicate </p>
+      
+                      <div class="d-flex justify-content-between align-items-center">
+                        Colori normali
+      
+                        <div class="btn-group">
+                          <a href="FILE/Dipartimento_disba-COLOR.svg" download target="_blank"><button type="button"
+                              class="btn btn-sm btn-primary"><icona-fluent>&#xF14F;</icona-fluent> SVG
+                            </button></a>
+                          &nbsp;
+                          <a href="FILE/Dipartimento_disba-COLOR.png" download target="_blank"><button type="button"
+                              class="btn btn-sm btn-secondary"><icona-fluent>&#xF14F;</icona-fluent> PNG
+                            </button></a>
+                        </div>
+                      </div>
+                      <hr>
+                      <div class="d-flex justify-content-between align-items-center">
+                        Monocromatico nero
+      
+                        <div class="btn-group">
+                          <a href="FILE/Dipartimento_disba-BLACK.svg" download target="_blank"><button type="button"
+                              class="btn btn-sm btn-primary"><icona-fluent>&#xF14F;</icona-fluent> SVG
+                            </button></a>
+                          &nbsp;
+                          <a href="FILE/Dipartimento_disba-BLACK.png" download target="_blank"><button type="button"
+                              class="btn btn-sm btn-secondary"><icona-fluent>&#xF14F;</icona-fluent> PNG
+                            </button></a>
+                        </div>
+                      </div>
+                      <hr>
+                      <div class="d-flex justify-content-between align-items-center">
+                        Monocromatico bianco
+      
+                        <div class="btn-group">
+                          <a href="FILE/Dipartimento_disba-WHITE.svg" download target="_blank"><button type="button"
+                              class="btn btn-sm btn-primary"><icona-fluent>&#xF14F;</icona-fluent> SVG
+                            </button></a>
+                          &nbsp;
+                          <a href="FILE/Dipartimento_disba-WHITE.png" download target="_blank"><button type="button"
+                              class="btn btn-sm btn-secondary"><icona-fluent>&#xF14F;</icona-fluent> PNG
+                            </button></a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+      
+                </div>
+              </div>
+              <hr>
+              <h1 class="fw-light" style="text-align: center;">Dipartimenti con Pittogramma Istituzionale</h1>
+              <hr>
+              <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+      
+                <div class="col">
+                  <div class="card shadow-sm">
+                    <div class="bd-placeholder-img card-img-top"
+                      style="background-color: #fff; width: 100%; height: 225px; display: flex; align-items: center; justify-content: center;">
+                      <img src="FILE/PittogrammaDipartimento_diing-COLOR.svg"
+                        style="padding: 5%; object-fit: contain; max-width: 100%; max-height: 100%;">
+      
+      
+                    </div>
+                    <div class="card-body">
+                      <p class="card-text" style="text-align: center;">Ingegneria</p>
+      
+                      <div class="d-flex justify-content-between align-items-center">
+                        Colori normali
+      
+                        <div class="btn-group">
+                          <a href="FILE/PittogrammaDipartimento_diing-COLOR.svg" download target="_blank"><button
+                              type="button" class="btn btn-sm btn-primary"><icona-fluent>&#xF14F;</icona-fluent> SVG
+                            </button></a>
+                          &nbsp;
+                          <a href="FILE/PittogrammaDipartimento_diing-COLOR.png" download target="_blank"><button
+                              type="button" class="btn btn-sm btn-secondary"><icona-fluent>&#xF14F;</icona-fluent> PNG
+                            </button></a>
+                        </div>
+                      </div>
+                      <hr>
+                      <div class="d-flex justify-content-between align-items-center">
+                        Monocromatico nero
+      
+                        <div class="btn-group">
+                          <a href="FILE/PittogrammaDipartimento_diing-BLACK.svg" download target="_blank"><button
+                              type="button" class="btn btn-sm btn-primary"><icona-fluent>&#xF14F;</icona-fluent> SVG
+                            </button></a>
+                          &nbsp;
+                          <a href="FILE/PittogrammaDipartimento_diing-BLACK.png" download target="_blank"><button
+                              type="button" class="btn btn-sm btn-secondary"><icona-fluent>&#xF14F;</icona-fluent> PNG
+                            </button></a>
+                        </div>
+                      </div>
+                      <hr>
+                      <div class="d-flex justify-content-between align-items-center">
+                        Monocromatico bianco
+      
+                        <div class="btn-group">
+                          <a href="FILE/PittogrammaDipartimento_diing-WHITE.svg" download target="_blank"><button
+                              type="button" class="btn btn-sm btn-primary"><icona-fluent>&#xF14F;</icona-fluent> SVG
+                            </button></a>
+                          &nbsp;
+                          <a href="FILE/PittogrammaDipartimento_diing-WHITE.png" download target="_blank"><button
+                              type="button" class="btn btn-sm btn-secondary"><icona-fluent>&#xF14F;</icona-fluent> PNG
+                            </button></a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+      
+                </div>
+      
+      
+      
+                <div class="col">
+                  <div class="card shadow-sm">
+                    <div class="bd-placeholder-img card-img-top"
+                      style="background-color: #fff; width: 100%; height: 225px; display: flex; align-items: center; justify-content: center;">
+                      <img src="FILE/PittogrammaDipartimento_diss-COLOR.svg"
+                        style="padding: 5%; object-fit: contain; max-width: 100%; max-height: 100%;">
+      
+      
+                    </div>
+                    <div class="card-body">
+                      <p class="card-text" style="text-align: center;">Scienze della Salute</p>
+      
+                      <div class="d-flex justify-content-between align-items-center">
+                        Colori normali
+      
+                        <div class="btn-group">
+                          <a href="FILE/PittogrammaDipartimento_diss-COLOR.svg" download target="_blank"><button type="button"
+                              class="btn btn-sm btn-primary"><icona-fluent>&#xF14F;</icona-fluent> SVG
+                            </button></a>
+                          &nbsp;
+                          <a href="FILE/PittogrammaDipartimento_diss-COLOR.png" download target="_blank"><button type="button"
+                              class="btn btn-sm btn-secondary"><icona-fluent>&#xF14F;</icona-fluent> PNG
+                            </button></a>
+                        </div>
+                      </div>
+                      <hr>
+                      <div class="d-flex justify-content-between align-items-center">
+                        Monocromatico nero
+      
+                        <div class="btn-group">
+                          <a href="FILE/PittogrammaDipartimento_diss-BLACK.svg" download target="_blank"><button type="button"
+                              class="btn btn-sm btn-primary"><icona-fluent>&#xF14F;</icona-fluent> SVG
+                            </button></a>
+                          &nbsp;
+                          <a href="FILE/PittogrammaDipartimento_diss-BLACK.png" download target="_blank"><button type="button"
+                              class="btn btn-sm btn-secondary"><icona-fluent>&#xF14F;</icona-fluent> PNG
+                            </button></a>
+                        </div>
+                      </div>
+                      <hr>
+                      <div class="d-flex justify-content-between align-items-center">
+                        Monocromatico bianco
+      
+                        <div class="btn-group">
+                          <a href="FILE/PittogrammaDipartimento_diss-WHITE.svg" download target="_blank"><button type="button"
+                              class="btn btn-sm btn-primary"><icona-fluent>&#xF14F;</icona-fluent> SVG
+                            </button></a>
+                          &nbsp;
+                          <a href="FILE/PittogrammaDipartimento_diss-WHITE.png" download target="_blank"><button type="button"
+                              class="btn btn-sm btn-secondary"><icona-fluent>&#xF14F;</icona-fluent> PNG
+                            </button></a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+      
+                </div>
+      
+      
+      
+                <div class="col">
+                  <div class="card shadow-sm">
+                    <div class="bd-placeholder-img card-img-top"
+                      style="background-color: #fff; width: 100%; height: 225px; display: flex; align-items: center; justify-content: center;">
+                      <img src="FILE/PittogrammaDipartimento_ssba-COLOR.svg"
+                        style="padding: 5%; object-fit: contain; max-width: 100%; max-height: 100%;">
+      
+      
+                    </div>
+                    <div class="card-body">
+                      <p class="card-text" style="text-align: center;">Beni Archeologici</p>
+      
+                      <div class="d-flex justify-content-between align-items-center">
+                        Colori normali
+      
+                        <div class="btn-group">
+                          <a href="FILE/PittogrammaDipartimento_ssba-COLOR.svg" download target="_blank"><button type="button"
+                              class="btn btn-sm btn-primary"><icona-fluent>&#xF14F;</icona-fluent> SVG
+                            </button></a>
+                          &nbsp;
+                          <a href="FILE/PittogrammaDipartimento_ssba-COLOR.png" download target="_blank"><button type="button"
+                              class="btn btn-sm btn-secondary"><icona-fluent>&#xF14F;</icona-fluent> PNG
+                            </button></a>
+                        </div>
+                      </div>
+                      <hr>
+                      <div class="d-flex justify-content-between align-items-center">
+                        Monocromatico nero
+      
+                        <div class="btn-group">
+                          <a href="FILE/PittogrammaDipartimento_ssba-BLACK.svg" download target="_blank"><button type="button"
+                              class="btn btn-sm btn-primary"><icona-fluent>&#xF14F;</icona-fluent> SVG
+                            </button></a>
+                          &nbsp;
+                          <a href="FILE/PittogrammaDipartimento_ssba-BLACK.png" download target="_blank"><button type="button"
+                              class="btn btn-sm btn-secondary"><icona-fluent>&#xF14F;</icona-fluent> PNG
+                            </button></a>
+                        </div>
+                      </div>
+                      <hr>
+                      <div class="d-flex justify-content-between align-items-center">
+                        Monocromatico bianco
+      
+                        <div class="btn-group">
+                          <a href="FILE/PittogrammaDipartimento_ssba-WHITE.svg" download target="_blank"><button type="button"
+                              class="btn btn-sm btn-primary"><icona-fluent>&#xF14F;</icona-fluent> SVG
+                            </button></a>
+                          &nbsp;
+                          <a href="FILE/PittogrammaDipartimento_ssba-WHITE.png" download target="_blank"><button type="button"
+                              class="btn btn-sm btn-secondary"><icona-fluent>&#xF14F;</icona-fluent> PNG
+                            </button></a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+      
+                </div>
+      
+      
+      
+                <div class="col">
+                  <div class="card shadow-sm">
+                    <div class="bd-placeholder-img card-img-top"
+                      style="background-color: #fff; width: 100%; height: 225px; display: flex; align-items: center; justify-content: center;">
+                      <img src="FILE/PittogrammaDipartimento_diuss-COLOR.svg"
+                        style="padding: 5%; object-fit: contain; max-width: 100%; max-height: 100%;">
+      
+      
+                    </div>
+                    <div class="card-body">
+                      <p class="card-text" style="text-align: center;">Innovazione Umanistica, Scientifica e Sociale</p>
+      
+                      <div class="d-flex justify-content-between align-items-center">
+                        Colori normali
+      
+                        <div class="btn-group">
+                          <a href="FILE/PittogrammaDipartimento_diuss-COLOR.svg" download target="_blank"><button
+                              type="button" class="btn btn-sm btn-primary"><icona-fluent>&#xF14F;</icona-fluent> SVG
+                            </button></a>
+                          &nbsp;
+                          <a href="FILE/PittogrammaDipartimento_diuss-COLOR.png" download target="_blank"><button
+                              type="button" class="btn btn-sm btn-secondary"><icona-fluent>&#xF14F;</icona-fluent> PNG
+                            </button></a>
+                        </div>
+                      </div>
+                      <hr>
+                      <div class="d-flex justify-content-between align-items-center">
+                        Monocromatico nero
+      
+                        <div class="btn-group">
+                          <a href="FILE/PittogrammaDipartimento_diuss-BLACK.svg" download target="_blank"><button
+                              type="button" class="btn btn-sm btn-primary"><icona-fluent>&#xF14F;</icona-fluent> SVG
+                            </button></a>
+                          &nbsp;
+                          <a href="FILE/PittogrammaDipartimento_diuss-BLACK.png" download target="_blank"><button
+                              type="button" class="btn btn-sm btn-secondary"><icona-fluent>&#xF14F;</icona-fluent> PNG
+                            </button></a>
+                        </div>
+                      </div>
+                      <hr>
+                      <div class="d-flex justify-content-between align-items-center">
+                        Monocromatico bianco
+      
+                        <div class="btn-group">
+                          <a href="FILE/PittogrammaDipartimento_diuss-WHITE.svg" download target="_blank"><button
+                              type="button" class="btn btn-sm btn-primary"><icona-fluent>&#xF14F;</icona-fluent> SVG
+                            </button></a>
+                          &nbsp;
+                          <a href="FILE/PittogrammaDipartimento_diuss-WHITE.png" download target="_blank"><button
+                              type="button" class="btn btn-sm btn-secondary"><icona-fluent>&#xF14F;</icona-fluent> PNG
+                            </button></a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+      
+                </div>
+      
+      
+      
+                <div class="col">
+                  <div class="card shadow-sm">
+                    <div class="bd-placeholder-img card-img-top"
+                      style="background-color: #fff; width: 100%; height: 225px; display: flex; align-items: center; justify-content: center;">
+                      <img src="FILE/PittogrammaDipartimento_dafe-COLOR.svg"
+                        style="padding: 5%; object-fit: contain; max-width: 100%; max-height: 100%;">
+      
+      
+                    </div>
+                    <div class="card-body">
+                      <p class="card-text" style="text-align: center;">Scienze Agrarie, Forestali, Alimentari e Ambientali
+                      </p>
+      
+                      <div class="d-flex justify-content-between align-items-center">
+                        Colori normali
+      
+                        <div class="btn-group">
+                          <a href="FILE/PittogrammaDipartimento_dafe-COLOR.svg" download target="_blank"><button type="button"
+                              class="btn btn-sm btn-primary"><icona-fluent>&#xF14F;</icona-fluent> SVG
+                            </button></a>
+                          &nbsp;
+                          <a href="FILE/PittogrammaDipartimento_dafe-COLOR.png" download target="_blank"><button type="button"
+                              class="btn btn-sm btn-secondary"><icona-fluent>&#xF14F;</icona-fluent> PNG
+                            </button></a>
+                        </div>
+                      </div>
+                      <hr>
+                      <div class="d-flex justify-content-between align-items-center">
+                        Monocromatico nero
+      
+                        <div class="btn-group">
+                          <a href="FILE/PittogrammaDipartimento_dafe-BLACK.svg" download target="_blank"><button type="button"
+                              class="btn btn-sm btn-primary"><icona-fluent>&#xF14F;</icona-fluent> SVG
+                            </button></a>
+                          &nbsp;
+                          <a href="FILE/PittogrammaDipartimento_dafe-BLACK.png" download target="_blank"><button type="button"
+                              class="btn btn-sm btn-secondary"><icona-fluent>&#xF14F;</icona-fluent> PNG
+                            </button></a>
+                        </div>
+                      </div>
+                      <hr>
+                      <div class="d-flex justify-content-between align-items-center">
+                        Monocromatico bianco
+      
+                        <div class="btn-group">
+                          <a href="FILE/PittogrammaDipartimento_dafe-WHITE.svg" download target="_blank"><button type="button"
+                              class="btn btn-sm btn-primary"><icona-fluent>&#xF14F;</icona-fluent> SVG
+                            </button></a>
+                          &nbsp;
+                          <a href="FILE/PittogrammaDipartimento_dafe-WHITE.png" download target="_blank"><button type="button"
+                              class="btn btn-sm btn-secondary"><icona-fluent>&#xF14F;</icona-fluent> PNG
+                            </button></a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+      
+                </div>
+      
+      
+      
+                <div class="col">
+                  <div class="card shadow-sm">
+                    <div class="bd-placeholder-img card-img-top"
+                      style="background-color: #fff; width: 100%; height: 225px; display: flex; align-items: center; justify-content: center;">
+                      <img src="FILE/PittogrammaDipartimento_disba-COLOR.svg"
+                        style="padding: 5%; object-fit: contain; max-width: 100%; max-height: 100%;">
+      
+      
+                    </div>
+                    <div class="card-body">
+                      <p class="card-text" style="text-align: center;">Scienze di Base e Applicate </p>
+      
+                      <div class="d-flex justify-content-between align-items-center">
+                        Colori normali
+      
+                        <div class="btn-group">
+                          <a href="FILE/PittogrammaDipartimento_disba-COLOR.svg" download target="_blank"><button
+                              type="button" class="btn btn-sm btn-primary"><icona-fluent>&#xF14F;</icona-fluent> SVG
+                            </button></a>
+                          &nbsp;
+                          <a href="FILE/PittogrammaDipartimento_disba-COLOR.png" download target="_blank"><button
+                              type="button" class="btn btn-sm btn-secondary"><icona-fluent>&#xF14F;</icona-fluent> PNG
+                            </button></a>
+                        </div>
+                      </div>
+                      <hr>
+                      <div class="d-flex justify-content-between align-items-center">
+                        Monocromatico nero
+      
+                        <div class="btn-group">
+                          <a href="FILE/PittogrammaDipartimento_disba-BLACK.svg" download target="_blank"><button
+                              type="button" class="btn btn-sm btn-primary"><icona-fluent>&#xF14F;</icona-fluent> SVG
+                            </button></a>
+                          &nbsp;
+                          <a href="FILE/PittogrammaDipartimento_disba-BLACK.png" download target="_blank"><button
+                              type="button" class="btn btn-sm btn-secondary"><icona-fluent>&#xF14F;</icona-fluent> PNG
+                            </button></a>
+                        </div>
+                      </div>
+                      <hr>
+                      <div class="d-flex justify-content-between align-items-center">
+                        Monocromatico bianco
+      
+                        <div class="btn-group">
+                          <a href="FILE/PittogrammaDipartimento_disba-WHITE.svg" download target="_blank"><button
+                              type="button" class="btn btn-sm btn-primary"><icona-fluent>&#xF14F;</icona-fluent> SVG
+                            </button></a>
+                          &nbsp;
+                          <a href="FILE/PittogrammaDipartimento_disba-WHITE.png" download target="_blank"><button
+                              type="button" class="btn btn-sm btn-secondary"><icona-fluent>&#xF14F;</icona-fluent> PNG
+                            </button></a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+      
                 </div>
               </div>
             </div>
 
-          </div>
-
-
-          <div class="col">
-            <div class="card shadow-sm">
-              <div class="bd-placeholder-img card-img-top"
-                style="background-color: #fff; width: 100%; height: 225px; display: flex; align-items: center; justify-content: center;">
-                <img src="FILE/MarchioEsteso-COLOR.svg"
-                  style="padding: 5%; object-fit: contain; max-width: 100%; max-height: 100%;">
-
-
-              </div>
-              <div class="card-body">
-                <p class="card-text" style="text-align: center;">Marchio "esteso"</p>
-
-                <div class="d-flex justify-content-between align-items-center">
-                  Colori normali
-
-                  <div class="btn-group">
-                    <a href="FILE/MarchioEsteso-COLOR.svg" download target="_blank"><button type="button"
-                        class="btn btn-sm btn-primary"><icona-fluent>&#xF14F;</icona-fluent> SVG
-                      </button></a>
-                    &nbsp;
-                    <a href="FILE/MarchioEsteso-COLOR.png" download target="_blank"><button type="button"
-                        class="btn btn-sm btn-secondary"><icona-fluent>&#xF14F;</icona-fluent> PNG
-                      </button></a>
-                  </div>
-                </div>
-                <hr>
-                <div class="d-flex justify-content-between align-items-center">
-                  Monocromatico nero
-
-                  <div class="btn-group">
-                    <a href="FILE/MarchioEsteso-BLACK.svg" download target="_blank"><button type="button"
-                        class="btn btn-sm btn-primary"><icona-fluent>&#xF14F;</icona-fluent> SVG
-                      </button></a>
-                    &nbsp;
-                    <a href="FILE/MarchioEsteso-BLACK.png" download target="_blank"><button type="button"
-                        class="btn btn-sm btn-secondary"><icona-fluent>&#xF14F;</icona-fluent> PNG
-                      </button></a>
-                  </div>
-                </div>
-                <hr>
-                <div class="d-flex justify-content-between align-items-center">
-                  Monocromatico bianco
-
-                  <div class="btn-group">
-                    <a href="FILE/MarchioEsteso-WHITE.svg" download target="_blank"><button type="button"
-                        class="btn btn-sm btn-primary"><icona-fluent>&#xF14F;</icona-fluent> SVG
-                      </button></a>
-                    &nbsp;
-                    <a href="FILE/MarchioEsteso-WHITE.png" download target="_blank"><button type="button"
-                        class="btn btn-sm btn-secondary"><icona-fluent>&#xF14F;</icona-fluent> PNG
-                      </button></a>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-          </div>
-
-
-          <div class="col">
-            <div class="card shadow-sm">
-              <div class="bd-placeholder-img card-img-top"
-                style="background-color: #fff; width: 100%; height: 225px; display: flex; align-items: center; justify-content: center;">
-                <img src="FILE/MarchioSintetico-COLOR.svg"
-                  style="padding: 5%; object-fit: contain; max-width: 100%; max-height: 100%;">
-
-
-              </div>
-              <div class="card-body">
-                <p class="card-text" style="text-align: center;">Marchio "sintetico"</p>
-
-                <div class="d-flex justify-content-between align-items-center">
-                  Colori normali
-
-                  <div class="btn-group">
-                    <a href="FILE/MarchioSintetico-COLOR.svg" download target="_blank"><button type="button"
-                        class="btn btn-sm btn-primary"><icona-fluent>&#xF14F;</icona-fluent> SVG
-                      </button></a>
-                    &nbsp;
-                    <a href="FILE/MarchioSintetico-COLOR.png" download target="_blank"><button type="button"
-                        class="btn btn-sm btn-secondary"><icona-fluent>&#xF14F;</icona-fluent> PNG
-                      </button></a>
-                  </div>
-                </div>
-                <hr>
-                <div class="d-flex justify-content-between align-items-center">
-                  Monocromatico nero
-
-                  <div class="btn-group">
-                    <a href="FILE/MarchioSintetico-BLACK.svg" download target="_blank"><button type="button"
-                        class="btn btn-sm btn-primary"><icona-fluent>&#xF14F;</icona-fluent> SVG
-                      </button></a>
-                    &nbsp;
-                    <a href="FILE/MarchioSintetico-BLACK.png" download target="_blank"><button type="button"
-                        class="btn btn-sm btn-secondary"><icona-fluent>&#xF14F;</icona-fluent> PNG
-                      </button></a>
-                  </div>
-                </div>
-                <hr>
-                <div class="d-flex justify-content-between align-items-center">
-                  Monocromatico bianco
-
-                  <div class="btn-group">
-                    <a href="FILE/MarchioSintetico-WHITE.svg" download target="_blank"><button type="button"
-                        class="btn btn-sm btn-primary"><icona-fluent>&#xF14F;</icona-fluent> SVG
-                      </button></a>
-                    &nbsp;
-                    <a href="FILE/MarchioSintetico-WHITE.png" download target="_blank"><button type="button"
-                        class="btn btn-sm btn-secondary"><icona-fluent>&#xF14F;</icona-fluent> PNG
-                      </button></a>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-          </div>
-
-
-          <div class="col">
-            <div class="card shadow-sm">
-              <div class="bd-placeholder-img card-img-top"
-                style="background-color: #fff; width: 100%; height: 225px; display: flex; align-items: center; justify-content: center;">
-                <img src="FILE/MarchioUnibas1982-COLOR.svg"
-                  style="padding: 5%; object-fit: contain; max-width: 100%; max-height: 100%;">
-
-
-              </div>
-              <div class="card-body">
-                <p class="card-text" style="text-align: center;">Marchio "unibas - 1982"</p>
-
-                <div class="d-flex justify-content-between align-items-center">
-                  Colori normali
-
-                  <div class="btn-group">
-                    <a href="FILE/MarchioUnibas1982-COLOR.svg" download target="_blank"><button type="button"
-                        class="btn btn-sm btn-primary"><icona-fluent>&#xF14F;</icona-fluent> SVG
-                      </button></a>
-                    &nbsp;
-                    <a href="FILE/MarchioUnibas1982-COLOR.png" download target="_blank"><button type="button"
-                        class="btn btn-sm btn-secondary"><icona-fluent>&#xF14F;</icona-fluent> PNG
-                      </button></a>
-                  </div>
-                </div>
-                <hr>
-                <div class="d-flex justify-content-between align-items-center">
-                  Monocromatico nero
-
-                  <div class="btn-group">
-                    <a href="FILE/MarchioUnibas1982-BLACK.svg" download target="_blank"><button type="button"
-                        class="btn btn-sm btn-primary"><icona-fluent>&#xF14F;</icona-fluent> SVG
-                      </button></a>
-                    &nbsp;
-                    <a href="FILE/MarchioUnibas1982-BLACK.png" download target="_blank"><button type="button"
-                        class="btn btn-sm btn-secondary"><icona-fluent>&#xF14F;</icona-fluent> PNG
-                      </button></a>
-                  </div>
-                </div>
-                <hr>
-                <div class="d-flex justify-content-between align-items-center">
-                  Monocromatico bianco
-
-                  <div class="btn-group">
-                    <a href="FILE/MarchioUnibas1982-WHITE.svg" download target="_blank"><button type="button"
-                        class="btn btn-sm btn-primary"><icona-fluent>&#xF14F;</icona-fluent> SVG
-                      </button></a>
-                    &nbsp;
-                    <a href="FILE/MarchioUnibas1982-WHITE.png" download target="_blank"><button type="button"
-                        class="btn btn-sm btn-secondary"><icona-fluent>&#xF14F;</icona-fluent> PNG
-                      </button></a>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-          </div>
-
-          <div class="col">
-            <div class="card shadow-sm">
-              <div class="bd-placeholder-img card-img-top"
-                style="background-color: #fff; width: 100%; height: 225px; display: flex; align-items: center; justify-content: center;">
-                <img src="FILE/LogotipoEsteso-COLOR.svg"
-                  style="padding: 5%; object-fit: contain; max-width: 100%; max-height: 100%;">
-
-
-              </div>
-              <div class="card-body">
-                <p class="card-text" style="text-align: center;">Logotipo "esteso"</p>
-
-                <div class="d-flex justify-content-between align-items-center">
-                  Colori normali
-
-                  <div class="btn-group">
-                    <a href="FILE/LogotipoEsteso-COLOR.svg" download target="_blank"><button type="button"
-                        class="btn btn-sm btn-primary"><icona-fluent>&#xF14F;</icona-fluent> SVG
-                      </button></a>
-                    &nbsp;
-                    <a href="FILE/LogotipoEsteso-COLOR.png" download target="_blank"><button type="button"
-                        class="btn btn-sm btn-secondary"><icona-fluent>&#xF14F;</icona-fluent> PNG
-                      </button></a>
-                  </div>
-                </div>
-                <hr>
-                <div class="d-flex justify-content-between align-items-center">
-                  Monocromatico nero
-
-                  <div class="btn-group">
-                    <a href="FILE/LogotipoEsteso-BLACK.svg" download target="_blank"><button type="button"
-                        class="btn btn-sm btn-primary"><icona-fluent>&#xF14F;</icona-fluent> SVG
-                      </button></a>
-                    &nbsp;
-                    <a href="FILE/LogotipoEsteso-BLACK.png" download target="_blank"><button type="button"
-                        class="btn btn-sm btn-secondary"><icona-fluent>&#xF14F;</icona-fluent> PNG
-                      </button></a>
-                  </div>
-                </div>
-                <hr>
-                <div class="d-flex justify-content-between align-items-center">
-                  Monocromatico bianco
-
-                  <div class="btn-group">
-                    <a href="FILE/LogotipoEsteso-WHITE.svg" download target="_blank"><button type="button"
-                        class="btn btn-sm btn-primary"><icona-fluent>&#xF14F;</icona-fluent> SVG
-                      </button></a>
-                    &nbsp;
-                    <a href="FILE/LogotipoEsteso-WHITE.png" download target="_blank"><button type="button"
-                        class="btn btn-sm btn-secondary"><icona-fluent>&#xF14F;</icona-fluent> PNG
-                      </button></a>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-          </div>
-
-
-          <div class="col">
-            <div class="card shadow-sm">
-              <div class="bd-placeholder-img card-img-top"
-                style="background-color: #fff; width: 100%; height: 225px; display: flex; align-items: center; justify-content: center;">
-                <img src="FILE/LogotipoSintetico-COLOR.svg"
-                  style="padding: 5%; object-fit: contain; max-width: 100%; max-height: 100%;">
-
-
-              </div>
-              <div class="card-body">
-                <p class="card-text" style="text-align: center;">Logotipo "sintetico"</p>
-
-                <div class="d-flex justify-content-between align-items-center">
-                  Colori normali
-
-                  <div class="btn-group">
-                    <a href="FILE/LogotipoSintetico-COLOR.svg" download target="_blank"><button type="button"
-                        class="btn btn-sm btn-primary"><icona-fluent>&#xF14F;</icona-fluent> SVG
-                      </button></a>
-                    &nbsp;
-                    <a href="FILE/LogotipoSintetico-COLOR.png" download target="_blank"><button type="button"
-                        class="btn btn-sm btn-secondary"><icona-fluent>&#xF14F;</icona-fluent> PNG
-                      </button></a>
-                  </div>
-                </div>
-                <hr>
-                <div class="d-flex justify-content-between align-items-center">
-                  Monocromatico nero
-
-                  <div class="btn-group">
-                    <a href="FILE/LogotipoSintetico-BLACK.svg" download target="_blank"><button type="button"
-                        class="btn btn-sm btn-primary"><icona-fluent>&#xF14F;</icona-fluent> SVG
-                      </button></a>
-                    &nbsp;
-                    <a href="FILE/LogotipoSintetico-BLACK.png" download target="_blank"><button type="button"
-                        class="btn btn-sm btn-secondary"><icona-fluent>&#xF14F;</icona-fluent> PNG
-                      </button></a>
-                  </div>
-                </div>
-                <hr>
-                <div class="d-flex justify-content-between align-items-center">
-                  Monocromatico bianco
-
-                  <div class="btn-group">
-                    <a href="FILE/LogotipoSintetico-WHITE.svg" download target="_blank"><button type="button"
-                        class="btn btn-sm btn-primary"><icona-fluent>&#xF14F;</icona-fluent> SVG
-                      </button></a>
-                    &nbsp;
-                    <a href="FILE/LogotipoSintetico-WHITE.png" download target="_blank"><button type="button"
-                        class="btn btn-sm btn-secondary"><icona-fluent>&#xF14F;</icona-fluent> PNG
-                      </button></a>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-          </div>
-
-
-
-          <div class="col">
-            <div class="card shadow-sm">
-              <div class="bd-placeholder-img card-img-top"
-                style="background-color: #fff; width: 100%; height: 225px; display: flex; align-items: center; justify-content: center;">
-                <img src="FILE/PittogrammaUB-COLOR.svg"
-                  style="padding: 5%; object-fit: contain; max-width: 100%; max-height: 100%;">
-
-
-              </div>
-              <div class="card-body">
-                <p class="card-text" style="text-align: center;">Pittogramma UB</p>
-
-                <div class="d-flex justify-content-between align-items-center">
-                  Colori normali
-
-                  <div class="btn-group">
-                    <a href="FILE/PittogrammaUB-COLOR.svg" download target="_blank"><button type="button"
-                        class="btn btn-sm btn-primary"><icona-fluent>&#xF14F;</icona-fluent> SVG
-                      </button></a>
-                    &nbsp;
-                    <a href="FILE/PittogrammaUB-COLOR.png" download target="_blank"><button type="button"
-                        class="btn btn-sm btn-secondary"><icona-fluent>&#xF14F;</icona-fluent> PNG
-                      </button></a>
-                  </div>
-                </div>
-                <hr>
-                <div class="d-flex justify-content-between align-items-center">
-                  Monocromatico nero
-
-                  <div class="btn-group">
-                    <a href="FILE/PittogrammaUB-BLACK.svg" download target="_blank"><button type="button"
-                        class="btn btn-sm btn-primary"><icona-fluent>&#xF14F;</icona-fluent> SVG
-                      </button></a>
-                    &nbsp;
-                    <a href="FILE/PittogrammaUB-BLACK.png" download target="_blank"><button type="button"
-                        class="btn btn-sm btn-secondary"><icona-fluent>&#xF14F;</icona-fluent> PNG
-                      </button></a>
-                  </div>
-                </div>
-                <hr>
-                <div class="d-flex justify-content-between align-items-center">
-                  Monocromatico bianco
-
-                  <div class="btn-group">
-                    <a href="FILE/PittogrammaUB-WHITE.svg" download target="_blank"><button type="button"
-                        class="btn btn-sm btn-primary"><icona-fluent>&#xF14F;</icona-fluent> SVG
-                      </button></a>
-                    &nbsp;
-                    <a href="FILE/PittogrammaUB-WHITE.png" download target="_blank"><button type="button"
-                        class="btn btn-sm btn-secondary"><icona-fluent>&#xF14F;</icona-fluent> PNG
-                      </button></a>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-          </div>
-
-
-
-          <div class="col">
-            <div class="card shadow-sm">
-              <div class="bd-placeholder-img card-img-top"
-                style="background-color: #fff; width: 100%; height: 225px; display: flex; align-items: center; justify-content: center;">
-                <img src="FILE/MarchioUB-COLOR.svg"
-                  style="padding: 5%; object-fit: contain; max-width: 100%; max-height: 100%;">
-
-
-              </div>
-              <div class="card-body">
-                <p class="card-text" style="text-align: center;">Marchio UB "esteso"</p>
-
-                <div class="d-flex justify-content-between align-items-center">
-                  Colori normali
-
-                  <div class="btn-group">
-                    <a href="FILE/MarchioUB-COLOR.svg" download target="_blank"><button type="button"
-                        class="btn btn-sm btn-primary"><icona-fluent>&#xF14F;</icona-fluent> SVG
-                      </button></a>
-                    &nbsp;
-                    <a href="FILE/MarchioUB-COLOR.png" download target="_blank"><button type="button"
-                        class="btn btn-sm btn-secondary"><icona-fluent>&#xF14F;</icona-fluent> PNG
-                      </button></a>
-                  </div>
-                </div>
-                <hr>
-                <div class="d-flex justify-content-between align-items-center">
-                  Monocromatico nero
-
-                  <div class="btn-group">
-                    <a href="FILE/MarchioUB-BLACK.svg" download target="_blank"><button type="button"
-                        class="btn btn-sm btn-primary"><icona-fluent>&#xF14F;</icona-fluent> SVG
-                      </button></a>
-                    &nbsp;
-                    <a href="FILE/MarchioUB-BLACK.png" download target="_blank"><button type="button"
-                        class="btn btn-sm btn-secondary"><icona-fluent>&#xF14F;</icona-fluent> PNG
-                      </button></a>
-                  </div>
-                </div>
-                <hr>
-                <div class="d-flex justify-content-between align-items-center">
-                  Monocromatico bianco
-
-                  <div class="btn-group">
-                    <a href="FILE/MarchioUB-WHITE.svg" download target="_blank"><button type="button"
-                        class="btn btn-sm btn-primary"><icona-fluent>&#xF14F;</icona-fluent> SVG
-                      </button></a>
-                    &nbsp;
-                    <a href="FILE/MarchioUB-WHITE.png" download target="_blank"><button type="button"
-                        class="btn btn-sm btn-secondary"><icona-fluent>&#xF14F;</icona-fluent> PNG
-                      </button></a>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-          </div>
-        </div>
-
-        <hr>
-        <h1 class="fw-light" style="text-align: center;">Dipartimenti</h1>
-        <hr>
-        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-
-          <div class="col">
-            <div class="card shadow-sm">
-              <div class="bd-placeholder-img card-img-top"
-                style="background-color: #fff; width: 100%; height: 225px; display: flex; align-items: center; justify-content: center;">
-                <img src="FILE/Dipartimento_diing-COLOR.svg"
-                  style="padding: 5%; object-fit: contain; max-width: 100%; max-height: 100%;">
-
-
-              </div>
-              <div class="card-body">
-                <p class="card-text" style="text-align: center;">Ingegneria</p>
-
-                <div class="d-flex justify-content-between align-items-center">
-                  Colori normali
-
-                  <div class="btn-group">
-                    <a href="FILE/Dipartimento_diing-COLOR.svg" download target="_blank"><button type="button"
-                        class="btn btn-sm btn-primary"><icona-fluent>&#xF14F;</icona-fluent> SVG
-                      </button></a>
-                    &nbsp;
-                    <a href="FILE/Dipartimento_diing-COLOR.png" download target="_blank"><button type="button"
-                        class="btn btn-sm btn-secondary"><icona-fluent>&#xF14F;</icona-fluent> PNG
-                      </button></a>
-                  </div>
-                </div>
-                <hr>
-                <div class="d-flex justify-content-between align-items-center">
-                  Monocromatico nero
-
-                  <div class="btn-group">
-                    <a href="FILE/Dipartimento_diing-BLACK.svg" download target="_blank"><button type="button"
-                        class="btn btn-sm btn-primary"><icona-fluent>&#xF14F;</icona-fluent> SVG
-                      </button></a>
-                    &nbsp;
-                    <a href="FILE/Dipartimento_diing-BLACK.png" download target="_blank"><button type="button"
-                        class="btn btn-sm btn-secondary"><icona-fluent>&#xF14F;</icona-fluent> PNG
-                      </button></a>
-                  </div>
-                </div>
-                <hr>
-                <div class="d-flex justify-content-between align-items-center">
-                  Monocromatico bianco
-
-                  <div class="btn-group">
-                    <a href="FILE/Dipartimento_diing-WHITE.svg" download target="_blank"><button type="button"
-                        class="btn btn-sm btn-primary"><icona-fluent>&#xF14F;</icona-fluent> SVG
-                      </button></a>
-                    &nbsp;
-                    <a href="FILE/Dipartimento_diing-WHITE.png" download target="_blank"><button type="button"
-                        class="btn btn-sm btn-secondary"><icona-fluent>&#xF14F;</icona-fluent> PNG
-                      </button></a>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-          </div>
-
-
-
-          <div class="col">
-            <div class="card shadow-sm">
-              <div class="bd-placeholder-img card-img-top"
-                style="background-color: #fff; width: 100%; height: 225px; display: flex; align-items: center; justify-content: center;">
-                <img src="FILE/Dipartimento_diss-COLOR.svg"
-                  style="padding: 5%; object-fit: contain; max-width: 100%; max-height: 100%;">
-
-
-              </div>
-              <div class="card-body">
-                <p class="card-text" style="text-align: center;">Scienze della Salute</p>
-
-                <div class="d-flex justify-content-between align-items-center">
-                  Colori normali
-
-                  <div class="btn-group">
-                    <a href="FILE/Dipartimento_diss-COLOR.svg" download target="_blank"><button type="button"
-                        class="btn btn-sm btn-primary"><icona-fluent>&#xF14F;</icona-fluent> SVG
-                      </button></a>
-                    &nbsp;
-                    <a href="FILE/Dipartimento_diss-COLOR.png" download target="_blank"><button type="button"
-                        class="btn btn-sm btn-secondary"><icona-fluent>&#xF14F;</icona-fluent> PNG
-                      </button></a>
-                  </div>
-                </div>
-                <hr>
-                <div class="d-flex justify-content-between align-items-center">
-                  Monocromatico nero
-
-                  <div class="btn-group">
-                    <a href="FILE/Dipartimento_diss-BLACK.svg" download target="_blank"><button type="button"
-                        class="btn btn-sm btn-primary"><icona-fluent>&#xF14F;</icona-fluent> SVG
-                      </button></a>
-                    &nbsp;
-                    <a href="FILE/Dipartimento_diss-BLACK.png" download target="_blank"><button type="button"
-                        class="btn btn-sm btn-secondary"><icona-fluent>&#xF14F;</icona-fluent> PNG
-                      </button></a>
-                  </div>
-                </div>
-                <hr>
-                <div class="d-flex justify-content-between align-items-center">
-                  Monocromatico bianco
-
-                  <div class="btn-group">
-                    <a href="FILE/Dipartimento_diss-WHITE.svg" download target="_blank"><button type="button"
-                        class="btn btn-sm btn-primary"><icona-fluent>&#xF14F;</icona-fluent> SVG
-                      </button></a>
-                    &nbsp;
-                    <a href="FILE/Dipartimento_diss-WHITE.png" download target="_blank"><button type="button"
-                        class="btn btn-sm btn-secondary"><icona-fluent>&#xF14F;</icona-fluent> PNG
-                      </button></a>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-          </div>
-
-
-
-          <div class="col">
-            <div class="card shadow-sm">
-              <div class="bd-placeholder-img card-img-top"
-                style="background-color: #fff; width: 100%; height: 225px; display: flex; align-items: center; justify-content: center;">
-                <img src="FILE/Dipartimento_ssba-COLOR.svg"
-                  style="padding: 5%; object-fit: contain; max-width: 100%; max-height: 100%;">
-
-
-              </div>
-              <div class="card-body">
-                <p class="card-text" style="text-align: center;">Beni Archeologici</p>
-
-                <div class="d-flex justify-content-between align-items-center">
-                  Colori normali
-
-                  <div class="btn-group">
-                    <a href="FILE/Dipartimento_ssba-COLOR.svg" download target="_blank"><button type="button"
-                        class="btn btn-sm btn-primary"><icona-fluent>&#xF14F;</icona-fluent> SVG
-                      </button></a>
-                    &nbsp;
-                    <a href="FILE/Dipartimento_ssba-COLOR.png" download target="_blank"><button type="button"
-                        class="btn btn-sm btn-secondary"><icona-fluent>&#xF14F;</icona-fluent> PNG
-                      </button></a>
-                  </div>
-                </div>
-                <hr>
-                <div class="d-flex justify-content-between align-items-center">
-                  Monocromatico nero
-
-                  <div class="btn-group">
-                    <a href="FILE/Dipartimento_ssba-BLACK.svg" download target="_blank"><button type="button"
-                        class="btn btn-sm btn-primary"><icona-fluent>&#xF14F;</icona-fluent> SVG
-                      </button></a>
-                    &nbsp;
-                    <a href="FILE/Dipartimento_ssba-BLACK.png" download target="_blank"><button type="button"
-                        class="btn btn-sm btn-secondary"><icona-fluent>&#xF14F;</icona-fluent> PNG
-                      </button></a>
-                  </div>
-                </div>
-                <hr>
-                <div class="d-flex justify-content-between align-items-center">
-                  Monocromatico bianco
-
-                  <div class="btn-group">
-                    <a href="FILE/Dipartimento_ssba-WHITE.svg" download target="_blank"><button type="button"
-                        class="btn btn-sm btn-primary"><icona-fluent>&#xF14F;</icona-fluent> SVG
-                      </button></a>
-                    &nbsp;
-                    <a href="FILE/Dipartimento_ssba-WHITE.png" download target="_blank"><button type="button"
-                        class="btn btn-sm btn-secondary"><icona-fluent>&#xF14F;</icona-fluent> PNG
-                      </button></a>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-          </div>
-
-
-
-          <div class="col">
-            <div class="card shadow-sm">
-              <div class="bd-placeholder-img card-img-top"
-                style="background-color: #fff; width: 100%; height: 225px; display: flex; align-items: center; justify-content: center;">
-                <img src="FILE/Dipartimento_diuss-COLOR.svg"
-                  style="padding: 5%; object-fit: contain; max-width: 100%; max-height: 100%;">
-
-
-              </div>
-              <div class="card-body">
-                <p class="card-text" style="text-align: center;">Innovazione Umanistica, Scientifica e Sociale</p>
-
-                <div class="d-flex justify-content-between align-items-center">
-                  Colori normali
-
-                  <div class="btn-group">
-                    <a href="FILE/Dipartimento_diuss-COLOR.svg" download target="_blank"><button type="button"
-                        class="btn btn-sm btn-primary"><icona-fluent>&#xF14F;</icona-fluent> SVG
-                      </button></a>
-                    &nbsp;
-                    <a href="FILE/Dipartimento_diuss-COLOR.png" download target="_blank"><button type="button"
-                        class="btn btn-sm btn-secondary"><icona-fluent>&#xF14F;</icona-fluent> PNG
-                      </button></a>
-                  </div>
-                </div>
-                <hr>
-                <div class="d-flex justify-content-between align-items-center">
-                  Monocromatico nero
-
-                  <div class="btn-group">
-                    <a href="FILE/Dipartimento_diuss-BLACK.svg" download target="_blank"><button type="button"
-                        class="btn btn-sm btn-primary"><icona-fluent>&#xF14F;</icona-fluent> SVG
-                      </button></a>
-                    &nbsp;
-                    <a href="FILE/Dipartimento_diuss-BLACK.png" download target="_blank"><button type="button"
-                        class="btn btn-sm btn-secondary"><icona-fluent>&#xF14F;</icona-fluent> PNG
-                      </button></a>
-                  </div>
-                </div>
-                <hr>
-                <div class="d-flex justify-content-between align-items-center">
-                  Monocromatico bianco
-
-                  <div class="btn-group">
-                    <a href="FILE/Dipartimento_diuss-WHITE.svg" download target="_blank"><button type="button"
-                        class="btn btn-sm btn-primary"><icona-fluent>&#xF14F;</icona-fluent> SVG
-                      </button></a>
-                    &nbsp;
-                    <a href="FILE/Dipartimento_diuss-WHITE.png" download target="_blank"><button type="button"
-                        class="btn btn-sm btn-secondary"><icona-fluent>&#xF14F;</icona-fluent> PNG
-                      </button></a>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-          </div>
-
-
-
-          <div class="col">
-            <div class="card shadow-sm">
-              <div class="bd-placeholder-img card-img-top"
-                style="background-color: #fff; width: 100%; height: 225px; display: flex; align-items: center; justify-content: center;">
-                <img src="FILE/Dipartimento_dafe-COLOR.svg"
-                  style="padding: 5%; object-fit: contain; max-width: 100%; max-height: 100%;">
-
-
-              </div>
-              <div class="card-body">
-                <p class="card-text" style="text-align: center;">Scienze Agrarie, Forestali, Alimentari e Ambientali
-                </p>
-
-                <div class="d-flex justify-content-between align-items-center">
-                  Colori normali
-
-                  <div class="btn-group">
-                    <a href="FILE/Dipartimento_dafe-COLOR.svg" download target="_blank"><button type="button"
-                        class="btn btn-sm btn-primary"><icona-fluent>&#xF14F;</icona-fluent> SVG
-                      </button></a>
-                    &nbsp;
-                    <a href="FILE/Dipartimento_dafe-COLOR.png" download target="_blank"><button type="button"
-                        class="btn btn-sm btn-secondary"><icona-fluent>&#xF14F;</icona-fluent> PNG
-                      </button></a>
-                  </div>
-                </div>
-                <hr>
-                <div class="d-flex justify-content-between align-items-center">
-                  Monocromatico nero
-
-                  <div class="btn-group">
-                    <a href="FILE/Dipartimento_dafe-BLACK.svg" download target="_blank"><button type="button"
-                        class="btn btn-sm btn-primary"><icona-fluent>&#xF14F;</icona-fluent> SVG
-                      </button></a>
-                    &nbsp;
-                    <a href="FILE/Dipartimento_dafe-BLACK.png" download target="_blank"><button type="button"
-                        class="btn btn-sm btn-secondary"><icona-fluent>&#xF14F;</icona-fluent> PNG
-                      </button></a>
-                  </div>
-                </div>
-                <hr>
-                <div class="d-flex justify-content-between align-items-center">
-                  Monocromatico bianco
-
-                  <div class="btn-group">
-                    <a href="FILE/Dipartimento_dafe-WHITE.svg" download target="_blank"><button type="button"
-                        class="btn btn-sm btn-primary"><icona-fluent>&#xF14F;</icona-fluent> SVG
-                      </button></a>
-                    &nbsp;
-                    <a href="FILE/Dipartimento_dafe-WHITE.png" download target="_blank"><button type="button"
-                        class="btn btn-sm btn-secondary"><icona-fluent>&#xF14F;</icona-fluent> PNG
-                      </button></a>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-          </div>
-
-
-
-          <div class="col">
-            <div class="card shadow-sm">
-              <div class="bd-placeholder-img card-img-top"
-                style="background-color: #fff; width: 100%; height: 225px; display: flex; align-items: center; justify-content: center;">
-                <img src="FILE/Dipartimento_disba-COLOR.svg"
-                  style="padding: 5%; object-fit: contain; max-width: 100%; max-height: 100%;">
-
-
-              </div>
-              <div class="card-body">
-                <p class="card-text" style="text-align: center;">Scienze di Base e Applicate </p>
-
-                <div class="d-flex justify-content-between align-items-center">
-                  Colori normali
-
-                  <div class="btn-group">
-                    <a href="FILE/Dipartimento_disba-COLOR.svg" download target="_blank"><button type="button"
-                        class="btn btn-sm btn-primary"><icona-fluent>&#xF14F;</icona-fluent> SVG
-                      </button></a>
-                    &nbsp;
-                    <a href="FILE/Dipartimento_disba-COLOR.png" download target="_blank"><button type="button"
-                        class="btn btn-sm btn-secondary"><icona-fluent>&#xF14F;</icona-fluent> PNG
-                      </button></a>
-                  </div>
-                </div>
-                <hr>
-                <div class="d-flex justify-content-between align-items-center">
-                  Monocromatico nero
-
-                  <div class="btn-group">
-                    <a href="FILE/Dipartimento_disba-BLACK.svg" download target="_blank"><button type="button"
-                        class="btn btn-sm btn-primary"><icona-fluent>&#xF14F;</icona-fluent> SVG
-                      </button></a>
-                    &nbsp;
-                    <a href="FILE/Dipartimento_disba-BLACK.png" download target="_blank"><button type="button"
-                        class="btn btn-sm btn-secondary"><icona-fluent>&#xF14F;</icona-fluent> PNG
-                      </button></a>
-                  </div>
-                </div>
-                <hr>
-                <div class="d-flex justify-content-between align-items-center">
-                  Monocromatico bianco
-
-                  <div class="btn-group">
-                    <a href="FILE/Dipartimento_disba-WHITE.svg" download target="_blank"><button type="button"
-                        class="btn btn-sm btn-primary"><icona-fluent>&#xF14F;</icona-fluent> SVG
-                      </button></a>
-                    &nbsp;
-                    <a href="FILE/Dipartimento_disba-WHITE.png" download target="_blank"><button type="button"
-                        class="btn btn-sm btn-secondary"><icona-fluent>&#xF14F;</icona-fluent> PNG
-                      </button></a>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-          </div>
-        </div>
-
-
-
-
-
-
-
-
-        <hr>
-        <h1 class="fw-light" style="text-align: center;">Dipartimenti con Pittogramma Istituzionale</h1>
-        <hr>
-        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-
-          <div class="col">
-            <div class="card shadow-sm">
-              <div class="bd-placeholder-img card-img-top"
-                style="background-color: #fff; width: 100%; height: 225px; display: flex; align-items: center; justify-content: center;">
-                <img src="FILE/PittogrammaDipartimento_diing-COLOR.svg"
-                  style="padding: 5%; object-fit: contain; max-width: 100%; max-height: 100%;">
-
-
-              </div>
-              <div class="card-body">
-                <p class="card-text" style="text-align: center;">Ingegneria</p>
-
-                <div class="d-flex justify-content-between align-items-center">
-                  Colori normali
-
-                  <div class="btn-group">
-                    <a href="FILE/PittogrammaDipartimento_diing-COLOR.svg" download target="_blank"><button
-                        type="button" class="btn btn-sm btn-primary"><icona-fluent>&#xF14F;</icona-fluent> SVG
-                      </button></a>
-                    &nbsp;
-                    <a href="FILE/PittogrammaDipartimento_diing-COLOR.png" download target="_blank"><button
-                        type="button" class="btn btn-sm btn-secondary"><icona-fluent>&#xF14F;</icona-fluent> PNG
-                      </button></a>
-                  </div>
-                </div>
-                <hr>
-                <div class="d-flex justify-content-between align-items-center">
-                  Monocromatico nero
-
-                  <div class="btn-group">
-                    <a href="FILE/PittogrammaDipartimento_diing-BLACK.svg" download target="_blank"><button
-                        type="button" class="btn btn-sm btn-primary"><icona-fluent>&#xF14F;</icona-fluent> SVG
-                      </button></a>
-                    &nbsp;
-                    <a href="FILE/PittogrammaDipartimento_diing-BLACK.png" download target="_blank"><button
-                        type="button" class="btn btn-sm btn-secondary"><icona-fluent>&#xF14F;</icona-fluent> PNG
-                      </button></a>
-                  </div>
-                </div>
-                <hr>
-                <div class="d-flex justify-content-between align-items-center">
-                  Monocromatico bianco
-
-                  <div class="btn-group">
-                    <a href="FILE/PittogrammaDipartimento_diing-WHITE.svg" download target="_blank"><button
-                        type="button" class="btn btn-sm btn-primary"><icona-fluent>&#xF14F;</icona-fluent> SVG
-                      </button></a>
-                    &nbsp;
-                    <a href="FILE/PittogrammaDipartimento_diing-WHITE.png" download target="_blank"><button
-                        type="button" class="btn btn-sm btn-secondary"><icona-fluent>&#xF14F;</icona-fluent> PNG
-                      </button></a>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-          </div>
-
-
-
-          <div class="col">
-            <div class="card shadow-sm">
-              <div class="bd-placeholder-img card-img-top"
-                style="background-color: #fff; width: 100%; height: 225px; display: flex; align-items: center; justify-content: center;">
-                <img src="FILE/PittogrammaDipartimento_diss-COLOR.svg"
-                  style="padding: 5%; object-fit: contain; max-width: 100%; max-height: 100%;">
-
-
-              </div>
-              <div class="card-body">
-                <p class="card-text" style="text-align: center;">Scienze della Salute</p>
-
-                <div class="d-flex justify-content-between align-items-center">
-                  Colori normali
-
-                  <div class="btn-group">
-                    <a href="FILE/PittogrammaDipartimento_diss-COLOR.svg" download target="_blank"><button type="button"
-                        class="btn btn-sm btn-primary"><icona-fluent>&#xF14F;</icona-fluent> SVG
-                      </button></a>
-                    &nbsp;
-                    <a href="FILE/PittogrammaDipartimento_diss-COLOR.png" download target="_blank"><button type="button"
-                        class="btn btn-sm btn-secondary"><icona-fluent>&#xF14F;</icona-fluent> PNG
-                      </button></a>
-                  </div>
-                </div>
-                <hr>
-                <div class="d-flex justify-content-between align-items-center">
-                  Monocromatico nero
-
-                  <div class="btn-group">
-                    <a href="FILE/PittogrammaDipartimento_diss-BLACK.svg" download target="_blank"><button type="button"
-                        class="btn btn-sm btn-primary"><icona-fluent>&#xF14F;</icona-fluent> SVG
-                      </button></a>
-                    &nbsp;
-                    <a href="FILE/PittogrammaDipartimento_diss-BLACK.png" download target="_blank"><button type="button"
-                        class="btn btn-sm btn-secondary"><icona-fluent>&#xF14F;</icona-fluent> PNG
-                      </button></a>
-                  </div>
-                </div>
-                <hr>
-                <div class="d-flex justify-content-between align-items-center">
-                  Monocromatico bianco
-
-                  <div class="btn-group">
-                    <a href="FILE/PittogrammaDipartimento_diss-WHITE.svg" download target="_blank"><button type="button"
-                        class="btn btn-sm btn-primary"><icona-fluent>&#xF14F;</icona-fluent> SVG
-                      </button></a>
-                    &nbsp;
-                    <a href="FILE/PittogrammaDipartimento_diss-WHITE.png" download target="_blank"><button type="button"
-                        class="btn btn-sm btn-secondary"><icona-fluent>&#xF14F;</icona-fluent> PNG
-                      </button></a>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-          </div>
-
-
-
-          <div class="col">
-            <div class="card shadow-sm">
-              <div class="bd-placeholder-img card-img-top"
-                style="background-color: #fff; width: 100%; height: 225px; display: flex; align-items: center; justify-content: center;">
-                <img src="FILE/PittogrammaDipartimento_ssba-COLOR.svg"
-                  style="padding: 5%; object-fit: contain; max-width: 100%; max-height: 100%;">
-
-
-              </div>
-              <div class="card-body">
-                <p class="card-text" style="text-align: center;">Beni Archeologici</p>
-
-                <div class="d-flex justify-content-between align-items-center">
-                  Colori normali
-
-                  <div class="btn-group">
-                    <a href="FILE/PittogrammaDipartimento_ssba-COLOR.svg" download target="_blank"><button type="button"
-                        class="btn btn-sm btn-primary"><icona-fluent>&#xF14F;</icona-fluent> SVG
-                      </button></a>
-                    &nbsp;
-                    <a href="FILE/PittogrammaDipartimento_ssba-COLOR.png" download target="_blank"><button type="button"
-                        class="btn btn-sm btn-secondary"><icona-fluent>&#xF14F;</icona-fluent> PNG
-                      </button></a>
-                  </div>
-                </div>
-                <hr>
-                <div class="d-flex justify-content-between align-items-center">
-                  Monocromatico nero
-
-                  <div class="btn-group">
-                    <a href="FILE/PittogrammaDipartimento_ssba-BLACK.svg" download target="_blank"><button type="button"
-                        class="btn btn-sm btn-primary"><icona-fluent>&#xF14F;</icona-fluent> SVG
-                      </button></a>
-                    &nbsp;
-                    <a href="FILE/PittogrammaDipartimento_ssba-BLACK.png" download target="_blank"><button type="button"
-                        class="btn btn-sm btn-secondary"><icona-fluent>&#xF14F;</icona-fluent> PNG
-                      </button></a>
-                  </div>
-                </div>
-                <hr>
-                <div class="d-flex justify-content-between align-items-center">
-                  Monocromatico bianco
-
-                  <div class="btn-group">
-                    <a href="FILE/PittogrammaDipartimento_ssba-WHITE.svg" download target="_blank"><button type="button"
-                        class="btn btn-sm btn-primary"><icona-fluent>&#xF14F;</icona-fluent> SVG
-                      </button></a>
-                    &nbsp;
-                    <a href="FILE/PittogrammaDipartimento_ssba-WHITE.png" download target="_blank"><button type="button"
-                        class="btn btn-sm btn-secondary"><icona-fluent>&#xF14F;</icona-fluent> PNG
-                      </button></a>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-          </div>
-
-
-
-          <div class="col">
-            <div class="card shadow-sm">
-              <div class="bd-placeholder-img card-img-top"
-                style="background-color: #fff; width: 100%; height: 225px; display: flex; align-items: center; justify-content: center;">
-                <img src="FILE/PittogrammaDipartimento_diuss-COLOR.svg"
-                  style="padding: 5%; object-fit: contain; max-width: 100%; max-height: 100%;">
-
-
-              </div>
-              <div class="card-body">
-                <p class="card-text" style="text-align: center;">Innovazione Umanistica, Scientifica e Sociale</p>
-
-                <div class="d-flex justify-content-between align-items-center">
-                  Colori normali
-
-                  <div class="btn-group">
-                    <a href="FILE/PittogrammaDipartimento_diuss-COLOR.svg" download target="_blank"><button
-                        type="button" class="btn btn-sm btn-primary"><icona-fluent>&#xF14F;</icona-fluent> SVG
-                      </button></a>
-                    &nbsp;
-                    <a href="FILE/PittogrammaDipartimento_diuss-COLOR.png" download target="_blank"><button
-                        type="button" class="btn btn-sm btn-secondary"><icona-fluent>&#xF14F;</icona-fluent> PNG
-                      </button></a>
-                  </div>
-                </div>
-                <hr>
-                <div class="d-flex justify-content-between align-items-center">
-                  Monocromatico nero
-
-                  <div class="btn-group">
-                    <a href="FILE/PittogrammaDipartimento_diuss-BLACK.svg" download target="_blank"><button
-                        type="button" class="btn btn-sm btn-primary"><icona-fluent>&#xF14F;</icona-fluent> SVG
-                      </button></a>
-                    &nbsp;
-                    <a href="FILE/PittogrammaDipartimento_diuss-BLACK.png" download target="_blank"><button
-                        type="button" class="btn btn-sm btn-secondary"><icona-fluent>&#xF14F;</icona-fluent> PNG
-                      </button></a>
-                  </div>
-                </div>
-                <hr>
-                <div class="d-flex justify-content-between align-items-center">
-                  Monocromatico bianco
-
-                  <div class="btn-group">
-                    <a href="FILE/PittogrammaDipartimento_diuss-WHITE.svg" download target="_blank"><button
-                        type="button" class="btn btn-sm btn-primary"><icona-fluent>&#xF14F;</icona-fluent> SVG
-                      </button></a>
-                    &nbsp;
-                    <a href="FILE/PittogrammaDipartimento_diuss-WHITE.png" download target="_blank"><button
-                        type="button" class="btn btn-sm btn-secondary"><icona-fluent>&#xF14F;</icona-fluent> PNG
-                      </button></a>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-          </div>
-
-
-
-          <div class="col">
-            <div class="card shadow-sm">
-              <div class="bd-placeholder-img card-img-top"
-                style="background-color: #fff; width: 100%; height: 225px; display: flex; align-items: center; justify-content: center;">
-                <img src="FILE/PittogrammaDipartimento_dafe-COLOR.svg"
-                  style="padding: 5%; object-fit: contain; max-width: 100%; max-height: 100%;">
-
-
-              </div>
-              <div class="card-body">
-                <p class="card-text" style="text-align: center;">Scienze Agrarie, Forestali, Alimentari e Ambientali
-                </p>
-
-                <div class="d-flex justify-content-between align-items-center">
-                  Colori normali
-
-                  <div class="btn-group">
-                    <a href="FILE/PittogrammaDipartimento_dafe-COLOR.svg" download target="_blank"><button type="button"
-                        class="btn btn-sm btn-primary"><icona-fluent>&#xF14F;</icona-fluent> SVG
-                      </button></a>
-                    &nbsp;
-                    <a href="FILE/PittogrammaDipartimento_dafe-COLOR.png" download target="_blank"><button type="button"
-                        class="btn btn-sm btn-secondary"><icona-fluent>&#xF14F;</icona-fluent> PNG
-                      </button></a>
-                  </div>
-                </div>
-                <hr>
-                <div class="d-flex justify-content-between align-items-center">
-                  Monocromatico nero
-
-                  <div class="btn-group">
-                    <a href="FILE/PittogrammaDipartimento_dafe-BLACK.svg" download target="_blank"><button type="button"
-                        class="btn btn-sm btn-primary"><icona-fluent>&#xF14F;</icona-fluent> SVG
-                      </button></a>
-                    &nbsp;
-                    <a href="FILE/PittogrammaDipartimento_dafe-BLACK.png" download target="_blank"><button type="button"
-                        class="btn btn-sm btn-secondary"><icona-fluent>&#xF14F;</icona-fluent> PNG
-                      </button></a>
-                  </div>
-                </div>
-                <hr>
-                <div class="d-flex justify-content-between align-items-center">
-                  Monocromatico bianco
-
-                  <div class="btn-group">
-                    <a href="FILE/PittogrammaDipartimento_dafe-WHITE.svg" download target="_blank"><button type="button"
-                        class="btn btn-sm btn-primary"><icona-fluent>&#xF14F;</icona-fluent> SVG
-                      </button></a>
-                    &nbsp;
-                    <a href="FILE/PittogrammaDipartimento_dafe-WHITE.png" download target="_blank"><button type="button"
-                        class="btn btn-sm btn-secondary"><icona-fluent>&#xF14F;</icona-fluent> PNG
-                      </button></a>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-          </div>
-
-
-
-          <div class="col">
-            <div class="card shadow-sm">
-              <div class="bd-placeholder-img card-img-top"
-                style="background-color: #fff; width: 100%; height: 225px; display: flex; align-items: center; justify-content: center;">
-                <img src="FILE/PittogrammaDipartimento_disba-COLOR.svg"
-                  style="padding: 5%; object-fit: contain; max-width: 100%; max-height: 100%;">
-
-
-              </div>
-              <div class="card-body">
-                <p class="card-text" style="text-align: center;">Scienze di Base e Applicate </p>
-
-                <div class="d-flex justify-content-between align-items-center">
-                  Colori normali
-
-                  <div class="btn-group">
-                    <a href="FILE/PittogrammaDipartimento_disba-COLOR.svg" download target="_blank"><button
-                        type="button" class="btn btn-sm btn-primary"><icona-fluent>&#xF14F;</icona-fluent> SVG
-                      </button></a>
-                    &nbsp;
-                    <a href="FILE/PittogrammaDipartimento_disba-COLOR.png" download target="_blank"><button
-                        type="button" class="btn btn-sm btn-secondary"><icona-fluent>&#xF14F;</icona-fluent> PNG
-                      </button></a>
-                  </div>
-                </div>
-                <hr>
-                <div class="d-flex justify-content-between align-items-center">
-                  Monocromatico nero
-
-                  <div class="btn-group">
-                    <a href="FILE/PittogrammaDipartimento_disba-BLACK.svg" download target="_blank"><button
-                        type="button" class="btn btn-sm btn-primary"><icona-fluent>&#xF14F;</icona-fluent> SVG
-                      </button></a>
-                    &nbsp;
-                    <a href="FILE/PittogrammaDipartimento_disba-BLACK.png" download target="_blank"><button
-                        type="button" class="btn btn-sm btn-secondary"><icona-fluent>&#xF14F;</icona-fluent> PNG
-                      </button></a>
-                  </div>
-                </div>
-                <hr>
-                <div class="d-flex justify-content-between align-items-center">
-                  Monocromatico bianco
-
-                  <div class="btn-group">
-                    <a href="FILE/PittogrammaDipartimento_disba-WHITE.svg" download target="_blank"><button
-                        type="button" class="btn btn-sm btn-primary"><icona-fluent>&#xF14F;</icona-fluent> SVG
-                      </button></a>
-                    &nbsp;
-                    <a href="FILE/PittogrammaDipartimento_disba-WHITE.png" download target="_blank"><button
-                        type="button" class="btn btn-sm btn-secondary"><icona-fluent>&#xF14F;</icona-fluent> PNG
-                      </button></a>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-          </div>
-        </div>
-
-
-
-
-        <hr>
+            <div class="tab-pane fade" id="nav-colori" role="tabpanel" aria-labelledby="nav-colori-tab">
+              <hr>
         <h1 class="fw-light" style="text-align: center;">Colori Istituzionali</h1>
         <hr>
 
@@ -1498,8 +1400,7 @@ activeTooltip.dispose();
                 <div class="d-flex justify-content-between align-items-center">
                   HEX: #002D5B
                   <span id="HEX-blu" style="display: none;">002D5B</span>
-                  <button type="button" class="btn btn-sm btn-secondary" 
-                          onclick="copyToClipboard('#HEX-blu', this)">
+                  <button type="button" class="btn btn-sm btn-secondary" onclick="copyToClipboard('#HEX-blu', this)">
                     <icona-fluent>&#xF32A;</icona-fluent>
                   </button>
                 </div>
@@ -1507,8 +1408,7 @@ activeTooltip.dispose();
                 <div class="d-flex justify-content-between align-items-center">
                   RGB: 0, 45, 91
                   <span id="RGB-blu" style="display: none;">rgb(0, 45, 91)</span>
-                  <button type="button" class="btn btn-sm btn-secondary" 
-                          onclick="copyToClipboard('#RGB-blu', this)">
+                  <button type="button" class="btn btn-sm btn-secondary" onclick="copyToClipboard('#RGB-blu', this)">
                     <icona-fluent>&#xF32A;</icona-fluent>
                   </button>
                 </div>
@@ -1516,8 +1416,7 @@ activeTooltip.dispose();
                 <div class="d-flex justify-content-between align-items-center">
                   CMYK: 100%, 74%, 11%, 55%
                   <span id="CMYK-blu" style="display: none;">cmyk(100%, 74%, 11%, 55%)</span>
-                  <button type="button" class="btn btn-sm btn-secondary" 
-                          onclick="copyToClipboard('#CMYK-blu', this)">
+                  <button type="button" class="btn btn-sm btn-secondary" onclick="copyToClipboard('#CMYK-blu', this)">
                     <icona-fluent>&#xF32A;</icona-fluent>
                   </button>
                 </div>
@@ -1536,8 +1435,7 @@ activeTooltip.dispose();
                 <div class="d-flex justify-content-between align-items-center">
                   HEX: #808080
                   <span id="HEX-grigio" style="display: none;">808080</span>
-                  <button type="button" class="btn btn-sm btn-secondary" 
-                          onclick="copyToClipboard('#HEX-grigio', this)">
+                  <button type="button" class="btn btn-sm btn-secondary" onclick="copyToClipboard('#HEX-grigio', this)">
                     <icona-fluent>&#xF32A;</icona-fluent>
                   </button>
                 </div>
@@ -1545,8 +1443,7 @@ activeTooltip.dispose();
                 <div class="d-flex justify-content-between align-items-center">
                   RGB: 128, 128, 128
                   <span id="RGB-grigio" style="display: none;">rgb(128, 128, 128)</span>
-                  <button type="button" class="btn btn-sm btn-secondary" 
-                          onclick="copyToClipboard('#RGB-grigio', this)">
+                  <button type="button" class="btn btn-sm btn-secondary" onclick="copyToClipboard('#RGB-grigio', this)">
                     <icona-fluent>&#xF32A;</icona-fluent>
                   </button>
                 </div>
@@ -1554,8 +1451,8 @@ activeTooltip.dispose();
                 <div class="d-flex justify-content-between align-items-center">
                   CMYK: 49%, 39%, 38%, 20%
                   <span id="CMYK-grigio" style="display: none;">cmyk(49%, 39%, 38%, 20%)</span>
-                  <button type="button" class="btn btn-sm btn-secondary" 
-                          onclick="copyToClipboard('#CMYK-grigio', this)">
+                  <button type="button" class="btn btn-sm btn-secondary"
+                    onclick="copyToClipboard('#CMYK-grigio', this)">
                     <icona-fluent>&#xF32A;</icona-fluent>
                   </button>
                 </div>
@@ -1575,8 +1472,7 @@ activeTooltip.dispose();
                 <div class="d-flex justify-content-between align-items-center">
                   HEX: #800000
                   <span id="HEX-rossoS" style="display: none;">800000</span>
-                  <button type="button" class="btn btn-sm btn-secondary" 
-                          onclick="copyToClipboard('#HEX-rossoS', this)">
+                  <button type="button" class="btn btn-sm btn-secondary" onclick="copyToClipboard('#HEX-rossoS', this)">
                     <icona-fluent>&#xF32A;</icona-fluent>
                   </button>
                 </div>
@@ -1584,8 +1480,7 @@ activeTooltip.dispose();
                 <div class="d-flex justify-content-between align-items-center">
                   RGB: 128, 0, 0
                   <span id="RGB-rossoS" style="display: none;">rgb(128, 0, 0)</span>
-                  <button type="button" class="btn btn-sm btn-secondary" 
-                          onclick="copyToClipboard('#RGB-rossoS', this)">
+                  <button type="button" class="btn btn-sm btn-secondary" onclick="copyToClipboard('#RGB-rossoS', this)">
                     <icona-fluent>&#xF32A;</icona-fluent>
                   </button>
                 </div>
@@ -1593,8 +1488,8 @@ activeTooltip.dispose();
                 <div class="d-flex justify-content-between align-items-center">
                   CMYK: 29%, 100%, 100%, 38%
                   <span id="CMYK-rossoS" style="display: none;">cmyk(29%, 100%, 100%, 38%)</span>
-                  <button type="button" class="btn btn-sm btn-secondary" 
-                          onclick="copyToClipboard('#CMYK-rossoS', this)">
+                  <button type="button" class="btn btn-sm btn-secondary"
+                    onclick="copyToClipboard('#CMYK-rossoS', this)">
                     <icona-fluent>&#xF32A;</icona-fluent>
                   </button>
                 </div>
@@ -1613,8 +1508,7 @@ activeTooltip.dispose();
                 <div class="d-flex justify-content-between align-items-center">
                   HEX: #C21818
                   <span id="HEX-rossoC" style="display: none;">C21818</span>
-                  <button type="button" class="btn btn-sm btn-secondary" 
-                          onclick="copyToClipboard('#HEX-rossoC', this)">
+                  <button type="button" class="btn btn-sm btn-secondary" onclick="copyToClipboard('#HEX-rossoC', this)">
                     <icona-fluent>&#xF32A;</icona-fluent>
                   </button>
                 </div>
@@ -1622,8 +1516,7 @@ activeTooltip.dispose();
                 <div class="d-flex justify-content-between align-items-center">
                   RGB: 124, 24, 24
                   <span id="RGB-rossoC" style="display: none;">rgb(124, 24, 24)</span>
-                  <button type="button" class="btn btn-sm btn-secondary" 
-                          onclick="copyToClipboard('#RGB-rossoC', this)">
+                  <button type="button" class="btn btn-sm btn-secondary" onclick="copyToClipboard('#RGB-rossoC', this)">
                     <icona-fluent>&#xF32A;</icona-fluent>
                   </button>
                 </div>
@@ -1631,8 +1524,8 @@ activeTooltip.dispose();
                 <div class="d-flex justify-content-between align-items-center">
                   CMYK: 16%, 100%, 100%, 7%
                   <span id="CMYK-rossoC" style="display: none;">cmyk(16%, 100%, 100%, 7%)</span>
-                  <button type="button" class="btn btn-sm btn-secondary" 
-                          onclick="copyToClipboard('#CMYK-rossoC', this)">
+                  <button type="button" class="btn btn-sm btn-secondary"
+                    onclick="copyToClipboard('#CMYK-rossoC', this)">
                     <icona-fluent>&#xF32A;</icona-fluent>
                   </button>
                 </div>
@@ -1650,8 +1543,8 @@ activeTooltip.dispose();
                 <div class="d-flex justify-content-between align-items-center">
                   HEX: #C35214
                   <span id="HEX-arancione" style="display: none;">C35214</span>
-                  <button type="button" class="btn btn-sm btn-secondary" 
-                          onclick="copyToClipboard('#HEX-arancione', this)">
+                  <button type="button" class="btn btn-sm btn-secondary"
+                    onclick="copyToClipboard('#HEX-arancione', this)">
                     <icona-fluent>&#xF32A;</icona-fluent>
                   </button>
                 </div>
@@ -1659,8 +1552,8 @@ activeTooltip.dispose();
                 <div class="d-flex justify-content-between align-items-center">
                   RGB: 195, 82, 20
                   <span id="RGB-arancione" style="display: none;">rgb(195, 82, 20)</span>
-                  <button type="button" class="btn btn-sm btn-secondary" 
-                          onclick="copyToClipboard('#RGB-arancione', this)">
+                  <button type="button" class="btn btn-sm btn-secondary"
+                    onclick="copyToClipboard('#RGB-arancione', this)">
                     <icona-fluent>&#xF32A;</icona-fluent>
                   </button>
                 </div>
@@ -1668,8 +1561,8 @@ activeTooltip.dispose();
                 <div class="d-flex justify-content-between align-items-center">
                   CMYK: 18%, 76%, 100%, 7%
                   <span id="CMYK-arancione" style="display: none;">cmyk(18%, 76%, 100%, 7%)</span>
-                  <button type="button" class="btn btn-sm btn-secondary" 
-                          onclick="copyToClipboard('#CMYK-arancione', this)">
+                  <button type="button" class="btn btn-sm btn-secondary"
+                    onclick="copyToClipboard('#CMYK-arancione', this)">
                     <icona-fluent>&#xF32A;</icona-fluent>
                   </button>
                 </div>
@@ -1688,8 +1581,7 @@ activeTooltip.dispose();
                 <div class="d-flex justify-content-between align-items-center">
                   HEX: #C7B273
                   <span id="HEX-ocra" style="display: none;">C7B273</span>
-                  <button type="button" class="btn btn-sm btn-secondary" 
-                          onclick="copyToClipboard('#HEX-ocra', this)">
+                  <button type="button" class="btn btn-sm btn-secondary" onclick="copyToClipboard('#HEX-ocra', this)">
                     <icona-fluent>&#xF32A;</icona-fluent>
                   </button>
                 </div>
@@ -1697,8 +1589,7 @@ activeTooltip.dispose();
                 <div class="d-flex justify-content-between align-items-center">
                   RGB: 199, 178, 115
                   <span id="RGB-ocra" style="display: none;">rgb(199, 178, 115)</span>
-                  <button type="button" class="btn btn-sm btn-secondary" 
-                          onclick="copyToClipboard('#RGB-ocra', this)">
+                  <button type="button" class="btn btn-sm btn-secondary" onclick="copyToClipboard('#RGB-ocra', this)">
                     <icona-fluent>&#xF32A;</icona-fluent>
                   </button>
                 </div>
@@ -1706,8 +1597,7 @@ activeTooltip.dispose();
                 <div class="d-flex justify-content-between align-items-center">
                   CMYK: 24%, 26%, 64%, 1%
                   <span id="CMYK-ocra" style="display: none;">cmyk(24%, 26%, 64%, 1%)</span>
-                  <button type="button" class="btn btn-sm btn-secondary" 
-                          onclick="copyToClipboard('#CMYK-ocra', this)">
+                  <button type="button" class="btn btn-sm btn-secondary" onclick="copyToClipboard('#CMYK-ocra', this)">
                     <icona-fluent>&#xF32A;</icona-fluent>
                   </button>
                 </div>
@@ -1727,8 +1617,7 @@ activeTooltip.dispose();
                 <div class="d-flex justify-content-between align-items-center">
                   HEX: #219B58
                   <span id="HEX-verde" style="display: none;">219B58</span>
-                  <button type="button" class="btn btn-sm btn-secondary" 
-                          onclick="copyToClipboard('#HEX-verde', this)">
+                  <button type="button" class="btn btn-sm btn-secondary" onclick="copyToClipboard('#HEX-verde', this)">
                     <icona-fluent>&#xF32A;</icona-fluent>
                   </button>
                 </div>
@@ -1736,8 +1625,7 @@ activeTooltip.dispose();
                 <div class="d-flex justify-content-between align-items-center">
                   RGB: 33, 155, 88
                   <span id="RGB-verde" style="display: none;">rgb(33, 155, 88)</span>
-                  <button type="button" class="btn btn-sm btn-secondary" 
-                          onclick="copyToClipboard('#RGB-verde', this)">
+                  <button type="button" class="btn btn-sm btn-secondary" onclick="copyToClipboard('#RGB-verde', this)">
                     <icona-fluent>&#xF32A;</icona-fluent>
                   </button>
                 </div>
@@ -1745,8 +1633,7 @@ activeTooltip.dispose();
                 <div class="d-flex justify-content-between align-items-center">
                   CMYK: 80%, 11%, 81%, 1%
                   <span id="CMYK-verde" style="display: none;">cmyk(80%, 11%, 81%, 1%)</span>
-                  <button type="button" class="btn btn-sm btn-secondary" 
-                          onclick="copyToClipboard('#CMYK-verde', this)">
+                  <button type="button" class="btn btn-sm btn-secondary" onclick="copyToClipboard('#CMYK-verde', this)">
                     <icona-fluent>&#xF32A;</icona-fluent>
                   </button>
                 </div>
@@ -1767,8 +1654,8 @@ activeTooltip.dispose();
                 <div class="d-flex justify-content-between align-items-center">
                   HEX: #00818F
                   <span id="HEX-azzurro" style="display: none;">00818F</span>
-                  <button type="button" class="btn btn-sm btn-secondary" 
-                          onclick="copyToClipboard('#HEX-azzurro', this)">
+                  <button type="button" class="btn btn-sm btn-secondary"
+                    onclick="copyToClipboard('#HEX-azzurro', this)">
                     <icona-fluent>&#xF32A;</icona-fluent>
                   </button>
                 </div>
@@ -1776,8 +1663,8 @@ activeTooltip.dispose();
                 <div class="d-flex justify-content-between align-items-center">
                   RGB: 0, 129, 143
                   <span id="RGB-azzurro" style="display: none;">rgb(0, 129, 143)</span>
-                  <button type="button" class="btn btn-sm btn-secondary" 
-                          onclick="copyToClipboard('#RGB-azzurro', this)">
+                  <button type="button" class="btn btn-sm btn-secondary"
+                    onclick="copyToClipboard('#RGB-azzurro', this)">
                     <icona-fluent>&#xF32A;</icona-fluent>
                   </button>
                 </div>
@@ -1785,8 +1672,8 @@ activeTooltip.dispose();
                 <div class="d-flex justify-content-between align-items-center">
                   CMYK: 83%, 28%, 37%, 11%
                   <span id="CMYK-azzurro" style="display: none;">cmyk(83%, 28%, 37%, 11%)</span>
-                  <button type="button" class="btn btn-sm btn-secondary" 
-                          onclick="copyToClipboard('#CMYK-azzurro', this)">
+                  <button type="button" class="btn btn-sm btn-secondary"
+                    onclick="copyToClipboard('#CMYK-azzurro', this)">
                     <icona-fluent>&#xF32A;</icona-fluent>
                   </button>
                 </div>
@@ -1795,18 +1682,271 @@ activeTooltip.dispose();
           </div>
 
 
-          
-        
+
+
+
+
+
+
+        </div>
+            </div>
+            <div class="tab-pane fade" id="nav-fontID" role="tabpanel" aria-labelledby="nav-fontID-tab">
+              <hr>
+              <h1 class="fw-light" style="text-align: center;">Caratteri tipografici Istituzionali</h1>
+              <hr>
+      
+              <div class="row row-cols-1 row-cols-sm-2 row-cols-md-2 g-3">
+      
+                <div class="col">
+                  <div class="card shadow-sm">
+                    <div class="bd-placeholder-img card-img-top"
+                      style="background-color: #C7B273; width: 100%; height: 225px; display: flex; align-items: center; justify-content: center;">
+                      <img src="FILE/Specimen-Garamond.svg"
+                        style="padding: 5%; object-fit: contain; max-width: 100%; max-height: 100%;">
+      
+                    </div>
+                    <div class="card-body">
+                      <p class="card-text text-center"><a href="FILE/Garamond.zip" download target="_blank"><button type="button"
+                        class="btn btn-sm btn-primary"><icona-fluent>&#xF14F;</icona-fluent> Scarica cartella ZIP
+                      </button></a></p>
+                      
+                      <hr>
+                      <div class="d-flex justify-content-between align-items-center">
+                        <span style="font-family: Garamond;">Garamond Regular</span>
+                        <div class="btn-group">
+                          <a href="assets/fonts/Garamond.ttf" download target="_blank"><button
+                              type="button" class="btn btn-sm btn-primary"><icona-fluent>&#xF14F;</icona-fluent> TTF
+                            </button></a>
+                          &nbsp;
+                          <a href="assets/fonts/Garamond.woff" download target="_blank"><button
+                              type="button" class="btn btn-sm btn-secondary"><icona-fluent>&#xF14F;</icona-fluent> WOFF
+                            </button></a>
+                          &nbsp;
+                          <a href="assets/fonts/Garamond.woff2" download target="_blank"><button
+                              type="button" class="btn btn-sm btn-secondary"><icona-fluent>&#xF14F;</icona-fluent> WOFF2
+                            </button></a>
+                        </div>
+                      </div>
+
+
+
+                      <hr>
+                      <div class="d-flex justify-content-between align-items-center">
+                        <span style="font-family: Garamond-Italic;">Garamond Italic</span>
+                        <div class="btn-group">
+                          <a href="assets/fonts/Garamond-Italic.ttf" download target="_blank"><button
+                              type="button" class="btn btn-sm btn-primary"><icona-fluent>&#xF14F;</icona-fluent> TTF
+                            </button></a>
+                          &nbsp;
+                          <a href="assets/fonts/Garamond-Italic.woff" download target="_blank"><button
+                              type="button" class="btn btn-sm btn-secondary"><icona-fluent>&#xF14F;</icona-fluent> WOFF
+                            </button></a>
+                          &nbsp;
+                          <a href="assets/fonts/Garamond-Italic.woff2" download target="_blank"><button
+                              type="button" class="btn btn-sm btn-secondary"><icona-fluent>&#xF14F;</icona-fluent> WOFF2
+                            </button></a>
+                        </div>
+                      </div>
+
+
+                      <hr>
+                      <div class="d-flex justify-content-between align-items-center">
+                        <span style="font-family: Garamond-Bold;">Garamond Bold</span>
+                        <div class="btn-group">
+                          <a href="assets/fonts/Garamond-Bold.ttf" download target="_blank"><button
+                              type="button" class="btn btn-sm btn-primary"><icona-fluent>&#xF14F;</icona-fluent> TTF
+                            </button></a>
+                          &nbsp;
+                          <a href="assets/fonts/Garamond-Bold.woff" download target="_blank"><button
+                              type="button" class="btn btn-sm btn-secondary"><icona-fluent>&#xF14F;</icona-fluent> WOFF
+                            </button></a>
+                          &nbsp;
+                          <a href="assets/fonts/Garamond-Bold.woff2" download target="_blank"><button
+                              type="button" class="btn btn-sm btn-secondary"><icona-fluent>&#xF14F;</icona-fluent> WOFF2
+                            </button></a>
+                        </div>
+                      </div>
+                      
+                      
+                    </div>
+                  </div>
+                </div>
+
+
+
+                <div class="col">
+                  <div class="card shadow-sm">
+                    <div class="bd-placeholder-img card-img-top"
+                      style="background-color: #00818F; width: 100%; height: 225px; display: flex; align-items: center; justify-content: center;">
+                      <img src="FILE/Specimen-Avenir.svg"
+                        style="padding: 5%; object-fit: contain; max-width: 100%; max-height: 100%;">
+      
+                    </div>
+                    <div class="card-body">
+                      <p class="card-text text-center"><a href="FILE/Avenir.zip" download target="_blank"><button type="button"
+                        class="btn btn-sm btn-primary"><icona-fluent>&#xF14F;</icona-fluent> Scarica cartella ZIP
+                      </button></a></p>
+                      
+                      <hr>
+                      <div class="d-flex justify-content-between align-items-center">
+                        <span style="font-family: Avenir-Roman;">Avenir 55 Roman</span>
+                        <div class="btn-group">
+                          <a href="assets/fonts/Avenir-Roman.ttf" download target="_blank"><button
+                              type="button" class="btn btn-sm btn-primary"><icona-fluent>&#xF14F;</icona-fluent> TTF
+                            </button></a>
+                          &nbsp;
+                          <a href="assets/fonts/Avenir-Roman.woff" download target="_blank"><button
+                              type="button" class="btn btn-sm btn-secondary"><icona-fluent>&#xF14F;</icona-fluent> WOFF
+                            </button></a>
+                          &nbsp;
+                          <a href="assets/fonts/Avenir-Roman.woff2" download target="_blank"><button
+                              type="button" class="btn btn-sm btn-secondary"><icona-fluent>&#xF14F;</icona-fluent> WOFF2
+                            </button></a>
+                        </div>
+                      </div>
+
+
+
+                      <hr>
+                      <div class="d-flex justify-content-between align-items-center">
+                        <span style="font-family: Avenir-Oblique;">Avenir 55 Oblique</span>
+                        <div class="btn-group">
+                          <a href="assets/fonts/Avenir-Oblique.ttf" download target="_blank"><button
+                              type="button" class="btn btn-sm btn-primary"><icona-fluent>&#xF14F;</icona-fluent> TTF
+                            </button></a>
+                          &nbsp;
+                          <a href="assets/fonts/Avenir-Oblique.woff" download target="_blank"><button
+                              type="button" class="btn btn-sm btn-secondary"><icona-fluent>&#xF14F;</icona-fluent> WOFF
+                            </button></a>
+                          &nbsp;
+                          <a href="assets/fonts/Avenir-Oblique.woff2" download target="_blank"><button
+                              type="button" class="btn btn-sm btn-secondary"><icona-fluent>&#xF14F;</icona-fluent> WOFF2
+                            </button></a>
+                        </div>
+                      </div>
+
+
+                      <hr>
+                      <div class="d-flex justify-content-between align-items-center">
+                        <span style="font-family: Avenir-Medium;">Avenir 65 Medium</span>
+                        <div class="btn-group">
+                          <a href="assets/fonts/Avenir-Medium.ttf" download target="_blank"><button
+                              type="button" class="btn btn-sm btn-primary"><icona-fluent>&#xF14F;</icona-fluent> TTF
+                            </button></a>
+                          &nbsp;
+                          <a href="assets/fonts/Avenir-Medium.woff" download target="_blank"><button
+                              type="button" class="btn btn-sm btn-secondary"><icona-fluent>&#xF14F;</icona-fluent> WOFF
+                            </button></a>
+                          &nbsp;
+                          <a href="assets/fonts/Avenir-Medium.woff2" download target="_blank"><button
+                              type="button" class="btn btn-sm btn-secondary"><icona-fluent>&#xF14F;</icona-fluent> WOFF2
+                            </button></a>
+                        </div>
+                      </div>
+
+                      <hr>
+                      <div class="d-flex justify-content-between align-items-center">
+                        <span style="font-family: Avenir-MediumOblique;">Avenir 65 Medium Oblique</span>
+                        <div class="btn-group">
+                          <a href="assets/fonts/Avenir-MediumOblique.ttf" download target="_blank"><button
+                              type="button" class="btn btn-sm btn-primary"><icona-fluent>&#xF14F;</icona-fluent> TTF
+                            </button></a>
+                          &nbsp;
+                          <a href="assets/fonts/Avenir-MediumOblique.woff" download target="_blank"><button
+                              type="button" class="btn btn-sm btn-secondary"><icona-fluent>&#xF14F;</icona-fluent> WOFF
+                            </button></a>
+                          &nbsp;
+                          <a href="assets/fonts/Avenir-MediumOblique.woff2" download target="_blank"><button
+                              type="button" class="btn btn-sm btn-secondary"><icona-fluent>&#xF14F;</icona-fluent> WOFF2
+                            </button></a>
+                        </div>
+                      </div>
+
+                      <hr>
+                      <div class="d-flex justify-content-between align-items-center">
+                        <span style="font-family: Avenir-Black;">Avenir 95 Black</span>
+                        <div class="btn-group">
+                          <a href="assets/fonts/Avenir-Black.ttf" download target="_blank"><button
+                              type="button" class="btn btn-sm btn-primary"><icona-fluent>&#xF14F;</icona-fluent> TTF
+                            </button></a>
+                          &nbsp;
+                          <a href="assets/fonts/Avenir-Black.woff" download target="_blank"><button
+                              type="button" class="btn btn-sm btn-secondary"><icona-fluent>&#xF14F;</icona-fluent> WOFF
+                            </button></a>
+                          &nbsp;
+                          <a href="assets/fonts/Avenir-Black.woff2" download target="_blank"><button
+                              type="button" class="btn btn-sm btn-secondary"><icona-fluent>&#xF14F;</icona-fluent> WOFF2
+                            </button></a>
+                        </div>
+                      </div>
+
+                      <hr>
+                      <div class="d-flex justify-content-between align-items-center">
+                        <span style="font-family: Avenir-BlackOblique;">Avenir 95 Black Oblique</span>
+                        <div class="btn-group">
+                          <a href="assets/fonts/Avenir-BlackOblique.ttf" download target="_blank"><button
+                              type="button" class="btn btn-sm btn-primary"><icona-fluent>&#xF14F;</icona-fluent> TTF
+                            </button></a>
+                          &nbsp;
+                          <a href="assets/fonts/Avenir-BlackOblique.woff" download target="_blank"><button
+                              type="button" class="btn btn-sm btn-secondary"><icona-fluent>&#xF14F;</icona-fluent> WOFF
+                            </button></a>
+                          &nbsp;
+                          <a href="assets/fonts/Avenir-BlackOblique.woff2" download target="_blank"><button
+                              type="button" class="btn btn-sm btn-secondary"><icona-fluent>&#xF14F;</icona-fluent> WOFF2
+                            </button></a>
+                        </div>
+                      </div>
+                      
+                      
+                    </div>
+                  </div>
+                </div>
+
+      
+
+      
+      
+              </div>
+            </div>
+            <div class="tab-pane fade" id="nav-fontID2" role="tabpanel" aria-labelledby="nav-fontID2-tab">
+              <p>eeee</p>
+            </div>
+  
+          </div>
+  
+        </div>
+
+
+
+
+       
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
         
-          
-          
-        </div>
-        
+
 
       </div>
     </div>
     </div>
+
+
+
+
+
 
 
 
@@ -1815,13 +1955,17 @@ activeTooltip.dispose();
   <footer class="text-body-secondary py-5">
     <div class="container">
       <p class="float-end mb-1">
-        <a href="#">Back to top</a>
+        <a href="#">Torna su</a>
       </p>
-      <p class="mb-1">Album example is &copy; Bootstrap, but please download and customize it for yourself!</p>
-      <p class="mb-0">New to Bootstrap? <a href="/">Visit the homepage</a> or read our <a
-          href="getting-started/introduction/">getting started guide</a>.</p>
+      <p class="mb-1">The Monotype Garamond and Avenir&reg; typefaces are property of Monotype Imaging Inc.</p>
+      <p class="mb-1">CorelDRAW&reg; is a registered trademark of Corel Corporation</p>
+      <hr>
+      <a href="../index.html"><img src="../img/brand-WRDMRKW.svg" style=" width: 100%; height: 40px; display: flex; align-items: center;"></a>
+      
+      
     </div>
   </footer>
+
   <script src="assets/dist/js/bootstrap.bundle.min.js"></script>
 
 </body>

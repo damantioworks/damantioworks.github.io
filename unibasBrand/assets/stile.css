@@ -1,10 +1,68 @@
 @font-face {
-    font-family: "FluentSystemIcons";
-    src: url("fonts/FluentSystemIcons-Regular.woff") format('woff');
-  }
+  font-family: 'FluentSystemIcons';
+  src: url('fonts/FluentSystemIcons-Regular.woff2') format('woff2'),
+    url('fonts/FluentSystemIcons-Regular.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'Avenir-Roman';
+  src: url('fonts/Avenir-Roman.woff2') format('woff2'),
+    url('fonts/Avenir-Roman.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'Avenir-Oblique';
+  src: url('fonts/Avenir-Oblique.woff2') format('woff2'),
+    url('fonts/Avenir-Oblique.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'Avenir-Medium';
+  src: url('fonts/Avenir-Medium.woff2') format('woff2'),
+    url('fonts/Avenir-Medium.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'Avenir-Black';
+  src: url('fonts/Avenir-Black.woff2') format('woff2'),
+    url('fonts/Avenir-Black.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'Avenir-MediumOblique';
+  src: url('fonts/Avenir-MediumOblique.woff2') format('woff2'),
+    url('fonts/Avenir-MediumOblique.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'Avenir-BlackOblique';
+  src: url('fonts/Avenir-BlackOblique.woff2') format('woff2'),
+    url('fonts/Avenir-BlackOblique.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'Garamond';
+  src: url('fonts/Garamond.woff2') format('woff2'),
+    url('fonts/Garamond.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'Garamond-Italic';
+  src: url('fonts/Garamond-Italic.woff2') format('woff2'),
+    url('fonts/Garamond-Italic.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'Garamond-Bold';
+  src: url('fonts/Garamond-Bold.woff2') format('woff2'),
+    url('fonts/Garamond-Bold.woff') format('woff');
+}
+
+
+
 
 icona-fluent {
-    font-family: FluentSystemIcons;
-    vertical-align: text-top;
-    
-  }
+  font-family: FluentSystemIcons;
+  vertical-align: text-top;
+
+}
