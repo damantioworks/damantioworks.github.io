@@ -66,3 +66,24 @@ icona-fluent {
   vertical-align: text-top;
 
 }
+
+.wordmark-footer {
+  width: 100%;
+  height: 40px;
+  display: flex;
+  align-items: center;
+
+  
+  [data-bs-theme=light] {
+    background-image: url(../../img/brand-DB.svg);
+
+  }
+  
+  [data-bs-theme=dark] {
+    background-image: url(../../img/brand-DW.svg);
+  }
+
+
+}
+
+
