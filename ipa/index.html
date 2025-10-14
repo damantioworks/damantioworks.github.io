@@ -5,14 +5,13 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-  <!-- Local Bootstrap JS -->
   <script src="assets/js/bootstrap.bundle.min.js"></script>
   <title>IPA Editor</title>
-
 
   <link href="assets/css/bootstrap.min.css" rel="stylesheet" />
 
   <style>
+    /* Theme Toggle Logo Styling (Unchanged) */
     .logo-dark {
       display: none;
     }
@@ -30,7 +29,7 @@
       vertical-align: middle;
     }
 
-
+    /* Theme Variables (Unchanged) */
     :root {
       /* Light theme colors */
       --bg-color: #ededed;
@@ -59,14 +58,13 @@
       --btn-hover-border: #2a2a2a;
     }
 
-    /* Toggle switch track background (off state) */
+    /* Theme Component Styling (Unchanged) */
     .form-check-input {
       background-color: var(--btn-border);
       border-color: var(--btn-border);
       transition: background-color 0.3s, border-color 0.3s;
     }
 
-    /* Toggle switch track background (on state) */
     .form-check-input:checked {
       background-color: var(--btn-bg);
       border-color: var(--btn-bg);
@@ -85,6 +83,18 @@
       transition: background-color 0.3s, border-color 0.3s, color 0.3s;
     }
 
+    .btn-primary:hover,
+    .btn-primary:focus,
+    .btn-primary:active {
+      background-color: var(--btn-hover-bg);
+      border-color: var(--btn-hover-border);
+      color: var(--btn-text);
+    }
+
+
+    /* KEYBOARD STYLING (The original source of the non-responsiveness) */
+
+    /* Fixed sizes for larger screens */
     .btn-tastiera-ipa {
       flex: 1 1 0;
       max-width: 40px;
@@ -112,12 +122,47 @@
       font-size: large;
     }
 
-    .btn-primary:hover,
-    .btn-primary:focus,
-    .btn-primary:active {
-      background-color: var(--btn-hover-bg);
-      border-color: var(--btn-hover-border);
-      color: var(--btn-text);
+
+    /* * RESPONSIVENESS FIX: MEDIA QUERY FOR MOBILE
+     * This section overrides the fixed widths on small screens (< 576px) 
+     * and forces the buttons to wrap.
+     */
+    @media (max-width: 576px) {
+      /* Apply wrapping to all button containers */
+      .d-flex.justify-content-center.gap-2 {
+        flex-wrap: wrap;
+        gap: 5px !important; /* Slightly reduced gap on mobile */
+      }
+
+      /* Reset fixed width constraints for all buttons */
+      .btn-tastiera-ipa,
+      .btn-tastiera-parentesi,
+      .btn-tastiera-diacritici {
+        max-width: none;
+        min-width: 0;
+        flex-grow: 1; /* Allows buttons to share space */
+        flex-shrink: 1;
+        min-height: 40px; /* Ensures buttons are easily tappable */
+        padding: 0.375rem 0.5rem;
+        font-size: small;
+      }
+      
+      /* Give larger buttons more space to breathe */
+      .btn-tastiera-parentesi {
+        min-width: 45%; 
+        max-width: 45%; 
+      }
+      
+      /* Ensure other controls wrap nicely */
+      .d-flex.align-items-center.gap-3.mb-3 {
+          flex-wrap: wrap;
+          justify-content: space-around !important;
+      }
+      
+      /* Allow the alignment dropdown to take full width if needed */
+      .d-flex.align-items-center > .form-select-sm {
+          width: 100% !important;
+      }
     }
   </style>
 </head>
@@ -127,15 +172,11 @@
     <div class="row justify-content-center gap-2">
       <div class="col-md-8">
 
-
-
-        <!-- Textarea -->
         <textarea id="textArea" class="form-control mb-3" rows="8"
-          placeholder="&#x002f;tra&#x02c8;skri&#x02d0;vi  kwal&#x02c8;k&#x0254;sa&#x002f;"
+          placeholder="&#x002f;tra&#x02c8;skri&#x02d0;vi  kwal&#x02c8;k&#x0254;sa&#x002f;"
           style="font-size: large;"></textarea>
 
         <div class="d-grid gap-2">
-          <!-- Diacritici e Parentesi -->
           <div class="d-flex justify-content-center gap-2">
             <button class="btn btn-primary btn-tastiera-diacritici" onclick="insertAtCaret('\u02c8')"
               data-bs-toggle="popover" data-bs-trigger="hover focus" data-bs-placement="bottom"
@@ -157,7 +198,6 @@
               data-bs-content="trascrizione grafematica">&#x003c;...&#x003e;</button>
           </div>
 
-          <!-- Vocali -->
           <div class="d-flex justify-content-center gap-2">
             <button class="btn btn-primary btn-tastiera-ipa" onclick="insertAtCaret('\u0069')" data-bs-toggle="popover"
               data-bs-trigger="hover focus" data-bs-placement="bottom"
@@ -182,7 +222,6 @@
               data-bs-content="Vocale posteriore alta labializzata">&#x0075;</button>
           </div>
 
-          <!-- Occlusive -->
           <div class="d-flex justify-content-center gap-2">
             <button class="btn btn-primary btn-tastiera-ipa" onclick="insertAtCaret('\u0070')" data-bs-toggle="popover"
               data-bs-trigger="hover focus" data-bs-placement="bottom"
@@ -204,7 +243,6 @@
               data-bs-content="Occlusiva velare sonora">&#x0067;</button>
           </div>
 
-          <!-- Fricative -->
           <div class="d-flex justify-content-center gap-2">
             <button class="btn btn-primary btn-tastiera-ipa" onclick="insertAtCaret('\u0066')" data-bs-toggle="popover"
               data-bs-trigger="hover focus" data-bs-placement="bottom"
@@ -223,7 +261,6 @@
               data-bs-content="Fricativa palatale (post-alveolare*) sorda">&#x0283;</button>
           </div>
 
-          <!-- Affricate -->
           <div class="d-flex justify-content-center gap-2">
             <button class="btn btn-primary btn-tastiera-ipa" onclick="insertAtCaret('\u0074\u0073')"
               data-bs-toggle="popover" data-bs-trigger="hover focus" data-bs-placement="bottom"
@@ -239,7 +276,6 @@
               data-bs-content="Affricata palatale (post-alveolare*) sonora">&#x0064;&#x0292;</button>
           </div>
 
-          <!-- Nasali -->
           <div class="d-flex justify-content-center gap-2">
             <button class="btn btn-primary btn-tastiera-ipa" onclick="insertAtCaret('\u006d')" data-bs-toggle="popover"
               data-bs-trigger="hover focus" data-bs-placement="bottom"
@@ -258,7 +294,6 @@
               data-bs-content="Nasale velare sonora">&#x014b;</button>
           </div>
 
-          <!-- Vibrante e Approssimanti -->
           <div class="d-flex justify-content-center gap-2">
             <button class="btn btn-primary btn-tastiera-ipa" onclick="insertAtCaret('\u0072')" data-bs-toggle="popover"
               data-bs-trigger="hover focus" data-bs-placement="bottom"
@@ -278,24 +313,19 @@
           </div>
 
 
-
-
         </div>
         <div>&nbsp;</div>
         <div class="d-flex align-items-center gap-3 mb-3 justify-content-center">
-          <!-- Theme toggle -->
           <div class="form-check form-switch">
             <input class="form-check-input" type="checkbox" id="themeToggle" />
             <label class="form-check-label" for="themeToggle" id="themeLabel">Chiaro</label>
           </div>
 
-          <!-- Popover toggle -->
           <div class="form-check form-switch">
             <input class="form-check-input" type="checkbox" id="popoverToggle" />
-            <label class="form-check-label" for="popoverToggle" id="popoverLabel">Descriptions Off</label>
+            <label class="form-check-label" for="popoverToggle" id="popoverLabel">Descrizioni: OFF</label>
           </div>
 
-          <!-- Alignment dropdown with label -->
           <div style="min-width: 200px;" class="d-flex align-items-center">
             <label for="alignmentSelect" class="form-label mb-0 me-2" style="white-space: nowrap;">Allineamento</label>
             <select id="alignmentSelect" class="form-select form-select-sm">
@@ -306,12 +336,10 @@
             </select>
           </div>
 
-          <!-- Backspace button -->
           <button type="button" class="btn btn-primary" id="backspaceBtn" aria-label="Backspace" title="Backspace">
             &#9003;
           </button>
 
-          <!-- Copy button -->
           <button type="button" class="btn btn-primary" id="copyBtn" data-bs-toggle="popover" data-bs-trigger="focus"
             data-bs-placement="top" data-bs-content="Copied to clipboard!">
             Copy
@@ -321,7 +349,6 @@
       </div>
     </div>
 
-    <!-- Insert at caret -->
     <script>
       function insertAtCaret(lettera, parentesi = false) {
         const textarea = document.getElementById('textArea');
@@ -341,7 +368,6 @@
       }
     </script>
 
-    <!-- Rilevamento tema scuro -->
     <script>
       const htmlEl = document.documentElement;
       const themeToggle = document.getElementById('themeToggle');
@@ -397,7 +423,6 @@
       });
     </script>
 
-    <!-- Popover Toggle with Dynamic Label -->
     <script>
       const popoverToggle = document.getElementById('popoverToggle');
       const popoverLabel = document.getElementById('popoverLabel');
@@ -432,12 +457,19 @@
       popoverToggle.addEventListener('change', () => {
         if (popoverToggle.checked) {
           enablePopovers();
-          popoverLabel.textContent = 'Descrizioni: ON';  // Change label text to "Descriptions On"
+          popoverLabel.textContent = 'Descrizioni: ON'; // Change label text to "Descriptions On"
         } else {
           disablePopovers();
-          popoverLabel.textContent = 'Descrizioni: OFF';  // Change label text to "Descriptions Off"
+          popoverLabel.textContent = 'Descrizioni: OFF'; // Change label text to "Descriptions Off"
         }
       });
+
+      // Initialize all popovers on page load (if unchecked by default, disable them)
+      if (popoverToggle.checked) {
+        enablePopovers();
+      } else {
+        disablePopovers();
+      }
 
       // Set initial label based on toggle state on page load
       popoverLabel.textContent = popoverToggle.checked ? 'Descrizioni: ON' : 'Descrizioni: OFF';
