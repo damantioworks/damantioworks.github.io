@@ -341,8 +341,8 @@
           </button>
 
           <button type="button" class="btn btn-primary" id="copyBtn" data-bs-toggle="popover" data-bs-trigger="focus"
-            data-bs-placement="top" data-bs-content="Copied to clipboard!">
-            Copy
+            data-bs-placement="top" data-bs-content="Copiato negli appunti!">
+            Copia
           </button>
         </div>
 
@@ -510,11 +510,11 @@
             throw new Error('Copy failed');
           }
         } catch (err) {
-          copyPopover.setContent({ '.popover-body': 'Failed to copy text.' });
+          copyPopover.setContent({ '.popover-body': 'Errore.' });
           copyPopover.show();
           setTimeout(() => {
             copyPopover.hide();
-            copyPopover.setContent({ '.popover-body': 'Copied to clipboard!' }); // reset content
+            copyPopover.setContent({ '.popover-body': 'Copiato negli appunti!' }); // reset content
           }, 1500);
         }
 
