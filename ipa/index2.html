@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="auto">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <script src="assets/js/bootstrap.bundle.min.js"></script>
+  <title>IPA Editor</title>
+
+  <link href="assets/css/bootstrap.min.css" rel="stylesheet" />
+
+  <style>
+    /* Theme Toggle Logo Styling (Unchanged) */
+    .logo-dark {
+      display: none;
+    }
+
+    [data-bs-theme="dark"] .logo-light {
+      display: none;
+    }
+
+    [data-bs-theme="dark"] .logo-dark {
+      display: inline;
+    }
+
+    .logo {
+      height: 55px;
+      vertical-align: middle;
+    }
+
+    /* Theme Variables (Unchanged) */
+    :root {
+      /* Light theme colors */
+      --bg-color: #ededed;
+      --text-color: #1f1f1f;
+      --btn-bg: #b0b0b0;
+      /* lighter grey for buttons */
+      --btn-border: #b0b0b0;
+      --btn-text: #1f1f1f;
+      /* dark text on light buttons */
+      --btn-hover-bg: #c0c0c0;
+      /* slightly lighter on hover */
+      --btn-hover-border: #c0c0c0;
+    }
+
+    html[data-bs-theme="dark"] {
+      /* Dark theme colors (inverted) */
+      --bg-color: #121212;
+      --text-color: #e0e0e0;
+      --btn-bg: #1f1f1f;
+      /* dark grey button background */
+      --btn-border: #1f1f1f;
+      --btn-text: #e0e0e0;
+      /* light text on dark buttons */
+      --btn-hover-bg: #2a2a2a;
+      /* slightly lighter hover */
+      --btn-hover-border: #2a2a2a;
+    }
+
+    /* Theme Component Styling (Unchanged) */
+    .form-check-input {
+      background-color: var(--btn-border);
+      border-color: var(--btn-border);
+      transition: background-color 0.3s, border-color 0.3s;
+    }
+
+    .form-check-input:checked {
+      background-color: var(--btn-bg);
+      border-color: var(--btn-bg);
+    }
+
+    body {
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      transition: background-color 0.3s, color 0.3s;
+    }
+
+    .btn-primary {
+      background-color: var(--btn-bg);
+      border-color: var(--btn-border);
+      color: var(--btn-text);
+      transition: background-color 0.3s, border-color 0.3s, color 0.3s;
+    }
+
+    .btn-primary:hover,
+    .btn-primary:focus,
+    .btn-primary:active {
+      background-color: var(--btn-hover-bg);
+      border-color: var(--btn-hover-border);
+      color: var(--btn-text);
+    }
+
+
+    /* KEYBOARD STYLING (The original source of the non-responsiveness) */
+
+    /* Fixed sizes for larger screens */
+    .btn-tastiera-ipa {
+      flex: 1 1 0;
+      max-width: 40px;
+      min-width: 40px;
+      text-align: center;
+      font-weight: bold;
+      font-size: large;
+    }
+
+    .btn-tastiera-parentesi {
+      flex: 1 1 0;
+      max-width: 80px;
+      min-width: 80px;
+      text-align: center;
+      font-weight: bold;
+      font-size: large;
+    }
+
+    .btn-tastiera-diacritici {
+      flex: 1 1 0;
+      max-width: 40px;
+      min-width: 40px;
+      text-align: center;
+      font-weight: bolder;
+      font-size: large;
+    }
+
+
+    /* * RESPONSIVENESS FIX: MEDIA QUERY FOR MOBILE
+     * This section overrides the fixed widths on small screens (< 576px) 
+     * and forces the buttons to wrap.
+     */
+    @media (max-width: 576px) {
+
+      /* Apply wrapping to all button containers */
+      .d-flex.justify-content-center.gap-2 {
+        flex-wrap: wrap;
+        gap: 5px !important;
+        /* Slightly reduced gap on mobile */
+      }
+
+      /* Reset fixed width constraints for all buttons */
+      .btn-tastiera-ipa,
+      .btn-tastiera-parentesi,
+      .btn-tastiera-diacritici {
+        max-width: none;
+        min-width: 0;
+        flex-grow: 1;
+        /* Allows buttons to share space */
+        flex-shrink: 1;
+        min-height: 40px;
+        /* Ensures buttons are easily tappable */
+        padding: 0.375rem 0.5rem;
+        font-size: small;
+      }
+
+      /* Give larger buttons more space to breathe */
+      .btn-tastiera-parentesi {
+        min-width: 45%;
+        max-width: 45%;
+      }
+
+      /* Ensure other controls wrap nicely */
+      .d-flex.align-items-center.gap-3.mb-3 {
+        flex-wrap: wrap;
+        justify-content: space-around !important;
+      }
+
+      /* Allow the alignment dropdown to take full width if needed */
+      .d-flex.align-items-center>.form-select-sm {
+        width: 100% !important;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container py-5">
+    <div class="row justify-content-center gap-2">
+      <div class="col-md-8">
+
+        <textarea id="textArea" class="form-control mb-3" rows="8"
+          placeholder="&#x002f;tra&#x02c8;skri&#x02d0;vi  kwal&#x02c8;k&#x0254;sa&#x002f;"
+          style="font-size: large;"></textarea>
+
+        <div class="d-grid gap-2">
+
+
+          <div class="d-flex justify-content-center gap-2">
+            <button class="btn btn-primary btn-tastiera-ipa" onclick="insertAtCaret('\u0069')" data-bs-toggle="popover"
+              data-bs-trigger="hover focus" data-bs-placement="bottom"
+              data-bs-content="Vocale anteriore alta non labializzata">&#x0069;</button>
+            <button class="btn btn-primary btn-tastiera-ipa" onclick="insertAtCaret('\u0065')" data-bs-toggle="popover"
+              data-bs-trigger="hover focus" data-bs-placement="bottom"
+              data-bs-content="Vocale anteriore medio alta non labializzata">&#x0065;</button>
+            <button class="btn btn-primary btn-tastiera-ipa" onclick="insertAtCaret('\u025b')" data-bs-toggle="popover"
+              data-bs-trigger="hover focus" data-bs-placement="bottom"
+              data-bs-content="Vocale anteriore medio bassa non labializzata">&#x025b;</button>
+            <button class="btn btn-primary btn-tastiera-ipa" onclick="insertAtCaret('\u0061')" data-bs-toggle="popover"
+              data-bs-trigger="hover focus" data-bs-placement="bottom"
+              data-bs-content="Vocale anteriore bassa non labializzata">&#x0061;</button>
+            <button class="btn btn-primary btn-tastiera-ipa" onclick="insertAtCaret('\u0254')" data-bs-toggle="popover"
+              data-bs-trigger="hover focus" data-bs-placement="bottom"
+              data-bs-content="Vocale posteriore medio bassa labializzata">&#x0254;</button>
+            <button class="btn btn-primary btn-tastiera-ipa" onclick="insertAtCaret('\u006F')" data-bs-toggle="popover"
+              data-bs-trigger="hover focus" data-bs-placement="bottom"
+              data-bs-content="Vocale posteriore medio alta labializzata">&#x006F;</button>
+            <button class="btn btn-primary btn-tastiera-ipa" onclick="insertAtCaret('\u0075')" data-bs-toggle="popover"
+              data-bs-trigger="hover focus" data-bs-placement="bottom"
+              data-bs-content="Vocale posteriore alta labializzata">&#x0075;</button>
+          </div>
+
+          <div class="d-flex justify-content-center gap-2">
+            <button class="btn btn-primary btn-tastiera-ipa" onclick="insertAtCaret('\u0070')" data-bs-toggle="popover"
+              data-bs-trigger="hover focus" data-bs-placement="bottom"
+              data-bs-content="Occlusiva bilabiale sorda">&#x0070;</button>
+            <button class="btn btn-primary btn-tastiera-ipa" onclick="insertAtCaret('\u0062')" data-bs-toggle="popover"
+              data-bs-trigger="hover focus" data-bs-placement="bottom"
+              data-bs-content="Occlusiva bilabiale sonora">&#x0062;</button>
+            <button class="btn btn-primary btn-tastiera-ipa" onclick="insertAtCaret('\u0074')" data-bs-toggle="popover"
+              data-bs-trigger="hover focus" data-bs-placement="bottom"
+              data-bs-content="Occlusiva dentale sorda">&#x0074;</button>
+            <button class="btn btn-primary btn-tastiera-ipa" onclick="insertAtCaret('\u0064')" data-bs-toggle="popover"
+              data-bs-trigger="hover focus" data-bs-placement="bottom"
+              data-bs-content="Occlusiva dentale sonora">&#x0064;</button>
+            <button class="btn btn-primary btn-tastiera-ipa" onclick="insertAtCaret('\u006b')" data-bs-toggle="popover"
+              data-bs-trigger="hover focus" data-bs-placement="bottom"
+              data-bs-content="Occlusiva velare sorda">&#x006b;</button>
+            <button class="btn btn-primary btn-tastiera-ipa" onclick="insertAtCaret('\u0067')" data-bs-toggle="popover"
+              data-bs-trigger="hover focus" data-bs-placement="bottom"
+              data-bs-content="Occlusiva velare sonora">&#x0067;</button>
+          </div>
+
+          <div class="d-flex justify-content-center gap-2">
+            <button class="btn btn-primary btn-tastiera-ipa" onclick="insertAtCaret('\u0066')" data-bs-toggle="popover"
+              data-bs-trigger="hover focus" data-bs-placement="bottom"
+              data-bs-content="Fricativa labiodentale sorda">&#x0066;</button>
+            <button class="btn btn-primary btn-tastiera-ipa" onclick="insertAtCaret('\u0076')" data-bs-toggle="popover"
+              data-bs-trigger="hover focus" data-bs-placement="bottom"
+              data-bs-content="Fricativa labiodentale sonora">&#x0076;</button>
+            <button class="btn btn-primary btn-tastiera-ipa" onclick="insertAtCaret('\u0073')" data-bs-toggle="popover"
+              data-bs-trigger="hover focus" data-bs-placement="bottom"
+              data-bs-content="Fricativa dentale sorda">&#x0073;</button>
+            <button class="btn btn-primary btn-tastiera-ipa" onclick="insertAtCaret('\u007a')" data-bs-toggle="popover"
+              data-bs-trigger="hover focus" data-bs-placement="bottom"
+              data-bs-content="Fricativa dentale sonora">&#x007a;</button>
+            <button class="btn btn-primary btn-tastiera-ipa" onclick="insertAtCaret('\u0283')" data-bs-toggle="popover"
+              data-bs-trigger="hover focus" data-bs-placement="bottom"
+              data-bs-content="Fricativa palatale (post-alveolare*) sorda">&#x0283;</button>
+          </div>
+
+          <div class="d-flex justify-content-center gap-2">
+            <button class="btn btn-primary btn-tastiera-ipa" onclick="insertAtCaret('\u0074\u0073')"
+              data-bs-toggle="popover" data-bs-trigger="hover focus" data-bs-placement="bottom"
+              data-bs-content="Affricata dentale (alveolare*) sorda">&#x0074;&#x0073;</button>
+            <button class="btn btn-primary btn-tastiera-ipa" onclick="insertAtCaret('\u0064\u007a')"
+              data-bs-toggle="popover" data-bs-trigger="hover focus" data-bs-placement="bottom"
+              data-bs-content="Affricata dentale (alveolare*) sonora">&#x0064;&#x007a;</button>
+            <button class="btn btn-primary btn-tastiera-ipa" onclick="insertAtCaret('\u0074\u0283')"
+              data-bs-toggle="popover" data-bs-trigger="hover focus" data-bs-placement="bottom"
+              data-bs-content="Affricata palatale (post-alveolare*) sorda">&#x0074;&#x0283;</button>
+            <button class="btn btn-primary btn-tastiera-ipa" onclick="insertAtCaret('\u0064\u0292')"
+              data-bs-toggle="popover" data-bs-trigger="hover focus" data-bs-placement="bottom"
+              data-bs-content="Affricata palatale (post-alveolare*) sonora">&#x0064;&#x0292;</button>
+          </div>
+
+          <div class="d-flex justify-content-center gap-2">
+            <button class="btn btn-primary btn-tastiera-ipa" onclick="insertAtCaret('\u006d')" data-bs-toggle="popover"
+              data-bs-trigger="hover focus" data-bs-placement="bottom"
+              data-bs-content="Nasale bilabiale sonora">&#x006d;</button>
+            <button class="btn btn-primary btn-tastiera-ipa" onclick="insertAtCaret('\u0271')" data-bs-toggle="popover"
+              data-bs-trigger="hover focus" data-bs-placement="bottom"
+              data-bs-content="Nasale labiodentale sonora">&#x0271;</button>
+            <button class="btn btn-primary btn-tastiera-ipa" onclick="insertAtCaret('\u006e')" data-bs-toggle="popover"
+              data-bs-trigger="hover focus" data-bs-placement="bottom"
+              data-bs-content="Nasale dentale (alveolare*) sonora">&#x006e;</button>
+            <button class="btn btn-primary btn-tastiera-ipa" onclick="insertAtCaret('\u0272')" data-bs-toggle="popover"
+              data-bs-trigger="hover focus" data-bs-placement="bottom"
+              data-bs-content="Nasale palatale sonora">&#x0272;</button>
+            <button class="btn btn-primary btn-tastiera-ipa" onclick="insertAtCaret('\u014b')" data-bs-toggle="popover"
+              data-bs-trigger="hover focus" data-bs-placement="bottom"
+              data-bs-content="Nasale velare sonora">&#x014b;</button>
+          </div>
+
+          <div class="d-flex justify-content-center gap-2">
+            <button class="btn btn-primary btn-tastiera-ipa" onclick="insertAtCaret('\u0072')" data-bs-toggle="popover"
+              data-bs-trigger="hover focus" data-bs-placement="bottom"
+              data-bs-content="Vibrante dentale (alveolare*) sonora">&#x0072;</button>
+            <button class="btn btn-primary btn-tastiera-ipa" onclick="insertAtCaret('\u006c')" data-bs-toggle="popover"
+              data-bs-trigger="hover focus" data-bs-placement="bottom"
+              data-bs-content="Laterale dentale (Approssimante laterale alveolare*) sonora">&#x006c;</button>
+            <button class="btn btn-primary btn-tastiera-ipa" onclick="insertAtCaret('\u028e')" data-bs-toggle="popover"
+              data-bs-trigger="hover focus" data-bs-placement="bottom"
+              data-bs-content="(Approssimante*) Laterale palatale sonora">&#x028e;</button>
+            <button class="btn btn-primary btn-tastiera-ipa" onclick="insertAtCaret('\u006a')" data-bs-toggle="popover"
+              data-bs-trigger="hover focus" data-bs-placement="bottom"
+              data-bs-content="Approssimante palatale (sonora*)">&#x006a;</button>
+            <button class="btn btn-primary btn-tastiera-ipa" onclick="insertAtCaret('\u0077')" data-bs-toggle="popover"
+              data-bs-trigger="hover focus" data-bs-placement="bottom"
+              data-bs-content="Approssimante labiovelare (sonora*)"
+              data-alt-content="Alt: High front vowel unrounded">&#x0077;</button>
+          </div>
+
+
+          <div class="d-flex justify-content-center gap-2">
+            <button class="btn btn-primary btn-tastiera-diacritici" onclick="insertAtCaret('\u02c8')"
+              data-bs-toggle="popover" data-bs-trigger="hover focus" data-bs-placement="bottom"
+              data-bs-content="Accento primario">&#x02c8;</button>
+            <button class="btn btn-primary btn-tastiera-diacritici" onclick="insertAtCaret('\u02cc')"
+              data-bs-toggle="popover" data-bs-trigger="hover focus" data-bs-placement="bottom"
+              data-bs-content="Accento secondario">&#x02cc;</button>
+            <button class="btn btn-primary btn-tastiera-diacritici" onclick="insertAtCaret('\u02d0')"
+              data-bs-toggle="popover" data-bs-trigger="hover focus" data-bs-placement="bottom"
+              data-bs-content="Croni">&#x02d0;</button>
+            <button class="btn btn-primary btn-tastiera-parentesi" onclick="insertAtCaret('\u002f\u002f', true)"
+              data-bs-toggle="popover" data-bs-trigger="hover focus" data-bs-placement="bottom"
+              data-bs-content="trascrizione fonologica">&#x002f;...&#x002f;</button>
+            <button class="btn btn-primary btn-tastiera-parentesi" onclick="insertAtCaret('\u005b\u005d', true)"
+              data-bs-toggle="popover" data-bs-trigger="hover focus" data-bs-placement="bottom"
+              data-bs-content="trascrizione fonetica">&#x005B;...&#x005D;</button>
+            <button class="btn btn-primary btn-tastiera-parentesi" onclick="insertAtCaret('\u003c\u003e', true)"
+              data-bs-toggle="popover" data-bs-trigger="hover focus" data-bs-placement="bottom"
+              data-bs-content="trascrizione grafematica">&#x003c;...&#x003e;</button>
+
+            <button type="button" class="btn btn-primary" id="backspaceBtn" aria-label="Backspace" title="Backspace">
+              &#9003;
+            </button>
+
+            <button type="button" class="btn btn-primary" id="copyBtn" data-bs-toggle="popover" data-bs-trigger="focus"
+              data-bs-placement="top" data-bs-content="Copiato negli appunti!">
+              Copia
+            </button>
+          </div>
+
+
+        </div>
+        <div>&nbsp;</div>
+
+        <div class="d-flex align-items-center gap-3 flex-wrap mb-3">
+          <!-- Theme Toggle -->
+          <div class="form-check form-switch">
+            <input class="form-check-input" type="checkbox" id="themeToggle" />
+            <label class="form-check-label" for="themeToggle" id="themeLabel">Chiaro</label>
+          </div>
+
+          <!-- Popover Toggle -->
+          <div class="form-check form-switch">
+            <input class="form-check-input" type="checkbox" id="popoverToggle" />
+            <label class="form-check-label" for="popoverToggle" id="popoverLabel">Descrizioni: OFF</label>
+          </div>
+
+          <!-- Alternative Popover Toggle -->
+          <div class="form-check form-switch">
+            <input class="form-check-input" type="checkbox" id="altPopoverToggle" />
+            <label class="form-check-label" for="altPopoverToggle" id="altPopoverLabel">Alternative Descriptions:
+              OFF</label>
+          </div>
+
+          <!-- Alignment Selector -->
+          <div class="d-flex align-items-center">
+            <label for="alignmentSelect" class="form-label mb-0 me-2" style="white-space: nowrap;">Allineamento</label>
+            <select id="alignmentSelect" class="form-select form-select-sm">
+              <option value="left">Sinistra</option>
+              <option value="center" selected>Centro</option>
+              <option value="right">Destra</option>
+              <option value="justify">Giustifica</option>
+            </select>
+          </div>
+        </div>
+
+
+
+
+      </div>
+
+    </div>
+  </div>
+
+  <script>
+    function insertAtCaretOLD(lettera, parentesi = false) {
+      const textarea = document.getElementById('textArea');
+      const start = textarea.selectionStart;
+      const end = textarea.selectionEnd;
+      const text = textarea.value;
+
+      const newText = text.slice(0, start) + lettera + text.slice(end);
+      textarea.value = newText;
+
+      // offset pari al numero di caratteri, eccetto quando parentesi è true (in quel caso è 1)
+      const offset = parentesi ? 1 : lettera.length;
+      textarea.selectionStart = textarea.selectionEnd = start + offset;
+      if (!/Mobi|Android|iPhone|iPad|iPod|Tablet/i.test(navigator.userAgent)) {
+        textarea.focus();
+      }
+    }
+  </script>
+  <script>
+    (function () {
+      const textarea = document.getElementById('textArea');
+      let lastCaretPos = textarea.value.length;
+
+      // Track caret changes (both desktop & mobile)
+      textarea.addEventListener('click', updateCaret);
+      textarea.addEventListener('keyup', updateCaret);
+      textarea.addEventListener('touchend', updateCaret);
+
+      function updateCaret() {
+        lastCaretPos = textarea.selectionStart ?? textarea.value.length;
+      }
+
+      function insertAtCaret(lettera, parentesi = false) {
+        const isMobile = /Mobi|Android|iPhone|iPad|iPod|Tablet/i.test(navigator.userAgent);
+
+        // Prevent mobile keyboard pop-up by making textarea temporarily read-only
+        if (isMobile) {
+          textarea.readOnly = true;
+        } else {
+          textarea.focus();
+        }
+
+        setTimeout(() => {
+          // Use current caret or last known position
+          const start = textarea.selectionStart ?? lastCaretPos ?? textarea.value.length;
+          const end = textarea.selectionEnd ?? start;
+          const text = textarea.value;
+
+          // Insert the new character(s)
+          const newText = text.slice(0, start) + lettera + text.slice(end);
+          textarea.value = newText;
+
+          const offset = parentesi ? 1 : lettera.length;
+          const newCaret = start + offset;
+
+          textarea.selectionStart = textarea.selectionEnd = newCaret;
+          lastCaretPos = newCaret;
+
+          // Restore editability
+          if (isMobile) {
+            textarea.readOnly = false;
+          } else {
+            textarea.focus();
+          }
+        }, 0);
+      }
+
+      // Make function available globally
+      window.insertAtCaret = insertAtCaret;
+    })();
+  </script>
+
+  <script>
+    const htmlEl = document.documentElement;
+
+    // --- Theme Toggle ---
+    const themeToggle = document.getElementById('themeToggle');
+    const themeLabel = document.getElementById('themeLabel');
+
+    function updateThemeLabel(theme) {
+      themeLabel.textContent = theme === 'dark' ? 'Scuro' : 'Chiaro';
+    }
+
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    const initialTheme = prefersDark ? 'dark' : 'light';
+    htmlEl.setAttribute('data-bs-theme', initialTheme);
+    themeToggle.checked = prefersDark;
+    updateThemeLabel(initialTheme);
+
+    let userToggledTheme = false;
+
+    themeToggle.addEventListener('change', () => {
+      userToggledTheme = true;
+      const newTheme = themeToggle.checked ? 'dark' : 'light';
+      htmlEl.setAttribute('data-bs-theme', newTheme);
+      updateThemeLabel(newTheme);
+    });
+
+    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
+      if (!userToggledTheme) {
+        const newTheme = e.matches ? 'dark' : 'light';
+        htmlEl.setAttribute('data-bs-theme', newTheme);
+        themeToggle.checked = e.matches;
+        updateThemeLabel(newTheme);
+      }
+    });
+
+    // --- Popover Toggles ---
+    const popoverToggle = document.getElementById('popoverToggle');
+    const popoverLabel = document.getElementById('popoverLabel');
+    const altPopoverToggle = document.getElementById('altPopoverToggle');
+    const altPopoverLabel = document.getElementById('altPopoverLabel');
+
+    // Store all buttons with popovers
+    const popoverButtons = Array.from(document.querySelectorAll('button[data-bs-content]'));
+
+    // Enable popovers
+    function enablePopovers() {
+      popoverButtons.forEach(btn => btn.setAttribute('data-bs-toggle', 'popover'));
+      popoverButtons.forEach(btn => new bootstrap.Popover(btn));
+      updatePopoverContent(); // ensure content is correct
+    }
+
+    // Disable popovers
+    function disablePopovers() {
+      popoverButtons.forEach(btn => {
+        const popoverInstance = bootstrap.Popover.getInstance(btn);
+        if (popoverInstance) popoverInstance.dispose();
+        btn.removeAttribute('data-bs-toggle');
+      });
+    }
+
+    // Update popover content (primary or alternative)
+    function updatePopoverContent() {
+      popoverButtons.forEach(btn => {
+        const popoverInstance = bootstrap.Popover.getInstance(btn);
+        if (popoverInstance) {
+          const content = altPopoverToggle.checked
+            ? btn.getAttribute('data-alt-content')
+            : btn.getAttribute('data-bs-content');
+          popoverInstance.setContent({ '.popover-body': content });
+        }
+      });
+      altPopoverLabel.textContent = altPopoverToggle.checked
+        ? 'Alternative Descriptions: ON'
+        : 'Alternative Descriptions: OFF';
+    }
+
+    // Listen to popover toggle
+    popoverToggle.addEventListener('change', () => {
+      if (popoverToggle.checked) {
+        enablePopovers();
+        popoverLabel.textContent = 'Descrizioni: ON';
+      } else {
+        disablePopovers();
+        popoverLabel.textContent = 'Descrizioni: OFF';
+      }
+    });
+
+    // Listen to alternative content toggle
+    altPopoverToggle.addEventListener('change', () => {
+      if (popoverToggle.checked) {
+        updatePopoverContent();
+      }
+    });
+
+    // Initialize state on page load
+    if (popoverToggle.checked) {
+      enablePopovers();
+    } else {
+      disablePopovers();
+    }
+
+    altPopoverLabel.textContent = altPopoverToggle.checked ? 'Alternative Descriptions: ON' : 'Alternative Descriptions: OFF';
+
+  </script>
+
+  <footer class="text-body-secondary py-5">
+    <div class="container">
+      <p class="mb-0 text-center">
+        A passion project made by&nbsp;&nbsp;&nbsp;
+        <a href="https://damantio.it">
+          <img src="assets/brand-SQB.svg" class="logo logo-light" alt="Brand Light Logo">
+          <img src="assets/brand-SQW.svg" class="logo logo-dark" alt="Brand Dark Logo">
+        </a>
+      <div>release 1.0 hotfix 3</div>
+      </p>
+
+    </div>
+  </footer>
+
+</body>
+
+</html>
