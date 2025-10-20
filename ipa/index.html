@@ -350,7 +350,7 @@
     </div>
 
     <script>
-      function insertAtCaret(lettera, parentesi = false) {
+      function insertAtCaretOLD(lettera, parentesi = false) {
         const textarea = document.getElementById('textArea');
         const start = textarea.selectionStart;
         const end = textarea.selectionEnd;
@@ -367,6 +367,28 @@
         }
       }
     </script>
+
+    <script>
+    function insertAtCaret(lettera, parentesi = false) {
+  const textarea = document.getElementById('textArea');
+  
+  // Always focus first to update caret info
+  textarea.focus();
+
+  // Delay reading selection until after focus is applied
+  setTimeout(() => {
+    const start = textarea.selectionStart;
+    const end = textarea.selectionEnd;
+    const text = textarea.value;
+
+    const newText = text.slice(0, start) + lettera + text.slice(end);
+    textarea.value = newText;
+
+    const offset = parentesi ? 1 : lettera.length;
+    textarea.selectionStart = textarea.selectionEnd = start + offset;
+  }, 0);
+}
+</script>
 
     <script>
       const htmlEl = document.documentElement;
