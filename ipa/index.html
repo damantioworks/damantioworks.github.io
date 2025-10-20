@@ -371,27 +371,58 @@
         }
       }
     </script>
-
     <script>
-      function insertAtCaret(lettera, parentesi = false) {
+      (function () {
         const textarea = document.getElementById('textArea');
+        let lastCaretPos = textarea.value.length;
 
-        // Always focus first to update caret info
-        textarea.focus();
+        // Track caret changes (both desktop & mobile)
+        textarea.addEventListener('click', updateCaret);
+        textarea.addEventListener('keyup', updateCaret);
+        textarea.addEventListener('touchend', updateCaret);
 
-        // Delay reading selection until after focus is applied
-        setTimeout(() => {
-          const start = textarea.selectionStart;
-          const end = textarea.selectionEnd;
-          const text = textarea.value;
+        function updateCaret() {
+          lastCaretPos = textarea.selectionStart ?? textarea.value.length;
+        }
 
-          const newText = text.slice(0, start) + lettera + text.slice(end);
-          textarea.value = newText;
+        function insertAtCaret(lettera, parentesi = false) {
+          const isMobile = /Mobi|Android|iPhone|iPad|iPod|Tablet/i.test(navigator.userAgent);
 
-          const offset = parentesi ? 1 : lettera.length;
-          textarea.selectionStart = textarea.selectionEnd = start + offset;
-        }, 0);
-      }
+          // Prevent mobile keyboard pop-up by making textarea temporarily read-only
+          if (isMobile) {
+            textarea.readOnly = true;
+          } else {
+            textarea.focus();
+          }
+
+          setTimeout(() => {
+            // Use current caret or last known position
+            const start = textarea.selectionStart ?? lastCaretPos ?? textarea.value.length;
+            const end = textarea.selectionEnd ?? start;
+            const text = textarea.value;
+
+            // Insert the new character(s)
+            const newText = text.slice(0, start) + lettera + text.slice(end);
+            textarea.value = newText;
+
+            const offset = parentesi ? 1 : lettera.length;
+            const newCaret = start + offset;
+
+            textarea.selectionStart = textarea.selectionEnd = newCaret;
+            lastCaretPos = newCaret;
+
+            // Restore editability
+            if (isMobile) {
+              textarea.readOnly = false;
+            } else {
+              textarea.focus();
+            }
+          }, 0);
+        }
+
+        // Make function available globally
+        window.insertAtCaret = insertAtCaret;
+      })();
     </script>
 
     <script>
