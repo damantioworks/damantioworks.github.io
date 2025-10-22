@@ -9,9 +9,40 @@
   <title>IPA Editor</title>
 
   <link href="assets/css/bootstrap.min.css" rel="stylesheet" />
-   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 
   <style>
+      @font-face {
+    font-family: 'Inter';
+    src: url('assets/fonts/inter/Inter-Regular.woff2') format('woff2');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+  }
+
+  @font-face {
+    font-family: 'Inter';
+    src: url('assets/fonts/inter/Inter-Medium.woff2') format('woff2');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+  }
+
+  @font-face {
+    font-family: 'Inter';
+    src: url('assets/fonts/inter/Inter-SemiBold.woff2') format('woff2');
+    font-weight: 600;
+    font-style: normal;
+    font-display: swap;
+  }
+
+  @font-face {
+    font-family: 'Inter';
+    src: url('assets/fonts/inter/Inter-Bold.woff2') format('woff2');
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+  }
+
     /* Theme Toggle Logo Styling (Unchanged) */
     .logo-dark {
       display: none;
@@ -57,7 +88,6 @@
       --btn-hover-bg: #2a2a2a;
       /* slightly lighter hover */
       --btn-hover-border: #2a2a2a;
-      
     }
 
     /* Theme Component Styling (Unchanged) */
@@ -358,7 +388,7 @@
     </div>
 
     <script>
-      function insertAtCaretOLD(lettera, parentesi = false) {
+      function insertAtCaret(lettera, parentesi = false) {
         const textarea = document.getElementById('textArea');
         const start = textarea.selectionStart;
         const end = textarea.selectionEnd;
@@ -370,60 +400,10 @@
         // offset pari al numero di caratteri, eccetto quando parentesi è true (in quel caso è 1)
         const offset = parentesi ? 1 : lettera.length;
         textarea.selectionStart = textarea.selectionEnd = start + offset;
+        if (!/Mobi|Android|iPhone|iPad|iPod|Tablet|Nintendo Switch/i.test(navigator.userAgent)) {
+          textarea.focus();
+        }
       }
-    </script>
-    <script>
-      (function () {
-        const textarea = document.getElementById('textArea');
-        let lastCaretPos = textarea.value.length;
-
-        // Track caret changes (both desktop & mobile)
-        textarea.addEventListener('click', updateCaret);
-        textarea.addEventListener('keyup', updateCaret);
-        textarea.addEventListener('touchend', updateCaret);
-
-        function updateCaret() {
-          lastCaretPos = textarea.selectionStart ?? textarea.value.length;
-        }
-
-        function insertAtCaret(lettera, parentesi = false) {
-          const isMobile = /Mobi|Android|iPhone|iPad|iPod|Tablet/i.test(navigator.userAgent);
-
-          // Prevent mobile keyboard pop-up by making textarea temporarily read-only
-          if (isMobile) {
-            textarea.readOnly = true;
-          } else {
-            textarea.readOnly = true;
-          }
-
-          setTimeout(() => {
-            // Use current caret or last known position
-            const start = textarea.selectionStart ?? lastCaretPos ?? textarea.value.length;
-            const end = textarea.selectionEnd ?? start;
-            const text = textarea.value;
-
-            // Insert the new character(s)
-            const newText = text.slice(0, start) + lettera + text.slice(end);
-            textarea.value = newText;
-
-            const offset = parentesi ? 1 : lettera.length;
-            const newCaret = start + offset;
-
-            textarea.selectionStart = textarea.selectionEnd = newCaret;
-            lastCaretPos = newCaret;
-
-            // Restore editability
-            if (isMobile) {
-              textarea.readOnly = false;
-            } else {
-              textarea.readOnly = false;
-            }
-          }, 0);
-        }
-
-        // Make function available globally
-        window.insertAtCaret = insertAtCaret;
-      })();
     </script>
 
     <script>
@@ -548,7 +528,7 @@
           textarea.value = text.slice(0, start) + text.slice(end);
           textarea.selectionStart = textarea.selectionEnd = start;
         }
-        //textarea.focus();
+
       });
 
       // Initialize popover for Copy button
@@ -589,7 +569,7 @@
             <img src="assets/brand-SQB.svg" class="logo logo-light" alt="Brand Light Logo">
             <img src="assets/brand-SQW.svg" class="logo logo-dark" alt="Brand Dark Logo">
           </a>
-          hotfix 4
+          <div>release 1.0 hotfix 3</div>
         </p>
         
       </div>
