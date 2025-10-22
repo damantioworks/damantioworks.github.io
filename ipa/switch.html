@@ -9,40 +9,10 @@
   <title>IPA Editor</title>
 
   <link href="assets/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
 
   <style>
-      @font-face {
-    font-family: 'Inter';
-    src: url('assets/fonts/inter/Inter-Regular.woff2') format('woff2');
-    font-weight: 400;
-    font-style: normal;
-    font-display: swap;
-  }
-
-  @font-face {
-    font-family: 'Inter';
-    src: url('assets/fonts/inter/Inter-Medium.woff2') format('woff2');
-    font-weight: 500;
-    font-style: normal;
-    font-display: swap;
-  }
-
-  @font-face {
-    font-family: 'Inter';
-    src: url('assets/fonts/inter/Inter-SemiBold.woff2') format('woff2');
-    font-weight: 600;
-    font-style: normal;
-    font-display: swap;
-  }
-
-  @font-face {
-    font-family: 'Inter';
-    src: url('assets/fonts/inter/Inter-Bold.woff2') format('woff2');
-    font-weight: 700;
-    font-style: normal;
-    font-display: swap;
-  }
-
     /* Theme Toggle Logo Styling (Unchanged) */
     .logo-dark {
       display: none;
@@ -107,7 +77,6 @@
       color: var(--text-color);
       transition: background-color 0.3s, color 0.3s;
       font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-
     }
 
     .btn-primary {
@@ -387,7 +356,24 @@
       </div>
     </div>
 
+    <script>
+      function insertAtCaretOLD(lettera, parentesi = false) {
+        const textarea = document.getElementById('textArea');
+        const start = textarea.selectionStart;
+        const end = textarea.selectionEnd;
+        const text = textarea.value;
 
+        const newText = text.slice(0, start) + lettera + text.slice(end);
+        textarea.value = newText;
+
+        // offset pari al numero di caratteri, eccetto quando parentesi è true (in quel caso è 1)
+        const offset = parentesi ? 1 : lettera.length;
+        textarea.selectionStart = textarea.selectionEnd = start + offset;
+        if (!/Mobi|Android|iPhone|iPad|iPod|Tablet/i.test(navigator.userAgent)) {
+          //textarea.focus();
+        }
+      }
+    </script>
     <script>
       (function () {
         const textarea = document.getElementById('textArea');
@@ -403,13 +389,13 @@
         }
 
         function insertAtCaret(lettera, parentesi = false) {
-          const isMobile = /Mobi|Android|iPhone|iPad|iPod|Nintendo Switch|Nintendo_Switch|Tablet/i.test(navigator.userAgent);
+          const isMobile = /Mobi|Android|iPhone|iPad|iPod|Tablet/i.test(navigator.userAgent);
 
           // Prevent mobile keyboard pop-up by making textarea temporarily read-only
           if (isMobile) {
             textarea.readOnly = true;
           } else {
-            textarea.focus();
+            //textarea.focus();
           }
 
           setTimeout(() => {
@@ -432,7 +418,7 @@
             if (isMobile) {
               textarea.readOnly = false;
             } else {
-              textarea.focus();
+              //textarea.focus();
             }
           }, 0);
         }
@@ -564,7 +550,7 @@
           textarea.value = text.slice(0, start) + text.slice(end);
           textarea.selectionStart = textarea.selectionEnd = start;
         }
-        textarea.focus();
+        //textarea.focus();
       });
 
       // Initialize popover for Copy button
@@ -605,7 +591,7 @@
             <img src="assets/brand-SQB.svg" class="logo logo-light" alt="Brand Light Logo">
             <img src="assets/brand-SQW.svg" class="logo logo-dark" alt="Brand Dark Logo">
           </a>
-          <div>release 1.0 hotfix 4</div>
+          <div>release 1.0 hotfix 3</div>
         </p>
         
       </div>
