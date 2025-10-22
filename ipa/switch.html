@@ -387,23 +387,59 @@
       </div>
     </div>
 
+
     <script>
-      function insertAtCaret(lettera, parentesi = false) {
+      (function () {
         const textarea = document.getElementById('textArea');
-        const start = textarea.selectionStart;
-        const end = textarea.selectionEnd;
-        const text = textarea.value;
+        let lastCaretPos = textarea.value.length;
 
-        const newText = text.slice(0, start) + lettera + text.slice(end);
-        textarea.value = newText;
+        // Track caret changes (both desktop & mobile)
+        textarea.addEventListener('click', updateCaret);
+        textarea.addEventListener('keyup', updateCaret);
+        textarea.addEventListener('touchend', updateCaret);
 
-        // offset pari al numero di caratteri, eccetto quando parentesi è true (in quel caso è 1)
-        const offset = parentesi ? 1 : lettera.length;
-        textarea.selectionStart = textarea.selectionEnd = start + offset;
-        if (!/Mobi|Android|iPhone|iPad|iPod|Tablet|Nintendo Switch/i.test(navigator.userAgent)) {
-          textarea.focus();
+        function updateCaret() {
+          lastCaretPos = textarea.selectionStart ?? textarea.value.length;
         }
-      }
+
+        function insertAtCaret(lettera, parentesi = false) {
+          const isMobile = /Mobi|Android|iPhone|iPad|iPod|Nintendo Switch|Nintendo_Switch|Tablet/i.test(navigator.userAgent);
+
+          // Prevent mobile keyboard pop-up by making textarea temporarily read-only
+          if (isMobile) {
+            textarea.readOnly = true;
+          } else {
+            textarea.focus();
+          }
+
+          setTimeout(() => {
+            // Use current caret or last known position
+            const start = textarea.selectionStart ?? lastCaretPos ?? textarea.value.length;
+            const end = textarea.selectionEnd ?? start;
+            const text = textarea.value;
+
+            // Insert the new character(s)
+            const newText = text.slice(0, start) + lettera + text.slice(end);
+            textarea.value = newText;
+
+            const offset = parentesi ? 1 : lettera.length;
+            const newCaret = start + offset;
+
+            textarea.selectionStart = textarea.selectionEnd = newCaret;
+            lastCaretPos = newCaret;
+
+            // Restore editability
+            if (isMobile) {
+              textarea.readOnly = false;
+            } else {
+              textarea.focus();
+            }
+          }, 0);
+        }
+
+        // Make function available globally
+        window.insertAtCaret = insertAtCaret;
+      })();
     </script>
 
     <script>
@@ -528,7 +564,7 @@
           textarea.value = text.slice(0, start) + text.slice(end);
           textarea.selectionStart = textarea.selectionEnd = start;
         }
-
+        textarea.focus();
       });
 
       // Initialize popover for Copy button
@@ -569,7 +605,7 @@
             <img src="assets/brand-SQB.svg" class="logo logo-light" alt="Brand Light Logo">
             <img src="assets/brand-SQW.svg" class="logo logo-dark" alt="Brand Dark Logo">
           </a>
-          <div>release 1.0 hotfix 3</div>
+          <div>release 1.0 hotfix 4</div>
         </p>
         
       </div>
