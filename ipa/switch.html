@@ -370,9 +370,6 @@
         // offset pari al numero di caratteri, eccetto quando parentesi è true (in quel caso è 1)
         const offset = parentesi ? 1 : lettera.length;
         textarea.selectionStart = textarea.selectionEnd = start + offset;
-        if (!/Mobi|Android|iPhone|iPad|iPod|Tablet/i.test(navigator.userAgent)) {
-          textarea.focus();
-        }
       }
     </script>
     <script>
@@ -396,7 +393,7 @@
           if (isMobile) {
             textarea.readOnly = true;
           } else {
-            textarea.focus();
+            textarea.readOnly = true;
           }
 
           setTimeout(() => {
@@ -419,7 +416,7 @@
             if (isMobile) {
               textarea.readOnly = false;
             } else {
-              textarea.focus();
+              textarea.readOnly = false;
             }
           }, 0);
         }
@@ -592,7 +589,6 @@
             <img src="assets/brand-SQB.svg" class="logo logo-light" alt="Brand Light Logo">
             <img src="assets/brand-SQW.svg" class="logo logo-dark" alt="Brand Dark Logo">
           </a>
-          <div>release 1.0 hotfix 3</div>
         </p>
         
       </div>
