@@ -354,7 +354,7 @@
     </div>
 
     <script>
-      function insertAtCaretOLD(lettera, parentesi = false) {
+      function insertAtCaret(lettera, parentesi = false) {
         const textarea = document.getElementById('textArea');
         const start = textarea.selectionStart;
         const end = textarea.selectionEnd;
@@ -385,7 +385,7 @@
           lastCaretPos = textarea.selectionStart ?? textarea.value.length;
         }
 
-        function insertAtCaret(lettera, parentesi = false) {
+        function insertAtCaretNEW(lettera, parentesi = false) {
           const isMobile = /Mobi|Android|iPhone|iPad|iPod|Tablet/i.test(navigator.userAgent);
 
           // Prevent mobile keyboard pop-up by making textarea temporarily read-only
