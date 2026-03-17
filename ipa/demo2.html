@@ -354,7 +354,7 @@
     </div>
 
     <script>
-      function insertAtCaret(lettera, parentesi = false) {
+      function insertAtCaretTRIED(lettera, parentesi = false) {
         const textarea = document.getElementById('textArea');
         const start = textarea.selectionStart;
         const end = textarea.selectionEnd;
@@ -370,60 +370,30 @@
           textarea.focus();
         }
       }
+
+
+      function insertAtCaret(lettera, parentesi = false) {
+  const textarea = document.getElementById('textArea');
+  textarea.focus(); // Focus first to ensure selection is active
+
+  // Modern way to replace selection or insert at caret
+  textarea.setRangeText(lettera, textarea.selectionStart, textarea.selectionEnd, 'end');
+
+  // Adjust cursor if it's a "parentesi" case
+  if (parentesi) {
+    const newPos = textarea.selectionStart - lettera.length + 1;
+    textarea.setSelectionRange(newPos, newPos);
+  }
+
+  // Mobile check remains useful to avoid keyboard flickering
+  if (/Mobi|Android|iPhone/i.test(navigator.userAgent)) {
+    textarea.blur(); 
+  }
+}
     </script>
-    <script>
-      (function () {
-        const textarea = document.getElementById('textArea');
-        let lastCaretPos = textarea.value.length;
 
-        // Track caret changes (both desktop & mobile)
-        textarea.addEventListener('click', updateCaret);
-        textarea.addEventListener('keyup', updateCaret);
-        textarea.addEventListener('touchend', updateCaret);
-
-        function updateCaret() {
-          lastCaretPos = textarea.selectionStart ?? textarea.value.length;
-        }
-
-        function insertAtCaretNEW(lettera, parentesi = false) {
-          const isMobile = /Mobi|Android|iPhone|iPad|iPod|Tablet/i.test(navigator.userAgent);
-
-          // Prevent mobile keyboard pop-up by making textarea temporarily read-only
-          if (isMobile) {
-            textarea.readOnly = true;
-          } else {
-            textarea.focus();
-          }
-
-          setTimeout(() => {
-            // Use current caret or last known position
-            const start = textarea.selectionStart ?? lastCaretPos ?? textarea.value.length;
-            const end = textarea.selectionEnd ?? start;
-            const text = textarea.value;
-
-            // Insert the new character(s)
-            const newText = text.slice(0, start) + lettera + text.slice(end);
-            textarea.value = newText;
-
-            const offset = parentesi ? 1 : lettera.length;
-            const newCaret = start + offset;
-
-            textarea.selectionStart = textarea.selectionEnd = newCaret;
-            lastCaretPos = newCaret;
-
-            // Restore editability
-            if (isMobile) {
-              textarea.readOnly = false;
-            } else {
-              textarea.focus();
-            }
-          }, 0);
-        }
-
-        // Make function available globally
-        window.insertAtCaret = insertAtCaret;
-      })();
-    </script>
+    
+    
 
     <script>
       const htmlEl = document.documentElement;
